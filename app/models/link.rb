@@ -1,3 +1,5 @@
+require 'uri'
+
 class Link < ActiveRecord::Base
   def create!(link_params)
     #add invalid url
