@@ -9,7 +9,7 @@ describe LinksController, :type => :controller do
         @fake_link = double("Link", :name => "Google", :url => "www.google.com", :category => "search")
         allow(Links).to receive(:create!).and_return(@fake_link)
         #this line should be edited probably
-        post :create, :link => {}
+        post :create, :link => @fake_link
         expect(response).to redirect_to(links_path)
       end
     end
@@ -19,7 +19,7 @@ describe LinksController, :type => :controller do
         @fake_link = double("Link", :name => "Google", :url => "google", :category => "search")
         #this line should be edited
         allow(Links).to receive(:create!).and_return(false)
-        post :create, :link => {}
+        post :create, :link => @fake_link
         expect(response).to redirect_to(new_link_path)
       end
     end
@@ -29,7 +29,7 @@ describe LinksController, :type => :controller do
         @fake_link = double("Link", :name => "", :url => "www.google.com", :category => "search")
         #this line should be edited
         allow(Links).to receive(:create!).and_return(false)
-        post :create, :link => {}
+        post :create, :link => @fake_link
         expect(response).to redirect_to(new_link_path)
       end
     end
@@ -39,9 +39,9 @@ describe LinksController, :type => :controller do
       @fake_link = double("Link", :name => "Google", :url => "www.google.com", :category => "search")
       allow(Links).to receive(:create!).and_return(false)
       #this line should be edited probably
-      post :create, :link => {}
+      post :create, :link => @fake_link
       #maybe should go back to new_link_path
-      expect(response).to redirect_to(links_path)
+      expect(response).to redirect_to(new_link_path)
     end
   end
   
