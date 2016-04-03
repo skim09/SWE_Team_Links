@@ -11,6 +11,16 @@ describe LinksController, :type => :controller do
     end
   end
   
+  describe 'expanding a category' do
+    it 'should show a category after clicking it' do
+        
+    end
+  end
   
+  describe 'collapsing a category' do
+    it 'should hide a category after clicking it' do
+        
+    end
+  end
     
 end
