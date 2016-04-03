@@ -8,20 +8,21 @@ Background: links have been added to database
   
   Given the following links exist
   
-  | name            | url           | upvotes       | category      |
-  | Google          | google.com    | 5             | Internships   |
-  | Yahoo           | yahoo.com     | 4             | Jobs          |
-  | Bing            | bing.com      | 6             | Grants        |
+  | name                | url                                     | upvotes       | category      |
+  | BridgeSpan          | www.bridgespan.org/Nonprofit_Jobs.aspx  | 5             | Jobs          |
+  | Idealist            | www.idealist.org                        | 4             | Jobs          |
+  | Barr Foundation     | www.barrfoundation.org/grantmaking      | 6             | Grants        |
 
   And I am on the Links home page
 
 Scenario: finding a link in an expanded category
   When I press "Jobs"
-  Then I should see "Link1"
+  Then I should see "BridgeSpan"
+  And I should see "Idealist"
   And I should be on the Links home page
  
 Scenario: not finding a link in an unexpanded category
   When I press "Jobs"
-  Then I should not see "Link2"
+  Then I should not see "Barr Foundation"
   And I should be on the Links home page
   

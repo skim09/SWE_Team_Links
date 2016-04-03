@@ -7,10 +7,10 @@ Feature: add links to home page
 Scenario: pressing add links button
   When I am on the Links home page
   And I press "Add Links"
-  Then I should be on the "Add Links" page
+  Then I should be on the Add Links page
 
 Scenario: submitting a submit link form
-  When I am on the "Add Links" page
+  When I am on the Add Links page
   And I fill in "Name of Link" with "New Link"
   And I fill in "Full URL" with "google.com"
   And I fill in "Category" with "Jobs"
