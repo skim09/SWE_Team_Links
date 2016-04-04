@@ -21,6 +21,7 @@ class LinksController < ApplicationController
     def create
         @link = Link.create!(link_params)
         flash[:notice] = "#{@link.name} was successfully submitted."
+        AdminMailer.adding_link_email().deliver
         redirect_to links_path
     end
     
