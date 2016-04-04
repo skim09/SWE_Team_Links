@@ -16,13 +16,13 @@ Background: links have been added to database
   And I am on the Links home page
 
 Scenario: finding a link in an expanded category
-  When I press "Jobs"
+  When I expand "Jobs"
   Then I should see "BridgeSpan"
   And I should see "Idealist"
   And I should be on the Links home page
  
 Scenario: not finding a link in an unexpanded category
-  When I press "Jobs"
+  When I unexpand "Jobs"
   Then I should not see "Barr Foundation"
   And I should be on the Links home page
   

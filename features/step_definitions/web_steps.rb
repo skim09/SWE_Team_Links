@@ -65,6 +65,19 @@ When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
 end
 
+When /^(?:|I )expand "([^"]*)"$/  do |category|
+
+end
+
+When /^(?:|I )unexpand "([^"]*)"$/  do |category|
+  
+end
+
+
+When(/^a category is selected$/) do
+  select 'Get Acclimated & Get Inspired' , from: 'link_category'
+end
+
 # Use this to fill in an entire form with data from a table. Example:
 #
 #   When I fill in the following:
@@ -101,6 +114,7 @@ end
 When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
   attach_file(field, File.expand_path(path))
 end
+
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
   if page.respond_to? :should
