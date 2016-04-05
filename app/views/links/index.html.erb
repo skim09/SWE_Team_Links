@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+-->
+<body>
+   
+   <h1><b><center><font family="Lato", color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
+  
+  <div class = "leftalign">
+    <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Internships</button>
+  </div>
+  
+   <% @internships.each do |intern| %>
+  <div class = "leftalign" id = "internship" style="display: none">  
+  <a href= https://<%= intern.url %> > <%= intern.name %> </a>
+  </div>
+  <% end %>
+   
+  
+  <div class = "leftalign">
+    <button id = "grants" type="button" onclick="toggleHidden(grant)" class="btn btn-default">Grants</button>
+  </div>
+  
+   <% @grants.each do |grant| %>
+  <div class = "leftalign" id = "grant" style="display: none">  
+  <a href= https://<%= grant.url %> > <%= grant.name %> </a>
+  </div>
+  <% end %>
+  
+  
+  
+  <div class = "leftalign">
+    <button id = "jobs" type="button" onclick="toggleHidden(job)" class="btn btn-default">Jobs</button>
+  </div>
+  
+  <% @jobs.each do |job| %>
+   <div class = "leftalign" id = "job" style="display: none">  
+    <a href= https://<%= job.url %> > <%= job.name %> </a>
+  </div>
+   <% end %>
+  
+  
+  
+   <div class = "leftalign">
+    <button id = "inspirations" type="button" onclick="toggleHidden(inspiration)" class="btn btn-default">Inspiration</button>
+  </div>
+  
+  <% @inspiration.each do |inspir| %>
+   <div class = "leftalign" id = "inspiration" style="display: none">  
+    <a href= https://<%= inspir.url %> > <%= inspir.name %> </a>
+  </div>
+   <% end %>
+  
+  
+  <div class = "leftalign">
+    <button id = "others" type="button" onclick="toggleHidden(other)" class="btn btn-default">Other</button>
+  </div>
+  
+   <% @other.each do |oth| %>
+   <div class = "leftalign" id = "inspiration" style="display: none">  
+    <a href= https://<%= oth.url %> > <%= oth.name %> </a>
+  </div>
+   <% end %>
+  
+  <div class = "leftalign" id = "addlink">
+    <a href= "\add" > Add Link </a>
+  </div>
+  
+  <script>
+    
+    function toggleHidden(id) {
+      
+      if ($(id).css('display') == "none") {
+          $(id).css('display', 'block') ;
+      }
+      else {
+          $(id).css('display', 'none') 
+      }
+        
+      
+    }
+    
+  </script>
+  
+  
+  
+</body>
+</html>
