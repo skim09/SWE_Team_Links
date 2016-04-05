@@ -22,7 +22,7 @@ Scenario: finding a link in an expanded category
   And I should be on the Links home page
  
 Scenario: not finding a link in an unexpanded category
-  When I unexpand "Jobs"
+  When I expand "Jobs"
   Then I should not see "Barr Foundation"
   And I should be on the Links home page
   

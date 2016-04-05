@@ -18,6 +18,7 @@ module NavigationHelpers
     when /^the Links home\s?page$/
       '/links'
 
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

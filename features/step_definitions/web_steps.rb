@@ -66,11 +66,7 @@ When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
 end
 
 When /^(?:|I )expand "([^"]*)"$/  do |category|
-
-end
-
-When /^(?:|I )unexpand "([^"]*)"$/  do |category|
-  
+  click_button(category)
 end
 
 

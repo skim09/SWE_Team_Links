@@ -12,10 +12,10 @@ Scenario: pressing add links button
 Scenario: submitting a submit link form
   When I am on the add page
   And I fill in "Name of Link" with "New Link"
-  And I fill in "Full URL" with "google.com"
-  And a category is selected
+  And I fill in "Full URL" with "http://google.com"
+  And I select "Get Hired" from "Category"
   And I press "Submit"
-  Then I should see "Your request has been successfully submitted"
+  Then I should see "'New Link' was successfully submitted."
   And I should be on the Links home page
   
   
