@@ -6,7 +6,7 @@ describe LinksController, :type => :controller do
     
     context 'all fields correct' do
       it 'should validate the url' do
-        Link.new(:name => "Google", :url => "http://www.google.com", :category => "search", :upvotes => 0).should be_valid
+        expect(Link.new(:name => "Google", :url => "http://www.google.com", :category => "search", :upvotes => 0)).to be_valid
       end
       
       it 'should add a new link' do
@@ -20,26 +20,26 @@ describe LinksController, :type => :controller do
     
     context 'invalid URL' do
       it 'should reject the url' do
-        Link.new(:name => "Google", :url => "google", :category => "search", :upvotes => 0).should_not be_valid
+        expect(Link.new(:name => "Google", :url => "google", :category => "search", :upvotes => 0)).to_not be_valid
       end
     end
     
     context 'empty name' do
       it 'should reject the URL' do
-        Link.new(:name => "", :url => "http://www.google.com", :category => "search", :upvotes => 0).should_not be_valid
+        expect(Link.new(:name => "", :url => "http://www.google.com", :category => "search", :upvotes => 0)).to_not be_valid
       end
     end
     
     context 'empty url' do
       it 'should reject the URL' do
-        Link.new(:name => "google", :url => "", :category => "search", :upvotes=> 0).should_not be_valid
+        expect(Link.new(:name => "google", :url => "", :category => "search", :upvotes=> 0)).to_not be_valid
       end
     end
     
     context 'not unique URL' do
         it 'should reject the URL' do
           Link.create!(:name => "Google", :url => "http://www.google.com", :category => "search", :upvotes => 0)
-          Link.new(:name => "Google", :url => "http://www.google.com", :category => "search", :upvotes => 0).should_not be_valid
+          expect(Link.new(:name => "Google", :url => "http://www.google.com", :category => "search", :upvotes => 0)).to_not be_valid
       end
     end
   end
