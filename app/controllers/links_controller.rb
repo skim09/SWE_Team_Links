@@ -11,8 +11,19 @@ class LinksController < ApplicationController
     end
     
     def index
-        @links = Link
+        #@links = Link
+        @inspiration = Link.where(category: "Inspiration")
+        @internships = Link.where(category: "Internships")
+        @grants = Link.where(category: "Grants")
+        @jobs = Link.where(category: "Jobs")
+        @other = Link.where(category: "Other")
     end
+    
+    # show by category
+    #def show_by_category
+    #    #@links = Link.where(category: params[:category])
+    #    logger.info("%%%%%"+params[:category].to_s)
+    #end
     
     def new
     # default: render 'new' template
