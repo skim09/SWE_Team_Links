@@ -2,10 +2,6 @@
 <html>
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 -->
-<script src="javascripts/bootstrap.js"></script>
-<script src="javascripts/test.js"></script>
-<link href="stylesheets/bootstrap.css" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <body>
     <div class = "site-wrapper">
     <div class = "container">
@@ -31,7 +27,7 @@
                 <div align="left"> <%= label :link, :name, 'Name of Link' %> </div>
             </div>
             <div class="col-xs-6">
-                <%= text_field :link, 'title', size: "20" %>
+                <%= text_field :link, 'name', size: "20" %>
             </div>
         </div>
         <div class = "row">
@@ -42,16 +38,20 @@
                 <%= text_field :link, 'url', size: "30" %>
             </div>
         </div>
+        
         <div class = "row">
             <div class="col-xs-2 col-xs-offset-4">
                 <div align="left"> <%= label :link, :category, 'Category' %> </div>
             </div>
             <div class="col-xs-6">
                 <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                   <!-- Category Button 
+                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Category:  <span class="selected"></span>
                         <span class="caret"></span>
-                     </button>
+                     </button> -->
+                     
+                     <!-- Dropdown menu 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li><a href="#">Get Acclimated & Get Inspired</a></li>
                         <li><a href="#">Get Smart & Get Informed</a></li>
@@ -59,12 +59,14 @@
                         <li><a href="#">Get Experienced</a></li>
                         <li><a href="#">Get Organized</a></li>
                         <li><a href="#">Get Funded</a></li>
-                        <li><a href="#">Get Hired</a></li>
-                        <%= select :link, :category, ['Get Acclimated & Get Inspired','Get Smart & Get Informed','Get Connected & Get Caught','Get Experience','Get Organized', 'Get Funded', 'Get Hired'] %>
-                    </ul>
+                        <li><a href="#">Get Hired</a></li>  -->
+                        
+                        <%= select :link, :category, ['Internships','Grants','Jobs','Inspiration','Other'], class: 'dropdown-menu' %>
+                       
                 </div>
             </div>
         </div>
+        
         <div class = "row">
             <div class="col-xs-2 col-xs-offset-4">
                 <div align="left"> <%= label :link, :url, 'Comments (Optional)' %> </div>
