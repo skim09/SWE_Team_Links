@@ -56,7 +56,6 @@ Rails.application.routes.draw do
   #   end
   resources :links
   root :to => redirect('/links')
-  get 'add' => 'links#new'
   #get '/links/category/' => '/links#index'
   #get "/show_by_category" => 'links#show_by_category', as: 'show_by_category'
   
