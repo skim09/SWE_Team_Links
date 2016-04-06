@@ -2,20 +2,27 @@
 <html>
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 -->
+<head>
+  <link rel="stylesheet" href="animate.min.css">
+</head>
 <body>
-   
-   <h1><b><center><font family="Lato", color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
-  
+   <div class = "flash">
+   <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
+ </div>
+
   <div class = "leftalign">
     <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Internships</button>
   </div>
   
    <% @internships.each do |intern| %>
+
+       
   <div class = "leftalign" id = "internship" style="display: none">  
   <a href= https://<%= intern.url %> > <%= intern.name %> </a>
-  </div>
+    </div>
+    
   <% end %>
-   
+ 
   
   <div class = "leftalign">
     <button id = "grants" type="button" onclick="toggleHidden(grant)" class="btn btn-default">Grants</button>
@@ -66,18 +73,19 @@
     <a href= "\add" > Add Link </a>
   </div>
   
+  
   <script>
     
     function toggleHidden(id) {
       
       if ($(id).css('display') == "none") {
           $(id).css('display', 'block') ;
+           $(id).addClass('animated fadeIn');
       }
       else {
           $(id).css('display', 'none') 
       }
-        
-      
+     
     }
     
   </script>

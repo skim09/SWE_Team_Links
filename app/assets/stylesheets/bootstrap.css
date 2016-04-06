@@ -3023,7 +3023,7 @@ select[multiple].input-lg {
           user-select: none;
   background-image: none;
   border: 1px solid transparent;
-  border-radius: 4px;
+  
 }
 .btn:focus,
 .btn:active:focus,
@@ -3062,9 +3062,9 @@ fieldset[disabled] a.btn {
   pointer-events: none;
 }
 .btn-default {
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc;
+  background: rgba(255,255,255,0.50);
+  border: 1px solid #000000;
+  font-weight: 600;
 }
 .btn-default:focus,
 .btn-default.focus {
