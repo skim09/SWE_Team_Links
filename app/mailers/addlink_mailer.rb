@@ -3,6 +3,6 @@ class AddlinkMailer < ApplicationMailer
     
     def linkrequest_email(link)
         @link = link
-        mail(to: "ezornow@wesleyan.edu", subject: 'New Link Request')
+        mail(to: "swkim728@gmail.com", subject: 'New Link Request')
     end
 end
