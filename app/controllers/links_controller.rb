@@ -31,6 +31,7 @@ class LinksController < ApplicationController
     end
 
     def create
+
         @link = Link.create(link_params)
         
         if @link.valid? 
