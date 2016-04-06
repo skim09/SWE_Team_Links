@@ -6,7 +6,9 @@
   <link rel="stylesheet" href="animate.min.css">
 </head>
 <body>
-   
+
+  <!--<div class = "mini" style= "color: #FFFFFF" > Google </div>-->
+  
    <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
 
   <div class = "leftalign">
@@ -15,7 +17,6 @@
   
    <% @internships.each do |intern| %>
 
-       
   <div class = "leftalign" id = "internship" style="display: none">  
   <a href= <%= intern.url %> > <%= intern.name %> </a>
     </div>
@@ -69,7 +70,7 @@
    <% end %>
   
   <div class = "leftalign" id = "addlink">
-    <a href= "\links\new" > Add Link </a>
+    <%= link_to "Add Link", new_link_path  %> 
   </div>
   
   
