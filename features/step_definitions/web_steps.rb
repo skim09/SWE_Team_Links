@@ -41,6 +41,12 @@ When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
   with_scope(parent) { When "#{step}:", table_or_string }
 end
 
+Given /the following links exist/ do |links_table|
+  links_table.hashes.each do |link|
+    Link.create(link)
+  end
+end
+
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
@@ -52,6 +58,7 @@ end
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
+
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
@@ -69,11 +76,6 @@ When /^(?:|I )expand "([^"]*)"$/  do |category|
   click_button(category)
 end
 
-Given /the following links exist/ do |links_table|
-  links_table.hashes.each do |link|
-    Link.create(link)
-  end
-end
 
 
 When(/^a category is selected$/) do

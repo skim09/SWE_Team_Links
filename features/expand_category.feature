@@ -7,8 +7,9 @@ Feature: expand only categories that have been selected
 Background: links have been added to database
   
   Given the following links exist:
-  | name      | category    | url        |
-  | Google    | Internships | google.com |
+  | name     | category          | url          | 
+  | Google   | Internships       | google.com   |
+
 
   And I am on the Links home page
 
