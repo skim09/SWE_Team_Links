@@ -41,11 +41,6 @@ When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
   with_scope(parent) { When "#{step}:", table_or_string }
 end
 
-Given /the following links exist/ do |links_table|
-  links_table.hashes.each do |link|
-    Link.create(link)
-  end
-end
 
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
@@ -126,6 +121,14 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
   else
     assert page.has_content?(text)
   end
+end
+
+Then /^(?:|I )should spot "([^"]*)"$/ do |text|
+  expect(page).to have_link(text, visible: false)
+end
+
+Then /^(?:|I )should not spot "([^"]*)"$/ do |text|
+  expect(page).to have_no_link(text, visible: true)
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
