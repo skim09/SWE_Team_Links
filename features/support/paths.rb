@@ -17,7 +17,8 @@ module NavigationHelpers
       '/'
     when /^the Links home\s?page$/
       '/links'
-
+    when /^the Add Links page$/
+      new_links_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
