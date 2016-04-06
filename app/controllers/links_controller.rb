@@ -42,8 +42,6 @@ class LinksController < ApplicationController
              redirect_to new_link_path
         end
         #AdminMailer.adding_link_email().deliver
- 
-        
     end
     
     def edit
