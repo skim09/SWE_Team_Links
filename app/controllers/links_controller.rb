@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
     
     def link_params
-        params.require(:link).permit(:name, :url, :upvotes, :category)
+        params.fetch(:link).permit(:name, :url, :upvotes, :category)
     end
     
     def show
@@ -25,6 +25,7 @@ class LinksController < ApplicationController
     #    logger.info("%%%%%"+params[:category].to_s)
     #end
     
+
     def new
     # default: render 'new' template
     end
