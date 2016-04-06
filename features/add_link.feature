@@ -9,12 +9,19 @@ Scenario: pressing add links button
   And I follow "Add Link"
   Then I should be on the Add Links page
 
-Scenario: submitting a submit link form
+Scenario: submitting a submit link form (happy path)
   When I am on the Add Links page
   And I fill in "Name of Link" with "New Link"
   And I fill in "Full URL" with "http://google.com"
   And I select "Internships" from "Category"
   And I press "Submit"
   And I should be on the Links home page
+  
+Scenario: submitting a submit link form (sad path)
+  When I am on the Add Links page
+  And I fill in "Name of Link" with "New Link"
+  And I select "Internships" from "Category"
+  And I press "Submit"
+  Then I should see "url can't be blank"
   
   
