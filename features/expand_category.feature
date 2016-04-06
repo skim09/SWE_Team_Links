@@ -8,21 +8,19 @@ Background: links have been added to database
   
   Given the following links exist
   
-  | name                | url                                     | upvotes       | category      |
-  | BridgeSpan          | www.bridgespan.org/Nonprofit_Jobs.aspx  | 5             | Jobs          |
-  | Idealist            | www.idealist.org                        | 4             | Jobs          |
-  | Barr Foundation     | www.barrfoundation.org/grantmaking      | 6             | Grants        |
+  | name                | category      |
+  | Google              | Internships   |
+  | Acumen              | Inspiration   |
 
   And I am on the Links home page
 
 Scenario: finding a link in an expanded category
-  When I expand "Jobs"
-  Then I should see "BridgeSpan"
-  And I should see "Idealist"
+  When I expand "Internships"
+  Then I should see "Google"
   And I should be on the Links home page
  
 Scenario: not finding a link in an unexpanded category
-  When I expand "Jobs"
-  Then I should not see "Barr Foundation"
+  When I expand "Internships"
+  Then I should not see "Acumen"
   And I should be on the Links home page
   
