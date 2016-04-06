@@ -6,16 +6,15 @@ Feature: add links to home page
   
 Scenario: pressing add links button
   When I am on the Links home page
-  And I press "Add Links"
+  And I follow "Add Link"
   Then I should be on the Add Links page
 
 Scenario: submitting a submit link form
   When I am on the Add Links page
   And I fill in "Name of Link" with "New Link"
   And I fill in "Full URL" with "http://google.com"
-  And I select "Get Hired" from "Category"
+  And I select "Internships" from "Category"
   And I press "Submit"
-  Then I should see "'New Link' was successfully submitted."
   And I should be on the Links home page
   
   
