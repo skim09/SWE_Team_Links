@@ -87,21 +87,37 @@
         </div>
         <% end %>
     </div>
-<!--<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Category:  <span class="selected"></span>
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#">Get Acclimated & Get Inspired</a></li>
-    <li><a href="#">Get Smart & Get Informed</a></li>
-    <li><a href="#">Get Connected & Get Caught</a></li>
-    <li><a href="#">Get Experienced</a></li>
-    <li><a href="#">Get Organized</a></li>
-    <li><a href="#">Get Funded</a></li>
-    <li><a href="#">Get Hired</a></li>
-  </ul>
-</div>-->
+    
+    
+ 
+    
+    <% if flash[:errors] %> 
+
+    <% flash[:errors].each do |error, message| %>
+    
+    <div class = leftalign>
+    <% message.each do|errorMsg|  %>
+    
+    <%= error + " " +  errorMsg %>
+    
+    </div> 
+    <% end %>
+      <% end %> 
+    <% end %> 
+    
+    
+    <!--<div class = "leftalign">-->
+        
+    <!--    <#% @link.errors.each do |attr, msg| %>-->
+    <!--  <#%= msg %>-->
+    <!--    <#% end %>-->
+        
+    <!--</div>-->
+    
+    <!--<#%end %>-->
+    
+    
+
 </div>
 </body>
 </html>

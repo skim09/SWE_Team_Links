@@ -31,10 +31,19 @@ class LinksController < ApplicationController
     end
 
     def create
-        @link = Link.create!(link_params)
-        flash[:notice] = "#{@link.name} was successfully submitted."
+        @link = Link.create(link_params)
+        
+        if @link.valid? 
+            @link.save
+            redirect_to links_path
+            #Successfully submitted
+        else 
+             flash[:errors] = @link.errors.messages
+             redirect_to new_link_path
+        end
         #AdminMailer.adding_link_email().deliver
-        redirect_to links_path
+ 
+        
     end
     
     def edit
