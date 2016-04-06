@@ -69,6 +69,12 @@ When /^(?:|I )expand "([^"]*)"$/  do |category|
   click_button(category)
 end
 
+Given /the following links exist/ do |links_table|
+  links_table.hashes.each do |link|
+    Link.create(link)
+  end
+end
+
 
 When(/^a category is selected$/) do
   select 'Get Acclimated & Get Inspired' , from: 'link_category'
