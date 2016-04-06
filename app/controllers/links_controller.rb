@@ -31,6 +31,7 @@ class LinksController < ApplicationController
     end
 
     def create
+
         @link = Link.create(link_params)
         
         if @link.valid? 
@@ -43,7 +44,6 @@ class LinksController < ApplicationController
         end
         #AdminMailer.adding_link_email().deliver
  
-        
     end
     
     def edit
