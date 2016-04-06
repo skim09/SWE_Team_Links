@@ -36,6 +36,7 @@ class LinksController < ApplicationController
         
         if @link.valid? 
             @link.save
+            AddlinkMailer.linkrequest_email(@link).deliver_now
             redirect_to links_path
             #Successfully submitted
         else 
