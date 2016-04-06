@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
     
     def link_params
-        params.fetch(:link).permit(:name, :url, :upvotes, :category)
+        params.fetch(:link).permit(:name, :url, :upvotes, :category, :comments)
     end
     
     def show
