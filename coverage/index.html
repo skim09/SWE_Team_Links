@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script src='./assets/0.10.0/application.js' type='text/javascript'></script>    
     <link href='./assets/0.10.0/application.css' media='screen, projection, print' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" type="image/png" href="./assets/0.10.0/favicon_red.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/0.10.0/favicon_yellow.png" />
     <link rel="icon" type="image/png" href="./assets/0.10.0/favicon.png" />
   </head>
   
@@ -14,18 +14,18 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-04-06T02:26:45+00:00">2016-04-06T02:26:45+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-04-06T17:49:35+00:00">2016-04-06T17:49:35+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">63.83%</span></span>
+    (<span class="covered_percent"><span class="yellow">89.36%</span></span>
      covered at
      <span class="covered_strength">
-       <span class="red">
-         0.66
+       <span class="green">
+         1.29
        </span>
     </span> hits/line)
   </h2>
@@ -33,8 +33,8 @@
   <div>
     <b>7</b> files in total.
     <b>47</b> relevant lines. 
-    <span class="green"><b>30</b> lines covered</span> and
-    <span class="red"><b>17</b> lines missed </span>
+    <span class="green"><b>42</b> lines covered</span> and
+    <span class="red"><b>5</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -62,12 +62,12 @@
       
       <tr>
         <td class="strong"><a href="#3d84f9c7e44ce94b7f5cce9e40858c08aff420d1" class="src_link" title="app/controllers/links_controller.rb">app/controllers/links_controller.rb</a></td>
-        <td class="red strong">55.56 %</td>
+        <td class="green strong">100.0 %</td>
         <td>61</td>
         <td>27</td>
-        <td>15</td>
-        <td>12</td>
-        <td>0.6</td>
+        <td>27</td>
+        <td>0</td>
+        <td>1.7</td>
       </tr>
       
       <tr>
@@ -129,11 +129,11 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     <span class="group_name">Controllers</span>
-    (<span class="covered_percent"><span class="red">58.62%</span></span>
+    (<span class="covered_percent"><span class="green">100.0%</span></span>
      covered at
      <span class="covered_strength">
-       <span class="red">
-         0.63
+       <span class="green">
+         1.65
        </span>
     </span> hits/line)
   </h2>
@@ -141,8 +141,8 @@
   <div>
     <b>2</b> files in total.
     <b>29</b> relevant lines. 
-    <span class="green"><b>17</b> lines covered</span> and
-    <span class="red"><b>12</b> lines missed </span>
+    <span class="green"><b>29</b> lines covered</span> and
+    <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -170,12 +170,12 @@
       
       <tr>
         <td class="strong"><a href="#3d84f9c7e44ce94b7f5cce9e40858c08aff420d1" class="src_link" title="app/controllers/links_controller.rb">app/controllers/links_controller.rb</a></td>
-        <td class="red strong">55.56 %</td>
+        <td class="green strong">100.0 %</td>
         <td>61</td>
         <td>27</td>
-        <td>15</td>
-        <td>12</td>
-        <td>0.6</td>
+        <td>27</td>
+        <td>0</td>
+        <td>1.7</td>
       </tr>
       
     </tbody>
@@ -479,11 +479,11 @@
         <div class="source_table" id="3d84f9c7e44ce94b7f5cce9e40858c08aff420d1">
   <div class="header">
     <h3>app/controllers/links_controller.rb</h3>
-    <h4><span class="red">55.56 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
       <b>27</b> relevant lines. 
-      <span class="green"><b>15</b> lines covered</span> and
-      <span class="red"><b>12</b> lines missed.</span>
+      <span class="green"><b>27</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -508,8 +508,8 @@
           <code class="ruby">    def link_params</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="4">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="5" data-linenumber="4">
+          <span class="hits">5</span>
           
           <code class="ruby">        params.fetch(:link).permit(:name, :url, :upvotes, :category)</code>
         </li>
@@ -532,14 +532,14 @@
           <code class="ruby">    def show</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="8">
-          
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
           
           <code class="ruby">        id = params[:id] # retrieve link ID from URI route</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="9">
-          
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
           
           <code class="ruby">        @link = Link.find(id) # look up link by unique ID</code>
         </li>
@@ -574,32 +574,32 @@
           <code class="ruby">        #@links = Link</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="15">
-          
+        <li class="covered" data-hits="1" data-linenumber="15">
+          <span class="hits">1</span>
           
           <code class="ruby">        @inspiration = Link.where(category: &quot;Inspiration&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="16">
-          
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
           
           <code class="ruby">        @internships = Link.where(category: &quot;Internships&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="17">
-          
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
           
           <code class="ruby">        @grants = Link.where(category: &quot;Grants&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="18">
-          
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
           
           <code class="ruby">        @jobs = Link.where(category: &quot;Jobs&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="19">
-          
+        <li class="covered" data-hits="1" data-linenumber="19">
+          <span class="hits">1</span>
           
           <code class="ruby">        @other = Link.where(category: &quot;Other&quot;)</code>
         </li>
@@ -694,8 +694,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="35">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="5" data-linenumber="35">
+          <span class="hits">5</span>
           
           <code class="ruby">        @link = Link.create(link_params)</code>
         </li>
@@ -706,8 +706,8 @@
           <code class="ruby">        </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="37">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="5" data-linenumber="37">
+          <span class="hits">5</span>
           
           <code class="ruby">        if @link.valid? </code>
         </li>
@@ -742,14 +742,14 @@
           <code class="ruby">        else </code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="43">
-          
+        <li class="covered" data-hits="4" data-linenumber="43">
+          <span class="hits">4</span>
           
           <code class="ruby">             flash[:errors] = @link.errors.messages</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="44">
-          
+        <li class="covered" data-hits="4" data-linenumber="44">
+          <span class="hits">4</span>
           
           <code class="ruby">             redirect_to new_link_path</code>
         </li>
@@ -784,8 +784,8 @@
           <code class="ruby">    def edit</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="50">
-          
+        <li class="covered" data-hits="1" data-linenumber="50">
+          <span class="hits">1</span>
           
           <code class="ruby">        @link = Link.find params[:id]</code>
         </li>
@@ -808,8 +808,8 @@
           <code class="ruby">    def update</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="54">
-          
+        <li class="covered" data-hits="1" data-linenumber="54">
+          <span class="hits">1</span>
           
           <code class="ruby">        redirect_to links_path</code>
         </li>
@@ -832,8 +832,8 @@
           <code class="ruby">    def destroy</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="58">
-          
+        <li class="covered" data-hits="1" data-linenumber="58">
+          <span class="hits">1</span>
           
           <code class="ruby">        redirect_to links_path</code>
         </li>
