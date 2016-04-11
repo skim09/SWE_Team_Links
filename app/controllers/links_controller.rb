@@ -17,33 +17,28 @@ class LinksController < ApplicationController
         @grants = Link.where(category: "Grants")
         @jobs = Link.where(category: "Jobs")
         @other = Link.where(category: "Other")
+        
+        session[:links] = @links
     end
     
-    # show by category
-    #def show_by_category
-    #    #@links = Link.where(category: params[:category])
-    #    logger.info("%%%%%"+params[:category].to_s)
-    #end
-    
-
     def new
-    # default: render 'new' template
+       @link = Link.new(params[:link])
     end
 
     def create
 
-        @link = Link.create(link_params)
+        @link = Link.new(link_params)
         
-        if @link.valid? 
-            @link.save
+        if @link.save 
             AddlinkMailer.linkrequest_email(@link).deliver_now
             redirect_to links_path
-            #Successfully submitted
         else 
-             flash[:errors] = @link.errors.messages
-             redirect_to new_link_path
+             
+             @link.delete
+             
+             render 'new'
         end
-        #AdminMailer.adding_link_email().deliver
+  
     end
     
     def edit

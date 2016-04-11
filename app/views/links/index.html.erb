@@ -8,7 +8,7 @@
 <body>
 
   <!--<div class = "mini" style= "color: #FFFFFF" > Google </div>-->
-  
+
    <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
 
   <div class = "leftalign">
@@ -64,7 +64,7 @@
   </div>
   
    <% @other.each do |oth| %>
-   <div class = "leftalign" id = "inspiration" style="display: none">  
+   <div class = "leftalign" id = "other" style="display: none">  
     <a href= <%= oth.url %> > <%= oth.name %> </a>
   </div>
    <% end %>
@@ -79,8 +79,9 @@
     function toggleHidden(id) {
       
       if ($(id).css('display') == "none") {
+          $(id).addClass('animated fadeIn');
           $(id).css('display', 'block') ;
-           $(id).addClass('animated fadeIn');
+           
       }
       else {
           $(id).css('display', 'none') 

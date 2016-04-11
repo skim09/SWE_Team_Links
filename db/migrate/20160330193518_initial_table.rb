@@ -1,4 +1,5 @@
 class InitialTable < ActiveRecord::Migration
+  y
   def change
     create_table :links do |t|
     	t.string :name

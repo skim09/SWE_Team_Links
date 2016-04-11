@@ -6,7 +6,7 @@ Feature: expand only categories that have been selected
   
 Background: links have been added to database
   
-  Given the following links exist
+  Given the following links exist:
   
   | name                | category      | url |
   | Google              | Internships   | https://www.google.com |
