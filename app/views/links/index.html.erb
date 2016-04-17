@@ -18,6 +18,8 @@
       <% end %>
    </div>
    
+
+   
    <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
    
   <div class = "leftalign">
@@ -82,6 +84,12 @@
     <%= link_to "Add Link", new_link_path  %> 
   </div>
   
+  <div >
+    <% if current_user.admin %>
+        <h1>You are an admin</h1>
+        <% link_to "Add administrators", new_admin_path %>
+    <%end%>
+   </div>
   
   <script>
     
@@ -98,11 +106,6 @@
      
     }
     
-    function addLinkCheck() {
-        if(session[:authenticated]) {
-          session[:error] = "Must be logged in to add links"
-        }
-    }
     
   </script>
   

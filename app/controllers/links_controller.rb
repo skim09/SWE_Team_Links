@@ -57,5 +57,9 @@ class LinksController < ApplicationController
     def destroy
         redirect_to links_path
     end
-
+    
+    def new_admin(email)
+       User.promote_to_admin(email)
+    end
+    
 end

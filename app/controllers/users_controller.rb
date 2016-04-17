@@ -27,5 +27,5 @@ class UsersController < ApplicationController
 		session[:authenticated] = false
 		redirect_to root_path
 		
-	end 
+	end
 end

@@ -61,4 +61,5 @@ Rails.application.routes.draw do
   get 'auth/google_oauth2/callback', to: 'users#create', as: 'signin'
   #get 'auth/failure', to :redirect('/')
   get '/signout' ,to: 'users#destroy', as: 'signout'
+  get '/new_admin' => 'links#new_admin', as: 'new_admin'
 end
