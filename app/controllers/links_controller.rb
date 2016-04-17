@@ -12,11 +12,21 @@ class LinksController < ApplicationController
     
     def index
         #@links = Link
+        session[:intern_display] = 1
         @inspiration = Link.where(category: "Inspiration")
         @internships = Link.where(category: "Internships")
         @grants = Link.where(category: "Grants")
         @jobs = Link.where(category: "Jobs")
         @other = Link.where(category: "Other")
+        sort = params[:sort]
+        if sort == 'name' || 'upvotes'
+            @internships = @internships.order(sort)
+            @inspiration = @inspiration.order(sort)
+            @grants = @grants.order(sort)
+            @jobs = @jobs.order(sort)
+            @other = @other.order(sort)
+        end
+        
     end
     
     # show by category

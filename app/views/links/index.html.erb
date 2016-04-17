@@ -10,14 +10,27 @@
   <!--<div class = "mini" style= "color: #FFFFFF" > Google </div>-->
   
    <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
+  
+    <div class="leftalign">
+      <div class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Sort By <b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href= <%= links_path(:sort => 'lower(name)') %> > Name </a>
+                </li>
+                <li><a href= <%= links_path(:sort => 'upvotes') %> > Upvotes </a>
+                </li>
+            </ul>
+      </div>
+    </div>
 
   <div class = "leftalign">
     <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Internships</button>
   </div>
   
+  
    <% @internships.each do |intern| %>
 
-  <div class = "leftalign" id = "internship" style="display: none">  
+  <div class = "leftalign" id = "internship" style= "display: none" >  
   <a href= <%= intern.url %> > <%= intern.name %> </a>
     </div>
     
