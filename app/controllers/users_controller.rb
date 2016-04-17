@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 	#log out the user
 	def destroy
 		session[:user_id] = nil
+		session[:authenticated] = false
 		redirect_to root_path
 		
 	end 

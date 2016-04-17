@@ -9,13 +9,13 @@
 
   <!--<div class = "mini" style= "color: #FFFFFF" > Google </div>-->
 
-   <div>
-     <% if current_user %>
-        Signed in as <strong><%= current_user.name %></strong>!  
-        <div align= right>
-          <%= link_to "Sign out", signout_path, id: "signout" %>
-        </div>
-     <% end %>
+   <div align = "right">
+      <% if current_user %>
+        Signed in as <strong><%= current_user.name %></strong>!
+        <%= link_to "Sign out", signout_path, id: "signout" %>
+      <% else %>
+        <%= link_to "Sign in", "auth/google_oauth2/" %>
+      <% end %>
    </div>
    
    <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
@@ -79,7 +79,7 @@
    <% end %>
   
   <div class = "leftalign" id = "addlink">
-    <%= link_to "Add Link", new_link_path, :onclick => 'addLinkCheck()'  %> 
+    <%= link_to "Add Link", new_link_path  %> 
   </div>
   
   
