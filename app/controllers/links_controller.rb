@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-    
+    before_filter :authenticate, only: [:new]
     def link_params
         params.fetch(:link).permit(:name, :url, :upvotes, :category, :comments)
     end

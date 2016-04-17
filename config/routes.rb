@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -55,8 +55,11 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   resources :links
-  root :to => redirect('/links')
+  resources :users
+  root :to => redirect('/users')
   #get '/links/category/' => '/links#index'
   #get "/show_by_category" => 'links#show_by_category', as: 'show_by_category'
-  
+  get 'auth/google_oauth2/callback', to: 'users#create', as: 'signin'
+  #get 'auth/failure', to :redirect('/')
+  get '/signout' ,to: 'users#destroy', as: 'signout'
 end

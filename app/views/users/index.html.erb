@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <% if current_user %>
+        Signed in as <strong><%= current_user.name %></strong>!
+        <%= link_to "Sign out", signout_path, id: "signout" %>
+      <% else %>
+        <%= link_to "Sign in with Wesleyan Email", "auth/google_oauth2/"%>
+        <%= link_to "Continue as Guest", links_path %>
+      <% end %>
+    </div>
+    <div>
+    <%= yield %>
+    </div>
+  </body>
+</html>
