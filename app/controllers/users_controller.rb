@@ -11,8 +11,14 @@ class UsersController < ApplicationController
 			redirect_to links_path
 		else
 			session[:authenticated] = false
+			session[:error] = "Must have a wesleyan email address"
 			redirect_to root_path
 		end	
+	end
+	
+	def index
+	    redirect_to links_path if current_user
+	    
 	end
 
 	#log out the user

@@ -1,5 +1,7 @@
 class LinksController < ApplicationController
-    before_filter :authenticate, only: [:new]
+
+    # before_filter :authenticate, only: [:new] 
+    
     def link_params
         params.fetch(:link).permit(:name, :url, :upvotes, :category, :comments)
     end
@@ -17,12 +19,15 @@ class LinksController < ApplicationController
         @grants = Link.where(category: "Grants")
         @jobs = Link.where(category: "Jobs")
         @other = Link.where(category: "Other")
-        
         session[:links] = @links
     end
     
     def new
-       @link = Link.new(params[:link])
+        if session[:authenticated] == false
+            session[:error] = "Must be logged in to add links"
+            redirect_to root_path
+        end
+        @link = Link.new(params[:link])
     end
 
     def create

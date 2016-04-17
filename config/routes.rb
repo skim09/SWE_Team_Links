@@ -54,8 +54,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  resources :links
-  resources :users
+  resources :links, :users
   root :to => redirect('/users')
   #get '/links/category/' => '/links#index'
   #get "/show_by_category" => 'links#show_by_category', as: 'show_by_category'

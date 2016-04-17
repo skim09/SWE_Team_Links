@@ -9,8 +9,17 @@
 
   <!--<div class = "mini" style= "color: #FFFFFF" > Google </div>-->
 
+   <div>
+     <% if current_user %>
+        Signed in as <strong><%= current_user.name %></strong>!  
+        <div align= right>
+          <%= link_to "Sign out", signout_path, id: "signout" %>
+        </div>
+     <% end %>
+   </div>
+   
    <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
-
+   
   <div class = "leftalign">
     <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Internships</button>
   </div>
@@ -70,7 +79,7 @@
    <% end %>
   
   <div class = "leftalign" id = "addlink">
-    <%= link_to "Add Link", new_link_path  %> 
+    <%= link_to "Add Link", new_link_path, :onclick => 'addLinkCheck()'  %> 
   </div>
   
   
@@ -87,6 +96,12 @@
           $(id).css('display', 'none') 
       }
      
+    }
+    
+    function addLinkCheck() {
+        if(session[:authenticated]) {
+          session[:error] = "Must be logged in to add links"
+        }
     }
     
   </script>
