@@ -86,8 +86,7 @@
   
   <div >
     <% if current_user.admin %>
-        <h1>You are an admin</h1>
-        <% link_to "Add administrators", admin_page_path %>
+        <%= link_to "Add administrators", admin_page_path %>
     <%end%>
    </div>
   

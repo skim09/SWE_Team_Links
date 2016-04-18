@@ -7,12 +7,13 @@
 
 <h1>Add an Administrator</h1>    
 
-<form>
-  Admin email:<br>
-  <input type="text" name="email"><br>
-</form>
+  <%= form_tag("/new_admin", method: "put") do %>
+  <%= label_tag(:email, "Add email:") %>
+  <%= text_field_tag(:email) %>
+  <%= submit_tag("Add Administrator") %>
+<% end %>
 
- <%= button_to "Submit", new_admin_path(email)%>
+ 
  
 </body>
 </html>

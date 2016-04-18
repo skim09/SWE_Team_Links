@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+   def users_params
+        params.fetch(:user).permit(:email)
+   end
+    
+   
    def create
 		#get the user info
 		auth = request.env["omniauth.auth"]
@@ -16,8 +21,11 @@ class UsersController < ApplicationController
 		end	
 	end
 	
-	def new_admin(email)
-       User.promote_to_admin(email)
+	def new_admin
+	   @email = params[:email]
+	   logger.info params[:email]
+       User.promote_to_admin(@email)
+       
        redirect_to links_path
     end
 	
