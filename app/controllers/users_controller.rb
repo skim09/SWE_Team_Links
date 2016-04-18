@@ -16,6 +16,11 @@ class UsersController < ApplicationController
 		end	
 	end
 	
+	def new_admin(email)
+       User.promote_to_admin(email)
+       redirect_to links_path
+    end
+	
 	def index
 	    redirect_to links_path if current_user
 	    

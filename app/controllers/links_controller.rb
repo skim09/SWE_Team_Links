@@ -58,8 +58,8 @@ class LinksController < ApplicationController
         redirect_to links_path
     end
     
-    def new_admin(email)
-       User.promote_to_admin(email)
+    def admin_page
+        
     end
     
 end
