@@ -52,5 +52,18 @@ class LinksController < ApplicationController
     def destroy
         redirect_to links_path
     end
+    
+    def upvote
+        
+        @link = Link.find(params[:id])
+        
+        @link.upvotes += 1
+        @link.save
+        
+        respond_to do |format|
+            format.js 
+        end
 
+    end
+    
 end

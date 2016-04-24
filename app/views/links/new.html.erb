@@ -4,11 +4,13 @@
  
 </head>
 <body>
+    <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
     
-    <div class = "leftalign">
+    <div class = "add">
         
         <%= form_for(@link) do |link| %>
         
+          
          <%= link.label :name %>
           <%= link.text_field :name %> <br>
           
@@ -23,24 +25,7 @@
           
           <%= link.submit %>
 
-        <div class = "row">
-            <div class="col-xs-2 col-xs-offset-4">
-                <div align="left"> <%= label :link, :comments, 'Comments (Optional)' %> </div>
-            </div>
-            <div class="col-xs-6">
-                <%= text_field :link, 'comments', size: "30" %>
-            </div>
-        </div>
-        <div class = "row">
-            <div class="col-xs-2 col-xs-offset-4">
-                <div align="left">
-                <!-- <%= submit_tag 'Submit' %> -->
-                <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                    Submit
-                <% end %>
-                </div>
-            </div>
-        </div>
+    
 
         <% end %>
         

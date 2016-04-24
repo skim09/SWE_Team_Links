@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="animate.min.css">
 </head>
 <body>
-
   <!--<div class = "mini" style= "color: #FFFFFF" > Google </div>-->
 
    <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
@@ -17,21 +16,52 @@
   
    <% @internships.each do |intern| %>
 
-  <div class = "leftalign" id = "internship" style="display: none">  
-  <a href= <%= intern.url %> > <%= intern.name %> </a>
-    </div>
+  <div id = "internship" style="display: none"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= intern.name + "votes" %>> 
+      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(intern), remote: true, method: :put %>
+      <!--URL NAME URL-->
+      <a href= <%= intern.url %> > <%= intern.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=intern.name%> > 
+          <div class ="animated zoomIn"> 
+          <%= intern.upvotes %> 
+          </div>
+      </div>
+   
+  </div>
+  
     
   <% end %>
- 
+
   
   <div class = "leftalign">
     <button id = "grants" type="button" onclick="toggleHidden(grant)" class="btn btn-default">Grants</button>
   </div>
   
    <% @grants.each do |grant| %>
-  <div class = "leftalign" id = "grant" style="display: none">  
-  <a href= <%= grant.url %> > <%= grant.name %> </a>
+   
+   
+   <div id = "grant" style="display: none"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= grant.name + "votes" %>> 
+      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(grant), remote: true, method: :put %>
+      <!--URL NAME URL-->
+      <a href= <%= grant.url %> > <%= grant.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=grant.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= grant.upvotes %> 
+      </div>
+      </div>
+   
   </div>
+  
+  
   <% end %>
   
   
@@ -41,9 +71,26 @@
   </div>
   
   <% @jobs.each do |job| %>
-   <div class = "leftalign" id = "job" style="display: none">  
-    <a href= <%= job.url %> > <%= job.name %> </a>
+   
+   <div id = "job" style="display: none"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= job.name + "votes" %>> 
+      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(job), remote: true, method: :put %>
+      <!--URL NAME URL-->
+      <a href= <%= job.url %> > <%= job.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=job.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= job.upvotes %> 
+      </div>
+      </div>
+   
   </div>
+  
+  
+  
    <% end %>
   
   
@@ -53,9 +100,24 @@
   </div>
   
   <% @inspiration.each do |inspir| %>
-   <div class = "leftalign" id = "inspiration" style="display: none">  
-    <a href= <%= inspir.url %> > <%= inspir.name %> </a>
+   
+    <div id = "inspiration" style="display: none">
+      <!--Vote Button-->
+      <div class = "inline" id = <%= inspir.name + "votes" %>> 
+      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(inspir), remote: true, method: :put %>
+      <!--URL NAME URL-->
+      <a href= <%= inspir.url %> > <%= inspir.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=inspir.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= inspir.upvotes %> 
+      </div>
+      </div>
   </div>
+
+  
    <% end %>
   
   
@@ -64,16 +126,29 @@
   </div>
   
    <% @other.each do |oth| %>
-   <div class = "leftalign" id = "other" style="display: none">  
-    <a href= <%= oth.url %> > <%= oth.name %> </a>
-  </div>
+  
+   <div id = "other" style="display: none"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= oth.name + "votes" %>> 
+      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(oth), remote: true, method: :put %>
+      <!--URL NAME URL-->
+      <a href= <%= oth.url %> > <%= oth.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=oth.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= oth.upvotes %> 
+      </div>
+      </div>
+      
    <% end %>
+   </div>
   
   <div class = "leftalign" id = "addlink">
     <%= link_to "Add Link", new_link_path  %> 
   </div>
-  
-  
+
   <script>
     
     function toggleHidden(id) {
@@ -90,6 +165,7 @@
     }
     
   </script>
+  
   
   
   

@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/ubuntu/workspace/TeamLinks/app/controllers/links_controller.rb": [
+      "/home/ubuntu/workspace/links/app/controllers/links_controller.rb": [
         1,
         null,
         1,
@@ -22,16 +22,11 @@
         1,
         1,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
+        1,
         null,
         null,
         1,
-        null,
+        1,
         null,
         null,
         1,
@@ -39,12 +34,12 @@
         5,
         null,
         5,
-        1,
         1,
         1,
         null,
         null,
         4,
+        null,
         4,
         null,
         null,
@@ -62,19 +57,33 @@
         1,
         null,
         null,
+        1,
+        null,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
         null
       ],
-      "/home/ubuntu/workspace/TeamLinks/app/controllers/application_controller.rb": [
+      "/home/ubuntu/workspace/links/app/controllers/application_controller.rb": [
         1,
         null,
         null,
         1,
         null
       ],
-      "/home/ubuntu/workspace/TeamLinks/app/models/link.rb": [
+      "/home/ubuntu/workspace/links/app/models/link.rb": [
         1,
         null,
         1,
+        null,
         1,
         1,
         null,
@@ -93,7 +102,7 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/TeamLinks/app/mailers/addlink_mailer.rb": [
+      "/home/ubuntu/workspace/links/app/mailers/addlink_mailer.rb": [
         1,
         1,
         null,
@@ -103,21 +112,21 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/TeamLinks/app/mailers/application_mailer.rb": [
+      "/home/ubuntu/workspace/links/app/mailers/application_mailer.rb": [
         1,
         1,
         1,
         null
       ],
-      "/home/ubuntu/workspace/TeamLinks/app/helpers/links_helper.rb": [
+      "/home/ubuntu/workspace/links/app/helpers/links_helper.rb": [
         0,
         0
       ],
-      "/home/ubuntu/workspace/TeamLinks/app/helpers/application_helper.rb": [
+      "/home/ubuntu/workspace/links/app/helpers/application_helper.rb": [
         0,
         0
       ]
     },
-    "timestamp": 1459964975
+    "timestamp": 1461531719
   }
 }
