@@ -13,9 +13,13 @@ class User < ActiveRecord::Base
     end
     
     def self.promote_to_admin(email)
-       #does email need to be converted into a string?
-       user = User.find_by(email: email)
-       user.admin = true
-       user.save
+      #does email need to be converted into a string?
+      user = User.find_by(email: email)
+      if user == nil 
+        raise "Email must have an account"
+      else
+        user.admin = true
+        user.save
+      end
     end
 end

@@ -63,4 +63,6 @@ Rails.application.routes.draw do
   get '/signout' ,to: 'users#destroy', as: 'signout'
   put '/new_admin' => 'users#new_admin', as: 'new_admin'
   get '/admin_page' => 'links#admin_page', as: 'admin_page'
+  get '/approval' => 'links#approve_link', as: 'approval'
+  post 'approve_or_decline_link' => 'links#approve_or_decline', as: 'approve_or_decline_link'
 end

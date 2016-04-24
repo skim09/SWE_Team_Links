@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div align = "right">
+      <div id = "admin">
+      <%= form_tag("/new_admin", method: "put") do %>
+        <%= label_tag(:email) %>
+        <%= text_field_tag(:email) %>
+        <%= submit_tag("Add Administrator", :data => {:confirm => "Are you sure you would like to add an administrator?" })%>
+      <% end %>
+      </div>
+      <strong><%= current_user.name %></strong>
+      <%= link_to "Sign out", signout_path %>
+    </div>
+    
+    <div align = "left">
+        <%= session[:error] %>
+        <%= session[:error] = nil%>
+    </div>
+    
+    <header>
+      <h2>
+        <font color="#99012">Link Approval</font>
+      </h2>
+    </header> 
+    <hr class = "line2">
+    <div id = "approval" align = "center">
+        <%= render partial: 'unapproved_links' %>
+    </div>
+
+    <div class = "leftalign" align = "center">
+      <%= link_to "Back", links_path %>
+    </div>
+  </body>
+</html>

@@ -22,11 +22,16 @@ class UsersController < ApplicationController
 	end
 	
 	def new_admin
-	   @email = params[:email]
-	   logger.info params[:email]
-       User.promote_to_admin(@email)
+	  @email = params[:email]
+	  logger.info params[:email]
+      begin
+        User.promote_to_admin(@email)
+        redirect_to links_path
+      rescue 
+        session[:error] = "Must be an email with an already existing account"
+        redirect_to approval_path
+      end
        
-       redirect_to links_path
     end
 	
 	def index

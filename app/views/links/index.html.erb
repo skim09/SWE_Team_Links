@@ -11,8 +11,13 @@
 
    <div align = "right">
       <% if current_user %>
-        Signed in as <strong><%= current_user.name %></strong>!
-        <%= link_to "Sign out", signout_path, id: "signout" %>
+        <% if current_user.admin%>
+            <div id="bubble"><%= @number_of_unapproved %></div>
+            <%=link_to image_tag("/assets/noti.png", width:30, height:30, id: "noti"), approval_path %>
+            
+        <% end %>
+        <strong><%= current_user.name %></strong>
+        <%= link_to "Sign out", signout_path %>
       <% else %>
         <%= link_to "Sign in", "auth/google_oauth2/" %>
       <% end %>
@@ -84,11 +89,6 @@
     <%= link_to "Add Link", new_link_path  %> 
   </div>
   
-  <div >
-    <% if current_user.admin %>
-        <%= link_to "Add administrators", admin_page_path %>
-    <%end%>
-   </div>
   
   <script>
     

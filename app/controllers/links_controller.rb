@@ -14,20 +14,21 @@ class LinksController < ApplicationController
     
     def index
         #@links = Link
-        @inspiration = Link.where(category: "Inspiration")
-        @internships = Link.where(category: "Internships")
-        @grants = Link.where(category: "Grants")
-        @jobs = Link.where(category: "Jobs")
-        @other = Link.where(category: "Other")
+        @inspiration = Link.where(category: "Inspiration", status: true)
+        @internships = Link.where(category: "Internships", status: true)
+        @grants = Link.where(category: "Grants", status: true)
+        @jobs = Link.where(category: "Jobs", status: true)
+        @other = Link.where(category: "Other", status: true)
         session[:links] = @links
+        @number_of_unapproved = Link.where(status: nil).size
     end
     
     def new
-        if session[:authenticated] == false
+        if !session[:authenticated]
             session[:error] = "Must be logged in to add links"
             redirect_to root_path
         end
-        @link = Link.new(params[:link])
+        @link = Link.new
     end
 
     def create
@@ -60,6 +61,23 @@ class LinksController < ApplicationController
     
     def admin_page
         
+    end
+    
+    def approve_link
+        @links = Link.where(status: nil)
+    end
+    
+    def approve_or_decline
+        link = Link.find(params[:link_id])
+        if params[:commit]=="Approve"
+            link.update(status: true)
+        else
+            link.destroy
+        end
+        @links = Link.where(status: nil)
+        respond_to do |format| 
+            format.js
+        end
     end
     
 end

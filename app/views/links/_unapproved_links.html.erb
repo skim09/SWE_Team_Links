@@ -1,0 +1,28 @@
+
+
+<% if @links %>
+    <% @links.each do |link| %>
+        <%= form_tag(approve_or_decline_link_path, remote: true) do %>
+            <div id = "entry">   
+                <div id = "name">
+                    <p><%= link.name %></p>
+                </div>
+                <div id = "link">
+                    <%= link_to "show site", link.url, target: "_blank"%>
+                </div>
+                <div id ="approve">
+                    <%= submit_tag "Approve", class: "button", :data => {:confirm => "Are you sure you would like to aprove this link?" }%> 
+                </div>
+                <div id = "decline">
+                    <%= submit_tag "Decline", class: "button", :data => {:confirm => "Are you sure you would like to decline this link?" }%>
+                </div>
+                <div id = "comments">
+                    <%= text_area_tag "feedback", nil, placeholder: "Comments(optional)", rows: 3, cols: 53 %>
+                </div>
+                <%= hidden_field_tag "link_id", link.id %>
+                <hr class = "line2">
+            </div> 
+        <%end%>
+            
+    <% end %>
+<% end %>    

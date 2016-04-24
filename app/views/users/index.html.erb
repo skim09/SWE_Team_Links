@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <div>
+    
+    <header>
+      <h2>
+        <font color="#99012">Patricelli Center for Social Entrepreneurship</font>
+      </h2>
+    </header> 
+    
+    <hr class = "line">
+
+    <section class = "row">
+      <div id="image">
+        <img alt="allbritton" src="assets/Allbritton.jpg">
+      </div>
+      
+      <div id="text">
+        <p>
+          Wesleyan’s Patricelli Center for Social Entrepreneurship supports students and alumni interested in creating and sustaining programs, businesses, and organizations that advance the public good. We offer workshops and trainings, specialized counseling and networking services, grants, and incubator workspace on Wesleyan's campus. Our Social Entrepreneurship Resource Center is a library of links and resources for changemakers and social entrepreneurs at all stages. Inclusion does not indicate endorsement.
+        </p>
+      </div>  
+    </section>  
+    <div id = "login" align = "center">
       <% if current_user %>
         Signed in as <strong><%= current_user.name %></strong>!
         <%= link_to "Sign out", signout_path, id: "signout" %>
       <% else %>
-        <%= button_to "Sign in with Wesleyan Email", "auth/google_oauth2/"%>
-        <%=link_to image_tag("/assets/icons/wesleyan.png", :onmouseover =>"this.src='#{asset_path('/assets/icons/wesleyan_hover.png')}'", :onmouseout =>"this.src='#{asset_path('/assets/icons/wesleyan.png')}'", :onclick =>"this.src='#{asset_path('/assets/icons/wesleyan_click.png')}'"), "/auth/google_oauth2"%>
+        <%= button_to "Sign in with Wesleyan credential", "auth/google_oauth2/", class: "button"%>
+        
         <%= link_to "Continue as Guest", links_path %>
       <% end %>
     </div>
-    <div>
+    <div align = "center">
         <%= session[:error] %>
         <%= session[:error] = nil%>
     </div>
