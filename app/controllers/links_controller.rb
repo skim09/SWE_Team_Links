@@ -63,10 +63,6 @@ class LinksController < ApplicationController
         redirect_to links_path
     end
     
-<<<<<<< HEAD
-    def admin_page
-        
-    end
     
     def approve_link
         @links = Link.where(status: false)
@@ -83,7 +79,8 @@ class LinksController < ApplicationController
         respond_to do |format| 
             format.js
         end
-=======
+    end
+
     def upvote
         
         @link = Link.find(params[:id])
@@ -95,7 +92,7 @@ class LinksController < ApplicationController
             format.js 
         end
 
->>>>>>> 560b65979ea04565738e5c4466249e6078fcb3bb
+
     end
     
 end

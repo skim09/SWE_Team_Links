@@ -62,7 +62,6 @@ Rails.application.routes.draw do
     end
   end
   
-  root :to => redirect('/links')
   #get '/links/category/' => '/links#index'
   #get "/show_by_category" => 'links#show_by_category', as: 'show_by_category'
   get 'auth/google_oauth2/callback', to: 'users#create', as: 'signin'
