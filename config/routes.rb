@@ -56,6 +56,13 @@ Rails.application.routes.draw do
   #   end
   resources :links, :users
   root :to => redirect('/users')
+  resources :links do 
+    member do
+    put 'upvote'
+    end
+  end
+  
+  root :to => redirect('/links')
   #get '/links/category/' => '/links#index'
   #get "/show_by_category" => 'links#show_by_category', as: 'show_by_category'
   get 'auth/google_oauth2/callback', to: 'users#create', as: 'signin'
