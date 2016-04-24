@@ -20,7 +20,7 @@ class LinksController < ApplicationController
         @jobs = Link.where(category: "Jobs", status: true)
         @other = Link.where(category: "Other", status: true)
         session[:links] = @links
-        @number_of_unapproved = Link.where(status: nil).size
+        @number_of_unapproved = Link.where(status: false).size
     end
     
     def new
@@ -33,7 +33,11 @@ class LinksController < ApplicationController
 
     def create
 
-        @link = Link.new(link_params)
+        if session[:admin]
+            @link = Link.new(link_params.merge({:status => true, :upvotes => 0, :email => current_user.email }))
+        else
+            @link = Link.new(link_params.merge({:status => false, :upvotes => 0, :email => current_user.email }))
+        end
         
         if @link.save 
             AddlinkMailer.linkrequest_email(@link).deliver_now
@@ -64,7 +68,7 @@ class LinksController < ApplicationController
     end
     
     def approve_link
-        @links = Link.where(status: nil)
+        @links = Link.where(status: false)
     end
     
     def approve_or_decline
@@ -74,7 +78,7 @@ class LinksController < ApplicationController
         else
             link.destroy
         end
-        @links = Link.where(status: nil)
+        @links = Link.where(status: false)
         respond_to do |format| 
             format.js
         end
