@@ -54,7 +54,12 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  resources :links
+  resources :links do
+    member do
+    put 'index'
+    end
+  end
+  
   root :to => redirect('/links')
   #get '/links/category/' => '/links#index'
   #get "/show_by_category" => 'links#show_by_category', as: 'show_by_category'

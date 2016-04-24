@@ -15,9 +15,9 @@
       <div class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Sort By <b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href= <%= links_path(:sort => 'lower(name)') %> > Name </a>
+                <li> <button id = "name" onclick= "sort_name()"> Name </button>
                 </li>
-                <li><a href= <%= links_path(:sort => 'upvotes') %> > Upvotes </a>
+                <li> <button id = "upvotes" onclick = "sort_upvotes()"> Upvotes </button>
                 </li>
             </ul>
       </div>
@@ -27,25 +27,28 @@
     <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Internships</button>
   </div>
   
-  
+  <div id = "Internships">
    <% @internships.each do |intern| %>
 
-  <div class = "leftalign" id = "internship" style= "display: none" >  
+  <div id = "internship" class = <%= intern.name %> style= "display: none" >
   <a href= <%= intern.url %> > <%= intern.name %> </a>
-    </div>
+  </div>
     
   <% end %>
+  </div>
  
   
   <div class = "leftalign">
     <button id = "grants" type="button" onclick="toggleHidden(grant)" class="btn btn-default">Grants</button>
   </div>
   
+  <div id = "Grants">
    <% @grants.each do |grant| %>
-  <div class = "leftalign" id = "grant" style="display: none">  
+  <div class = <%= grant.name %> id = "grant" style="display: none">  
   <a href= <%= grant.url %> > <%= grant.name %> </a>
   </div>
   <% end %>
+  </div>
   
   
   
@@ -53,11 +56,13 @@
     <button id = "jobs" type="button" onclick="toggleHidden(job)" class="btn btn-default">Jobs</button>
   </div>
   
+  <div id = "Jobs">
   <% @jobs.each do |job| %>
-   <div class = "leftalign" id = "job" style="display: none">  
+   <div class = <%= job.name %> id = "job" style="display: none">  
     <a href= <%= job.url %> > <%= job.name %> </a>
   </div>
    <% end %>
+   </div>
   
   
   
@@ -65,22 +70,26 @@
     <button id = "inspirations" type="button" onclick="toggleHidden(inspiration)" class="btn btn-default">Inspiration</button>
   </div>
   
+  <div id = "Inspiration">
   <% @inspiration.each do |inspir| %>
-   <div class = "leftalign" id = "inspiration" style="display: none">  
+   <div class = <%= inspir.name %> id = "inspiration" style="display: none">  
     <a href= <%= inspir.url %> > <%= inspir.name %> </a>
   </div>
    <% end %>
+  </div>
   
   
   <div class = "leftalign">
     <button id = "others" type="button" onclick="toggleHidden(other)" class="btn btn-default">Other</button>
   </div>
   
+  <div id = "Other">
    <% @other.each do |oth| %>
-   <div class = "leftalign" id = "other" style="display: none">  
+   <div class = <%= oth.name %> id = "other" style="display: none">  
     <a href= <%= oth.url %> > <%= oth.name %> </a>
   </div>
    <% end %>
+   </div>
   
   <div class = "leftalign" id = "addlink">
     <%= link_to "Add Link", new_link_path  %> 
@@ -99,6 +108,44 @@
           $(id).css('display', 'none') 
       }
      
+    }
+    
+    function sort_name() {
+        var intern = document.getElementById("Internships");
+        var grant = document.getElementById("Grants");
+        var inspiration = document.getElementById("Inspiration");
+        var job = document.getElementById("Jobs");
+        var other = document.getElementById("Other");
+        
+        [].map.call( intern.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        intern.appendChild( elem );
+        });
+        
+        [].map.call( grant.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        grant.appendChild( elem );
+        });
+        
+        [].map.call( inspiration.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        inspiration.appendChild( elem );
+        });
+        
+        [].map.call( job.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        job.appendChild( elem );
+        });
+        
+        [].map.call( other.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        other.appendChild( elem );
+        });
     }
     
   </script>
