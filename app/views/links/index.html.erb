@@ -24,15 +24,27 @@
    
 
    
-   <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
+  <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
+   
+    <div class="leftalign">
+      <div class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Sort By <b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu">
+                <li> <button id = "name" onclick= "sort_name()"> Name </button>
+                </li>
+                <li> <button id = "upvotes" onclick = "sort_upvotes()"> Upvotes </button>
+                </li>
+            </ul>
+      </div>
+    </div>
    
   <div class = "leftalign">
     <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Internships</button>
   </div>
   
+  <div id = "Internships"> 
    <% @internships.each do |intern| %>
-
-  <div id = "internship" style="display: none"> 
+   <div class = <%= intern.name %> id = "internship" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= intern.name + "votes" %>> 
       <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(intern), remote: true, method: :put %>
@@ -42,25 +54,23 @@
       
       <!--Vote Count-->
       <div class = "inline" id = <%=intern.name%> > 
-          <div class ="animated zoomIn"> 
-          <%= intern.upvotes %> 
-          </div>
+      <div class = "animated zoomIn"> 
+      <%= intern.upvotes %> 
       </div>
-   
+      </div>
   </div>
-  
-    
   <% end %>
+  </div>
 
   
   <div class = "leftalign">
     <button id = "grants" type="button" onclick="toggleHidden(grant)" class="btn btn-default">Grants</button>
   </div>
   
+  
+  <div id = "Grants"> 
    <% @grants.each do |grant| %>
-   
-   
-   <div id = "grant" style="display: none"> 
+   <div class = <%= grant.name %> id = "grant" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= grant.name + "votes" %>> 
       <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(grant), remote: true, method: :put %>
@@ -74,11 +84,9 @@
       <%= grant.upvotes %> 
       </div>
       </div>
-   
   </div>
-  
-  
   <% end %>
+  </div>
   
   
   
@@ -86,16 +94,18 @@
     <button id = "jobs" type="button" onclick="toggleHidden(job)" class="btn btn-default">Jobs</button>
   </div>
   
+   <div id = "Jobs">
   <% @jobs.each do |job| %>
    
    <div id = "job" style="display: none"> 
       <!--Vote Button-->
-      <div class = "inline" id = <%= job.name + "votes" %>> 
+      <div class = <%= job.name %> id = <%= job.name + "votes" %>> 
+      <div class = "inline"> 
       <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(job), remote: true, method: :put %>
       <!--URL NAME URL-->
       <a href= <%= job.url %> > <%= job.name %> </a> 
       </div>
-      
+      </div>
       <!--Vote Count-->
       <div class = "inline" id = <%=job.name%> > 
       <div class = "animated zoomIn"> 
@@ -104,10 +114,8 @@
       </div>
    
   </div>
-  
-  
-  
    <% end %>
+   </div>
   
   
   
@@ -115,9 +123,9 @@
     <button id = "inspirations" type="button" onclick="toggleHidden(inspiration)" class="btn btn-default">Inspiration</button>
   </div>
   
-  <% @inspiration.each do |inspir| %>
-   
-    <div id = "inspiration" style="display: none">
+ <div id = "Inspiration"> 
+   <% @inspiration.each do |inspir| %>
+   <div class = <%= inspir.name %> id = "inspiration" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= inspir.name + "votes" %>> 
       <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(inspir), remote: true, method: :put %>
@@ -132,18 +140,17 @@
       </div>
       </div>
   </div>
-
-  
-   <% end %>
+  <% end %>
+  </div>
   
   
   <div class = "leftalign">
     <button id = "others" type="button" onclick="toggleHidden(other)" class="btn btn-default">Other</button>
   </div>
   
+   <div id = "Other"> 
    <% @other.each do |oth| %>
-  
-   <div id = "other" style="display: none"> 
+   <div class = <%= oth.name %> id = "other" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= oth.name + "votes" %>> 
       <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(oth), remote: true, method: :put %>
@@ -157,9 +164,9 @@
       <%= oth.upvotes %> 
       </div>
       </div>
-      
-   <% end %>
-   </div>
+  </div>
+  <% end %>
+  </div>
   
   <div class = "leftalign" id = "addlink">
     <%= link_to "Add Link", new_link_path  %> 
@@ -180,6 +187,43 @@
      
     }
     
+      function sort_name() {
+        var intern = document.getElementById("Internships");
+        var grant = document.getElementById("Grants");
+        var inspiration = document.getElementById("Inspiration");
+        var job = document.getElementById("Jobs");
+        var other = document.getElementById("Other");
+        
+        [].map.call( intern.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        intern.appendChild( elem );
+        });
+        
+        [].map.call( grant.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        grant.appendChild( elem );
+        });
+        
+        [].map.call( inspiration.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        inspiration.appendChild( elem );
+        });
+        
+        [].map.call( job.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        job.appendChild( elem );
+        });
+        
+        [].map.call( other.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        other.appendChild( elem );
+        });
+    }
     
   </script>
   
