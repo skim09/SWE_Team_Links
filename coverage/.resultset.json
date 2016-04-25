@@ -15,12 +15,12 @@
         1,
         null,
         null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         0,
         0,
@@ -195,12 +195,12 @@
       "/home/ubuntu/workspace/TeamLinks/app/models/user.rb": [
         1,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         0,
         null,
@@ -281,6 +281,6 @@
         0
       ]
     },
-    "timestamp": 1461552697
+    "timestamp": 1461552790
   }
 }

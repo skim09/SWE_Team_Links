@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 		#get the user info
 		auth = request.env["omniauth.auth"]
 		if auth == nil
-			auth[:info][:email] = "jkoshakow@wesleyan.edu"
+			auth = {:info => {:email => "jkoshakow@wesleyan.edu"} }
 		end
 		#whitelist 
 		if  auth[:info][:email].to_s =~ /.+@wesleyan.edu/
