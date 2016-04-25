@@ -55,15 +55,6 @@ class LinksController < ApplicationController
         @link = Link.find params[:id]
     end
     
-    def report
-        @link = Link.find params[:id] 
-    end
-    
-    def sendreport
-        @link = link
-        AddlinkMailer.reportrequest_email(@link).deliver_now
-    end
-    
     def update
         
         redirect_to links_path
