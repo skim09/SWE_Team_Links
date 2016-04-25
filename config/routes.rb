@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   
   #get '/links/category/' => '/links#index'
   #get "/show_by_category" => 'links#show_by_category', as: 'show_by_category'
+  
   get 'auth/google_oauth2/callback', to: 'users#create', as: 'signin'
   #get 'auth/failure', to :redirect('/')
   get '/signout' ,to: 'users#destroy', as: 'signout'
