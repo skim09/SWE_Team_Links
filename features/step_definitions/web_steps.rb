@@ -51,7 +51,7 @@ When /^(?:|I )go to (.+)$/ do |page_name|
 end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|
-  puts page.all
+  puts page.body
   click_button(button)
 end
 

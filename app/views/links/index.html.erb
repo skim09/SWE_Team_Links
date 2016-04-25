@@ -71,6 +71,7 @@
   
   
   <div id = "Grants"> 
+  <%= image_tag("why.jpg", alt: "logo") %> 
    <% @grants.each do |grant| %>
    <div class = <%= grant.name %><%= grant.upvotes %> id = "grant" style="display: none"> 
       <!--Vote Button-->
