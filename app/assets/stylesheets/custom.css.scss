@@ -1,6 +1,7 @@
 
 .leftalign {
     margin: auto;
+    text-align: center;
     width: 60%;
     padding: 5px;
     font-family: AvenirNext-Medium;
@@ -9,7 +10,7 @@
 .add {
     margin: auto;
     text-align: center;
-    width: 60%;
+    
     padding: 5px;
     font-family: AvenirNext-Medium;
     
@@ -176,11 +177,14 @@ h2 {
 }
 .inline {
     display: inline-block;
-    margin: 0 0 0 25px;
+    margin: auto;
+    text-align: center;
 }
 
 #internship, #grant, #job, #inspiration, #other {
     margin: 0 0 0 180px;
+     margin: auto;
+    text-align: center;
 }
 
 #sortByName, #sortByVotes {
@@ -193,13 +197,9 @@ h2 {
    
 }
 
-#wrapper {
-    margin-left:auto;
-    margin-right:auto;
-    background-image: url("why.jpg");
-    background-position: center; 
+body {
+    background-position: 600px 100px; 
     background-repeat: no-repeat;
-    
 }
 
 
@@ -218,4 +218,6 @@ h2 {
   top: 18px;
   left: 10px;
   margin: 0 50px 0 0px;
+  font-family: AvenirNext-Medium;
 }
+

@@ -133,8 +133,17 @@ describe LinksController, :type => :controller do
     end
   end
   
-  describe 'new' do
+  describe 'new, unlogged in' do
     it 'should show the new page' do
+      session[:authenticated] = false
+      get :new
+      expect(response).to redirect_to(root_path)
+    end
+  end
+  
+  describe 'new, logged in' do
+    it 'should show the new page' do
+      session[:authenticated] = true
       get :new
     end
   end
@@ -157,6 +166,41 @@ describe LinksController, :type => :controller do
     it 'should destroy a link' do
       Link.create!(:name => "Google", :url => "http://www.google.com", :category => "search", :upvotes => 0)
       get :destroy, :id => 1
+    end
+  end
+  
+  describe 'approve_link' do
+    it 'should load approve_link' do
+      get :approve_link
+    end
+  end
+  
+  # describe 'approve_or_decline' do
+  #   before :each do
+  #     params[:link_id] = 1
+  #     Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false)
+  #   end
+    
+  #   context 'approve link' do
+  #     it 'should approve the link' do
+  #       params[:commit] = "Approve"
+  #       post :approve_or_decline
+  #     end
+  #   end
+    
+  #   context 'decline link' do
+  #     it 'should decline the link' do
+  #       params[:commit] = "Decline"
+  #       post :approve_or_decline     
+  #     end
+  #   end
+    
+  # end
+  
+  describe 'upvote' do
+    it 'should add an upvote' do
+      Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false)
+      put :upvote, :id => 1
     end
   end
   
