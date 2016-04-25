@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      Hello,<br>
+      Your link request for:
+    </p>
+    <p>
+      <b>Name of Site</b>: <%= @link.name %> <br>
+      <b>URL</b>: <%= @link.url %> <br>
+    </p>
+    <p>
+      has been denied from being added to the PCSE website.
+    </p>
+    <p>
+      Comments from administrator: <%= feedback %>
+    </p>
+  </body>
+</html>

@@ -15,4 +15,14 @@ class AddlinkMailer < ApplicationMailer
         @link = link
         mail(to: "skim09@wesleyan.edu", subject: 'Link Reported')
     end
+    
+    def requestapproved_email(link, feedback)
+        @link = link
+        mail(to: "skim09@wesleyan.edu", subject: 'Link Request Approved')
+    end
+    
+    def requestdenied_email(link, feedback)
+        @link = link
+        mail(to: "skim09@wesleyan.edu", subject: 'Link Request Approved')
+    end
 end
