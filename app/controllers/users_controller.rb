@@ -7,6 +7,9 @@ class UsersController < ApplicationController
    def create
 		#get the user info
 		auth = request.env["omniauth.auth"]
+		if auth == nil
+			auth[:info][:email] = "jkoshakow@wesleyan.edu"
+		end
 		#whitelist 
 		if  auth[:info][:email].to_s =~ /.+@wesleyan.edu/
 			user = User.find_by_uid(auth["uid"]) || User.createUser(auth)
