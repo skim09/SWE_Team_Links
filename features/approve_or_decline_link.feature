@@ -12,7 +12,7 @@ Background: user in database
   | Yiming Liu              | t|
     
 Scenario: pressing notification button
-    When I am on the Links home page
+    When I am on the Links home pager
     And I press "noti"
     Then I should be on the admin page
     
