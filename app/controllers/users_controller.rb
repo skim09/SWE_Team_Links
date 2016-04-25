@@ -36,7 +36,6 @@ class UsersController < ApplicationController
 	
 	def index
 	    redirect_to links_path if current_user
-	    
 	end
 
 	#log out the user

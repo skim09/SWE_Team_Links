@@ -186,13 +186,13 @@ describe LinksController, :type => :controller do
     
     context 'approve link' do
       it 'should approve the link' do
-        post :approve_or_decline, :link_id => 1, :commit => "Approve"
+        post :approve_or_decline, :link_id => 1, :commit => "Approve", format: :js
       end
     end
     
     context 'decline link' do
       it 'should decline the link' do
-        post :approve_or_decline, :link_id => 1, :commit => "Decline" 
+        post :approve_or_decline, :link_id => 1, :commit => "Decline", format: :js 
       end
     end
     
@@ -200,13 +200,16 @@ describe LinksController, :type => :controller do
   
   describe 'upvote' do
     it 'should add an upvote' do
-      Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false)
-      put :upvote, :id => 1
+      Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false, :upvotes => 0)
+      put :upvote, :id => 1, format: :js
     end
   end
   
   describe 'report' do
-    it 'should report'
+    it 'should report' do
+      Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => true)
+      get :report, :id => 1
+    end
   end
   
   describe 'reportsend' do
@@ -225,7 +228,6 @@ describe LinksController, :type => :controller do
         put :reportsend, :link_id => 1, :reportreason => "reasons"
       end
     end
-    
   end
   
 end
@@ -237,6 +239,7 @@ describe UsersController, :type => :controller do
   #   it 'should create a new user' do 
   #     @fake_user = double("User", :name => "Joseph Koshakow", :uid => 3, :email => 'jkoshakow@wesleyan.edu', :admin => false)
   #     allow(User).to receive(:create!).and_return(@fake_user)
+  #     # request = [:env => ["omniauth.auth" => [:info => [:email => "jkoshakow@wesleyan.edu"]]]]
   #     post :create, :name => "Joseph Koshakow", :uid => 3, :email => 'jkoshakow@wesleyan.edu', :admin => false
   #   end
   # end

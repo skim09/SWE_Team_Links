@@ -10,3 +10,4 @@ Given /the following user exists/ do |users_table|
     User.create(user)
   end
 end
+
