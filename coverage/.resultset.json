@@ -49,7 +49,6 @@
         1,
         1,
         null,
-        null,
         null
       ],
       "/home/ubuntu/workspace/TeamLinks/app/controllers/application_controller.rb": [
@@ -252,6 +251,6 @@
         0
       ]
     },
-    "timestamp": 1461547207
+    "timestamp": 1461548634
   }
 }
