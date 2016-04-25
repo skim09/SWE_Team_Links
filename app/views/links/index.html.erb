@@ -5,6 +5,7 @@
 <head>
   <link rel="stylesheet" href="animate.min.css">
 </head>
+
 <body>
 
   <!--<div class = "mini" style= "color: #FFFFFF" > Google </div>-->
@@ -31,7 +32,7 @@
     <div class="leftalign">
       <div class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Sort By <b class="caret"></b></a>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu" id = "sorters" role="menu">
                 <li> <button id = "sortByName" onclick= "sort_name()"> Name </button>
                 </li> 
                 <li>
@@ -62,7 +63,9 @@
       
       </div>
       </div>
+      <div class = "inline" id = "report"> 
       <%= link_to "Report", report_link_path(intern)  %>
+      </div>
   </div>
   <% end %>
   </div>
@@ -92,7 +95,9 @@
           </div>
           
       </div>
+          <div class = "inline" id = "report"> 
       <%= link_to "Report", report_link_path(grant)  %>
+      </div>
    </div>
   <% end %>
   </div>
@@ -120,7 +125,9 @@
      
       </div>
       </div>
+          <div class = "inline" id = "report"> 
        <%= link_to "Report", report_link_path(job)  %>
+       </div>
   </div>
   <% end %>
   </div>
@@ -148,7 +155,9 @@
       
       </div>
       </div>
+          <div class = "inline" id = "report"> 
       <%= link_to "Report", report_link_path(inspir)  %>
+      </div>
   </div>
   <% end %>
   </div>
@@ -175,7 +184,9 @@
       
       </div>
       </div>
+          <div class = "inline" id = "report"> 
       <%= link_to "Report", report_link_path(oth)  %>
+      </div>
   </div>
   <% end %>
   </div>
@@ -183,9 +194,6 @@
   <div class = "leftalign" id = "addlink">
     <%= link_to "Add Link", new_link_path  %> 
   </div>
-
-    
-  
 
   <script>
     

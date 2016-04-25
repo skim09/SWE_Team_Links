@@ -1617,7 +1617,8 @@ pre code {
   position: relative;
   min-height: 1px;
   padding-right: 15px;
-  padding-left: 15px;
+  padding-left: 25px;
+  text-align: center;
 }
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
   float: left;
@@ -1786,7 +1787,7 @@ pre code {
     width: 91.66666667%;
   }
   .col-sm-10 {
-    width: 83.33333333%;
+    width: 75.33333333%;
   }
   .col-sm-9 {
     width: 75%;
@@ -3527,9 +3528,10 @@ tbody.collapse.in {
   left: 0;
   display: none;
   float: center;
-  min-width: 80px;
+  min-width: 60px;
   padding: 5px 0;
   margin: 0 0 0px 300px;
+  margin-left: 45%;
   font-size: 14px;
   list-style: none;
   background-color: #fff;
