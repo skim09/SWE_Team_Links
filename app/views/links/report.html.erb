@@ -9,19 +9,13 @@
 </head>
 <body>
     <%= form_tag report_path(@link), :method => :put do %>
-    <div class = "site-wrapper">
-    <div class = "container">
-        <div class = "row">
-            <div class="col-xs-2">
-                <div align="right"><img src="http://reillybasketball.com/wp-content/uploads/2013/06/cardinal.png" width = "60" height = "50"/></div>
-            </div>
-            <div class="col-xs-8">
-            <h1><b><center><font family="Lato", color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
-            </div>
-            <div class="col-xs-2">
-                <img src="http://reillybasketball.com/wp-content/uploads/2013/06/cardinal.png" width = "60" height = "50"/>
-            </div>
-        </div>
+  
+   <br>
+   <br>
+         <div class = "logo"> 
+  <%= image_tag("imgres.jpg", alt: "logo") %> 
+  <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
+   </div>
         <div class = "row">
             <div class="col-xs-12">
                 <center><h1><b>Report a Link</b></h1></center>
@@ -68,14 +62,15 @@
         <div class = "row">
             <div class="col-xs-2 col-xs-offset-5">
                 <div align="center">
-                <%= submit_tag ("Submit") %>
-                
+                <%= submit_tag %>
+                <%= link_to "Back", links_path %>
                 </div>
             </div>
+            
         </div>
         
-    </div>
-    </div>
+        
+
     <% end %>
 </body>
 </html>

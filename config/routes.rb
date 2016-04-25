@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  resources :links, :users
+  resources :users
   root :to => redirect('/users')
   resources :links do 
     member do

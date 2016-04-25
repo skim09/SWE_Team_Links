@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 20160424195416) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "comments"
-    t.string   "reportreason"
-    t.string   "otherreportreason"
     t.boolean  "status"
     t.string   "email"
+    t.string   "reportreason"
+    t.string   "otherreportreason"
   end
 
   create_table "users", force: :cascade do |t|
