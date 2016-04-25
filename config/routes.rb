@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -61,6 +62,15 @@ Rails.application.routes.draw do
     put 'upvote'
     end
   end
+  resources :links do
+    collection do
+      put 'reportsend'
+    end
+  end
+  resources :links
+  put '/report' => 'links#reportsend', as: 'report'
+  
+  get '/links/:id/report', to: 'links#report', as: 'report_link'
   
   #get '/links/category/' => '/links#index'
   #get "/show_by_category" => 'links#show_by_category', as: 'show_by_category'
