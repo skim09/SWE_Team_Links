@@ -42,7 +42,7 @@
           </div>
           
           <div class = "right"> 
-          <%= link.select :category, ['Internships','Grants','Jobs','Inspiration','Other'] %> <br>
+          <%= link.select :category, ['Internships','Grants','Jobs','Inspiration','Other'] %> <br><br>
           </div>
           
           <div class = "left"> 
@@ -50,13 +50,13 @@
           </div>
           
           <div class = "right"> 
-          <%= link.text_field :comments %> <br>
+          <%= link.text_field :comments %>
           </div>
          
          <div class = "inline" id = "linksAdd"> 
           <%= link.submit %>
-       <%= link_to "Back", links_path %>
-       </div>
+          <%= link_to "Back", links_path %>
+          </div>
       
       </div>
     
