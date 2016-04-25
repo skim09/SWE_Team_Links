@@ -6,34 +6,66 @@
 <body>
     <div class = "logo"> 
   <%= image_tag("imgres.jpg", alt: "logo") %> 
-  <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
+  <h1><b><center> <br>
+   <font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b>
+   
+   </h1>
    </div>
     
-    <div class = "add">
+    
+  <h2><b><center> 
+   <font color="#99012">Add a Link</font></center></b>
+   </h2>
+ 
         
+        <div class = "formalign"> 
         <%= form_for(@link) do |link| %>
           
+          <div class="left">
          <%= link.label :name %>
+             
+          </div>
+          <div class = "right"> 
           <%= link.text_field :name %> <br>
+          </div>
           
+           <div class="left">
           <%= link.label :url %>
+          </div>
+          
+          <div class = "right"> 
           <%= link.text_field :url %> <br>
+          </div>
           
+          <div class= "left"> 
           <%= link.label :category %>
+          </div>
+          
+          <div class = "right"> 
           <%= link.select :category, ['Internships','Grants','Jobs','Inspiration','Other'] %> <br>
+          </div>
           
+          <div class = "left"> 
           <%= link.label :comments %> 
-          <%= link.text_field :comments %> <br>
+          </div>
           
+          <div class = "right"> 
+          <%= link.text_field :comments %> <br>
+          </div>
+         
+         <div class = "inline" id = "linksAdd"> 
           <%= link.submit %>
-
+       <%= link_to "Back", links_path %>
+       </div>
+      
+      </div>
     
 
         <% end %>
         
     </div>
     
-    <div>
+
     
     <% if @link.errors.any? %> 
 
