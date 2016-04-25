@@ -4,89 +4,46 @@
  
 </head>
 <body>
-    
- <div class = "site-wrapper">
- <br>
- <br>
-        <%= form_tag(links_path, remote: true) do %>
-        <div class = "row">
-            <div class="col-xs-12">
-             <div class = "logo"> 
+    <div class = "logo"> 
   <%= image_tag("imgres.jpg", alt: "logo") %> 
   <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
    </div>
-            </div>
-        </div>
-        <div class = "row">
-            <div class="col-xs-2 col-xs-offset-4">
-                <div align="left"> <%= label :link, :name, 'Name of Link' %> </div>
-            </div>
-            <div class="col-xs-6">
-                <%= text_field :link, 'name', size: "20" %>
-            </div>
-        </div>
-        <div class = "row">
-            <div class="col-xs-2 col-xs-offset-4">
-                <div align="left"> <%= label :link, :url, 'Full URL' %> </div>
-            </div>
-            <div class="col-xs-6">
-                <%= text_field :link, 'url', size: "30" %>
-            </div>
-        </div>
+    
+    <div class = "add">
         
-        <div class = "row">
-            <div class="col-xs-2 col-xs-offset-4">
-                <div align="left"> <%= label :link, :category, 'Category' %> </div>
-            </div>
-            <div class="col-xs-6">
-                <div class="dropdown">
-                        
-                        <%= select :link, :category, ['Internships','Grants','Jobs','Inspiration','Other'], class: 'dropdown-menu' %>
-                       
-                </div>
-            </div>
-        </div>
-        
-        <div class = "row">
-            <div class="col-xs-2 col-xs-offset-4">
-                <div align="left"> <%= label :link, :comments, 'Comments (Optional)' %> </div>
-            </div>
-            <div class="col-xs-6">
-                <%= text_field :link, 'comments', size: "30" %>
-            </div>
-        </div>
-        <div class = "row">
-            <div class="col-xs-2 col-xs-offset-4">
-                <div align="left">
-                <!-- <%= submit_tag 'Submit' %> -->
-                <%= link_to(type: "submit", class: "btn btn-default") do %>
-                    Submit
-                <% end %>
-                </div>
-                <br>
-              <%= link_to "Back", links_path %>
-            </div>
-        </div>
+        <%= form_for(@link) do |link| %>
+          
+         <%= link.label :name %>
+          <%= link.text_field :name %> <br>
+          
+          <%= link.label :url %>
+          <%= link.text_field :url %> <br>
+          
+          <%= link.label :category %>
+          <%= link.select :category, ['Internships','Grants','Jobs','Inspiration','Other'] %> <br>
+          
+          <%= link.label :comments %> 
+          <%= link.text_field :comments %> <br>
+          
+          <%= link.submit %>
+
+    
+
         <% end %>
+        
     </div>
-
-    <% if flash[:errors] != nil %> 
-
-    <% flash[:errors].each do |error, message| %>
     
-     <div id = "center">
-     <div class = "animated fadeIn">
-         
-    <% message.each do|errorMsg|  %>
+    <div>
     
-    <%= error + " " +  errorMsg %>
+    <% if @link.errors.any? %> 
 
+    <%= pluralize(@link.errors.count, "error") %> prohibited this from being saved
+   <% @link.errors.each do |error, msg| %> 
+       <%= msg %>
+   <% end %>
+   <% end %>
+   
+   </div>
 
-    <% end %>
-      <% end %> 
-    <% end %> 
-    
-       </div>  
-        </div> 
 </body>
 </html>

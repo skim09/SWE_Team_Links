@@ -235,14 +235,14 @@ end
 
 describe UsersController, :type => :controller do
   
-  # describe 'create' do
-  #   it 'should create a new user' do 
-  #     @fake_user = double("User", :name => "Joseph Koshakow", :uid => 3, :email => 'jkoshakow@wesleyan.edu', :admin => false)
-  #     allow(User).to receive(:create!).and_return(@fake_user)
-  #     # request = [:env => ["omniauth.auth" => [:info => [:email => "jkoshakow@wesleyan.edu"]]]]
-  #     post :create, :name => "Joseph Koshakow", :uid => 3, :email => 'jkoshakow@wesleyan.edu', :admin => false
-  #   end
-  # end
+  describe 'create' do
+    it 'should create a new user' do 
+      # @fake_user = double("User", :name => "Joseph Koshakow", :uid => 3, :email => 'jkoshakow@wesleyan.edu', :admin => false)
+      # allow(User).to receive(:create!).and_return(@fake_user)
+      # request = [:env => ["omniauth.auth" => [:info => [:email => "jkoshakow@wesleyan.edu"]]]]
+      post :create, :name => "Joseph Koshakow", :email => 'jkoshakow@wesleyan.edu', :admin => false
+    end
+  end
   
   describe 'new admin' do
     context 'user exists' do
