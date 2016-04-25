@@ -83,6 +83,9 @@ class LinksController < ApplicationController
     
     
     def approve_link
+        if !session[:admin]
+            redirect_to links_path
+        end
         @links = Link.where(status: false)
     end
     
