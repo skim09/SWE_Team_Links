@@ -48,7 +48,7 @@
   
   <div id = "Internships"> 
    <% @internships.each do |intern| %>
-   <div class = <%= intern.name %><%= intern.upvotes %>  id = "internship" style="display: none"> 
+   <div class = <%= intern.name.gsub(" " , "_") %><%= intern.upvotes %>  id = "internship" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= intern.name + "votes" %>> 
       <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(intern), remote: true, method: :put %>
@@ -78,7 +78,7 @@
   
   <div id = "Grants"> 
    <% @grants.each do |grant| %>
-   <div class = <%= grant.name %><%= grant.upvotes %> id = "grant" style="display: none"> 
+   <div class = <%= grant.name.gsub(" ", "_") %><%= grant.upvotes %> id = "grant" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= grant.name + "votes" %>> 
       <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(grant), remote: true, method: :put %>
@@ -110,7 +110,7 @@
   
   <div id = "Jobs"> 
    <% @jobs.each do |job| %>
-   <div class = <%= job.name %> <%= job.upvotes %>  id = "job" style="display: none"> 
+   <div class = <%= job.name.gsub(" ", "_") %> <%= job.upvotes %>  id = "job" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= job.name + "votes" %>> 
       <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(job), remote: true, method: :put %>
@@ -140,7 +140,7 @@
   
  <div id = "Inspiration"> 
    <% @inspiration.each do |inspir| %>
-   <div class = <%= inspir.name %><%= inspir.upvotes %> id = "inspiration" style="display: none"> 
+   <div class = <%= inspir.name.gsub(" ", "_") %><%= inspir.upvotes %> id = "inspiration" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= inspir.name + "votes" %>> 
       <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(inspir), remote: true, method: :put %>
@@ -169,7 +169,7 @@
   
    <div id = "Other"> 
    <% @other.each do |oth| %>
-   <div class = <%= oth.name %><%= oth.upvotes %> id = "other" style="display: none"> 
+   <div class = <%= oth.name.gsub(" ", "_") %><%= oth.upvotes %> id = "other" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= oth.name + "votes" %>> 
       <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(oth), remote: true, method: :put %>
