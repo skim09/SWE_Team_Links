@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -55,8 +55,13 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  
-  
+  resources :links, :users
+  root :to => redirect('/users')
+  resources :links do 
+    member do
+    put 'upvote'
+    end
+  end
   resources :links do
     collection do
       put 'reportsend'
@@ -67,11 +72,14 @@ Rails.application.routes.draw do
   
   get '/links/:id/report', to: 'links#report', as: 'report_link'
   
-  
-  root :to => redirect('/links')
   #get '/links/category/' => '/links#index'
   #get "/show_by_category" => 'links#show_by_category', as: 'show_by_category'
   
-  
-  
+  get 'auth/google_oauth2/callback', to: 'users#create', as: 'signin'
+  #get 'auth/failure', to :redirect('/')
+  get '/signout' ,to: 'users#destroy', as: 'signout'
+  put '/new_admin' => 'users#new_admin', as: 'new_admin'
+  get '/admin_page' => 'links#admin_page', as: 'admin_page'
+  get '/approval' => 'links#approve_link', as: 'approval'
+  post 'approve_or_decline_link' => 'links#approve_or_decline', as: 'approve_or_decline_link'
 end

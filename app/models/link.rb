@@ -1,6 +1,7 @@
 require 'uri'
 
 class Link < ActiveRecord::Base
+  
   validates :url, presence: true, uniqueness: true, format: { with: URI.regexp}#, message: "You need to enter a URL"
   validates :name, presence: true, uniqueness: true#, message: "You need to give the URL a name"
  #, :message => "Not a properly formatted URL, make sure to include \"http://\" or \"https://\""}

@@ -5,11 +5,14 @@ Feature: expand only categories that have been selected
   I want to only see links in relevant categories
   
 Background: links in database
-  Given the following links exist:
-  | name   | url                    | category    |
-  | Google | http://google.com      | Internships |
-  | Acumen | http://acumen.com      | Inspiration |
   
+  Given the following links exist:
+  
+  | name                | category      | url |
+  | Google              | Internships   | https://www.google.com |
+  | Acumen              | Inspiration   | https://www.acumen.org |
+
+
   And I am on the Links home page
   
 Scenario: finding a link in an expanded category

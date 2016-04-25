@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20160424195416) do
     t.string   "comments"
     t.string   "reportreason"
     t.string   "otherreportreason"
+    t.boolean  "status"
+    t.string   "email"
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,6 +33,8 @@ ActiveRecord::Schema.define(version: 20160424195416) do
     t.string   "login"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "uid"
+    t.boolean  "admin"
   end
 
 end

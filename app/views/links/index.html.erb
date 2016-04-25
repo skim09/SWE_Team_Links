@@ -6,34 +6,92 @@
   <link rel="stylesheet" href="animate.min.css">
 </head>
 <body>
-
+<div id = wrapper>
   <!--<div class = "mini" style= "color: #FFFFFF" > Google </div>-->
-  
-   <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
 
+   <div align = "right">
+      <% if current_user %>
+        <% if current_user.admin%>
+            <div id="bubble"><%= @number_of_unapproved %></div>
+            <%=link_to image_tag("/assets/noti.png", width:30, height:30, id: "noti"), approval_path %>
+            
+        <% end %>
+        <strong><%= current_user.name %></strong>
+        <%= link_to "Sign out", signout_path %>
+      <% else %>
+        <%= link_to "Sign in", "auth/google_oauth2/" %>
+      <% end %>
+   </div>
+   
+   <div class = "logo"> 
+  <%= image_tag("imgres.jpg", alt: "logo") %> 
+  <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
+   </div>
+   
+    <div class="leftalign">
+      <div class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Sort By <b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu">
+                <li> <button id = "sortByName" onclick= "sort_name()"> Name </button>
+                </li>
+                <li> <button id = "sortByVotes" onclick = "sort_upvotes()"> Upvotes </button>
+                </li>
+            </ul>
+      </div>
+    </div>
+   
   <div class = "leftalign">
     <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Internships</button>
   </div>
   
+  <div id = "Internships"> 
    <% @internships.each do |intern| %>
-
-  <div class = "leftalign" id = "internship" style="display: none">  
-  <a href= <%= intern.url %> > <%= intern.name %> </a>
-    </div>
-    
+   <div class = <%= intern.name %><%= intern.upvotes %>  id = "internship" style="display: none"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= intern.name + "votes" %>> 
+      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(intern), remote: true, method: :put %>
+      <!--URL NAME URL-->
+      <a href= <%= intern.url %> > <%= intern.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=intern.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= intern.upvotes %> 
+      </div>
+      </div>
+  </div>
   <% end %>
- 
+  </div>
+
   
   <div class = "leftalign">
     <button id = "grants" type="button" onclick="toggleHidden(grant)" class="btn btn-default">Grants</button>
   </div>
   
+  
+  <div id = "Grants"> 
    <% @grants.each do |grant| %>
-  <div class = "leftalign" id = "grant" style="display: none">  
-      <a href= <%= grant.url %> > <%= grant.name %> </a>
-      <%= link_to "Report", report_link_path(grant)  %>
-  </div>
+   <div class = <%= grant.name %><%= grant.upvotes %> id = "grant" style="display: none"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= grant.name + "votes" %>> 
+      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(grant), remote: true, method: :put %>
+      <!--URL NAME URL-->
+      <a href= <%= grant.url %> > <%= grant.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=grant.name%> > 
+    
+          <div id = <%= grant.upvotes %> class = "animated zoomIn"> 
+          <%= grant.upvotes %> 
+          </div>
+          
+      </div>
+  
+   </div>
   <% end %>
+  </div>
   
   
   
@@ -41,12 +99,25 @@
     <button id = "jobs" type="button" onclick="toggleHidden(job)" class="btn btn-default">Jobs</button>
   </div>
   
-  <% @jobs.each do |job| %>
-   <div class = "leftalign" id = "job" style="display: none">  
-    <a href= <%= job.url %> > <%= job.name %> </a>
-    <%= link_to "Report", report_link_path(job)  %>
+  <div id = "Jobs"> 
+   <% @jobs.each do |job| %>
+   <div class = <%= job.name %> <%= job.upvotes %>  id = "job" style="display: none"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= job.name + "votes" %>> 
+      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(job), remote: true, method: :put %>
+      <!--URL NAME URL-->
+      <a href= <%= job.url %> > <%= job.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=job.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= job.upvotes %> 
+      </div>
+      </div>
   </div>
-   <% end %>
+  <% end %>
+  </div>
   
   
   
@@ -54,36 +125,63 @@
     <button id = "inspirations" type="button" onclick="toggleHidden(inspiration)" class="btn btn-default">Inspiration</button>
   </div>
   
-  <% @inspiration.each do |inspir| %>
-   <div class = "leftalign" id = "inspiration" style="display: none">  
-    <a href= <%= inspir.url %> > <%= inspir.name %> </a>
-    <%= link_to "Report", report_link_path(inspir)  %>
+ <div id = "Inspiration"> 
+   <% @inspiration.each do |inspir| %>
+   <div class = <%= inspir.name %><%= inspir.upvotes %> id = "inspiration" style="display: none"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= inspir.name + "votes" %>> 
+      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(inspir), remote: true, method: :put %>
+      <!--URL NAME URL-->
+      <a href= <%= inspir.url %> > <%= inspir.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=inspir.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= inspir.upvotes %> 
+      </div>
+      </div>
   </div>
-   <% end %>
+  <% end %>
+  </div>
   
   
   <div class = "leftalign">
     <button id = "others" type="button" onclick="toggleHidden(other)" class="btn btn-default">Other</button>
   </div>
   
+   <div id = "Other"> 
    <% @other.each do |oth| %>
-   <div class = "leftalign" id = "other" style="display: none">  
-    <a href= <%= oth.url %> > <%= oth.name %> </a>
+   <div class = <%= oth.name %><%= oth.upvotes %> id = "other" style="display: none"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= oth.name + "votes" %>> 
+      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(oth), remote: true, method: :put %>
+      <!--URL NAME URL-->
+      <a href= <%= oth.url %> > <%= oth.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=oth.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= oth.upvotes %> 
+      </div>
+      </div>
   </div>
-   <% end %>
+  <% end %>
+  </div>
   
   <div class = "leftalign" id = "addlink">
     <%= link_to "Add Link", new_link_path  %> 
   </div>
-  
-  
+
   <script>
     
     function toggleHidden(id) {
       
       if ($(id).css('display') == "none") {
+          $(id).addClass('animated fadeIn');
           $(id).css('display', 'block') ;
-           $(id).addClass('animated fadeIn');
+           
       }
       else {
           $(id).css('display', 'none') 
@@ -91,9 +189,87 @@
      
     }
     
+      function sort_name() {
+        var intern = document.getElementById("Internships");
+        var grant = document.getElementById("Grants");
+        var inspiration = document.getElementById("Inspiration");
+        var job = document.getElementById("Jobs");
+        var other = document.getElementById("Other");
+        
+        [].map.call( intern.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        intern.appendChild( elem );
+        });
+        
+        [].map.call( grant.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        grant.appendChild( elem );
+        });
+        
+        [].map.call( inspiration.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        inspiration.appendChild( elem );
+        });
+        
+        [].map.call( job.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        job.appendChild( elem );
+        });
+        
+        [].map.call( other.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        other.appendChild( elem );
+        });
+    }
+    
+    function sort_upvotes() {
+        
+        var intern = document.getElementById("Internships");
+        var grant = document.getElementById("Grants");
+        var inspiration = document.getElementById("Inspiration");
+        var job = document.getElementById("Jobs");
+        var other = document.getElementById("Other");
+          
+        [].map.call(grant.children, Object ).sort( function ( a, b ) {
+        return +a.className.match( /\d+/ ) - +b.className.match( /\d+/ );
+        }).forEach( function ( elem ) {
+        grant.appendChild( elem );
+        });
+        
+        [].map.call(intern.children, Object ).sort( function ( a, b ) {
+        return +a.className.match( /\d+/ ) - +b.className.match( /\d+/ );
+        }).forEach( function ( elem ) {
+        intern.appendChild( elem );
+        });
+        
+        [].map.call(job.children, Object ).sort( function ( a, b ) {
+        return +a.className.match( /\d+/ ) - +b.className.match( /\d+/ );
+        }).forEach( function ( elem ) {
+        job.appendChild( elem );
+        });
+        
+        [].map.call(inspiration.children, Object ).sort( function ( a, b ) {
+        return +a.className.match( /\d+/ ) - +b.className.match( /\d+/ );
+        }).forEach( function ( elem ) {
+        inspiration.appendChild( elem );
+        });
+        
+        [].map.call(other.children, Object ).sort( function ( a, b ) {
+        return +a.className.match( /\d+/ ) - +b.className.match( /\d+/ );
+        }).forEach( function ( elem ) {
+        other.appendChild( elem );
+        });
+    }
+    
   </script>
   
   
+  </div> 
   
 </body>
 </html>

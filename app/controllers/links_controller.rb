@@ -1,4 +1,6 @@
 class LinksController < ApplicationController
+
+    # before_filter :authenticate, only: [:new] 
     
     def link_params
         params.fetch(:link).permit(:name, :url, :upvotes, :category, :comments, :reportreason, :otherreportreason, :link)
@@ -12,38 +14,41 @@ class LinksController < ApplicationController
     
     def index
         #@links = Link
-        @inspiration = Link.where(category: "Inspiration")
-        @internships = Link.where(category: "Internships")
-        @grants = Link.where(category: "Grants")
-        @jobs = Link.where(category: "Jobs")
-        @other = Link.where(category: "Other")
+        @inspiration = Link.where(category: "Inspiration", status: true)
+        @internships = Link.where(category: "Internships", status: true)
+        @grants = Link.where(category: "Grants", status: true)
+        @jobs = Link.where(category: "Jobs", status: true)
+        @other = Link.where(category: "Other", status: true)
+        session[:links] = @links
+        @number_of_unapproved = Link.where(status: false).size
     end
     
-    # show by category
-    #def show_by_category
-    #    #@links = Link.where(category: params[:category])
-    #    logger.info("%%%%%"+params[:category].to_s)
-    #end
-    
-
     def new
-    # default: render 'new' template
+        if !session[:authenticated]
+            session[:error] = "Must be logged in to add links"
+            redirect_to root_path
+        end
+        @link = Link.new
     end
 
     def create
 
-        @link = Link.create(link_params)
+        if session[:admin]
+            @link = Link.new(link_params.merge({:status => true, :upvotes => 0, :email => current_user.email }))
+        else
+            @link = Link.new(link_params.merge({:status => false, :upvotes => 0, :email => current_user.email }))
+        end
         
-        if @link.valid? 
-            @link.save
+        if @link.save 
             AddlinkMailer.linkrequest_email(@link).deliver_now
             redirect_to links_path
-            #Successfully submitted
         else 
-             flash[:errors] = @link.errors.messages
-             redirect_to new_link_path
+             
+             @link.delete
+             
+             render 'new'
         end
-        #AdminMailer.adding_link_email().deliver
+  
     end
     
     def edit
@@ -81,5 +86,36 @@ class LinksController < ApplicationController
         redirect_to links_path
     end
     
+    
+    def approve_link
+        @links = Link.where(status: false)
+    end
+    
+    def approve_or_decline
+        link = Link.find(params[:link_id])
+        if params[:commit]=="Approve"
+            link.update(status: true)
+        else
+            link.destroy
+        end
+        @links = Link.where(status: false)
+        respond_to do |format| 
+            format.js
+        end
+    end
 
+    def upvote
+        
+        @link = Link.find(params[:id])
+        
+        @link.upvotes += 1
+        @link.save
+        
+        respond_to do |format|
+            format.js 
+        end
+
+
+    end
+    
 end
