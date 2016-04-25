@@ -89,10 +89,10 @@ class LinksController < ApplicationController
     def approve_or_decline
         @link = Link.find(params[:link_id])
         if params[:commit]=="Approve"
-            AddlinkMailer.requestapproved_email(@link).deliver_now
+            #AddlinkMailer.requestapproved_email(@link).deliver_now
             @link.update(status: true)
         else
-            AddlinkMailer.requestdenied_email(@link).deliver_now
+            #AddlinkMailer.requestdenied_email(@link).deliver_now
             @link.destroy
         end
         @links = Link.where(status: false)
