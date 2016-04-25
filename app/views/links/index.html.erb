@@ -245,31 +245,31 @@
         var other = document.getElementById("Other");
           
         [].map.call(grant.children, Object ).sort( function ( a, b ) {
-        return +a.className.match( /\d+/ ) - +b.className.match( /\d+/ );
+        return -a.className.match( /\d+/ ) - -b.className.match( /\d+/ );
         }).forEach( function ( elem ) {
         grant.appendChild( elem );
         });
         
         [].map.call(intern.children, Object ).sort( function ( a, b ) {
-        return +a.className.match( /\d+/ ) - +b.className.match( /\d+/ );
+        return -a.className.match( /\d+/ ) - -b.className.match( /\d+/ );
         }).forEach( function ( elem ) {
         intern.appendChild( elem );
         });
         
         [].map.call(job.children, Object ).sort( function ( a, b ) {
-        return +a.className.match( /\d+/ ) - +b.className.match( /\d+/ );
+        return -a.className.match( /\d+/ ) - -b.className.match( /\d+/ );
         }).forEach( function ( elem ) {
         job.appendChild( elem );
         });
         
         [].map.call(inspiration.children, Object ).sort( function ( a, b ) {
-        return +a.className.match( /\d+/ ) - +b.className.match( /\d+/ );
+        return -a.className.match( /\d+/ ) - -b.className.match( /\d+/ );
         }).forEach( function ( elem ) {
         inspiration.appendChild( elem );
         });
         
         [].map.call(other.children, Object ).sort( function ( a, b ) {
-        return +a.className.match( /\d+/ ) - +b.className.match( /\d+/ );
+        return -a.className.match( /\d+/ ) - -b.className.match( /\d+/ );
         }).forEach( function ( elem ) {
         other.appendChild( elem );
         });

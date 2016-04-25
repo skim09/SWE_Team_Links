@@ -178,34 +178,34 @@ describe LinksController, :type => :controller do
     end
   end
   
-  # describe 'approve_or_decline' do
-  #   before :each do
-  #     params[:link_id] = 1
-  #     Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false)
-  #   end
+  describe 'approve_or_decline' do
+    before :each do
+      # params[:link_id] = 1
+      Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false)
+    end
     
-  #   context 'approve link' do
-  #     it 'should approve the link' do
-  #       params[:commit] = "Approve"
-  #       post :approve_or_decline
-  #     end
-  #   end
+    context 'approve link' do
+      it 'should approve the link' do
+        # params[:commit] = "Approve"
+        post :approve_or_decline, :link_id => 1, :commit => "Approve"
+      end
+    end
     
-  #   context 'decline link' do
-  #     it 'should decline the link' do
-  #       params[:commit] = "Decline"
-  #       post :approve_or_decline     
-  #     end
-  #   end
+    context 'decline link' do
+      it 'should decline the link' do
+        # params[:commit] = "Decline"
+        post :approve_or_decline, :link_id => 1, :commit => "Decline" 
+      end
+    end
     
-  # end
+  end
   
-  # describe 'upvote' do
-  #   it 'should add an upvote' do
-  #     Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false)
-  #     put :upvote, :id => 1
-  #   end
-  # end
+  describe 'upvote' do
+    it 'should add an upvote' do
+      Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false)
+      put :upvote, :id => 1
+    end
+  end
   
 end
 
@@ -220,10 +220,18 @@ describe UsersController, :type => :controller do
   #   end
   # end
   
-  #fix this, can't access params doesn't visit all paths
   describe 'new admin' do
-    it 'should create a new admin' do
-      put :new_admin
+    context 'user exists' do
+      it 'should promote a new admin' do
+        User.create!(:name => "Joseph Koshakow", :uid => 3, :email => 'jkoshakow@wesleyan.edu', :admin => false)
+        put :new_admin, :email => "jkoshakow@wesleyan.edu"
+      end
+    end
+    
+    context 'user doesn\'t exist' do
+      it 'should not promote a new admin' do
+        put :new_admin, :email => "jkoshakow@wesleyan.edu"
+      end
     end
   end
   
@@ -236,6 +244,7 @@ describe UsersController, :type => :controller do
   describe 'destroy' do
     it 'should destroy a user' do
       User.create!(:name => "Joseph Koshakow", :uid => 3, :email => 'jkoshakow@wesleyan.edu', :admin => false)
+      Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false, :upvotes => 0)
       get :destroy, :id => 1
     end
   end
