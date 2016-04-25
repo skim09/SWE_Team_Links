@@ -59,9 +59,10 @@
       <div class = "inline" id = <%=intern.name%> > 
       <div class = "animated zoomIn"> 
       <%= intern.upvotes %> 
+      
+      </div>
+      </div>
       <%= link_to "Report", report_link_path(intern)  %>
-      </div>
-      </div>
   </div>
   <% end %>
   </div>
@@ -87,11 +88,11 @@
     
           <div id = <%= grant.upvotes %> class = "animated zoomIn"> 
           <%= grant.upvotes %> 
-          <%= link_to "Report", report_link_path(grant)  %>
+          
           </div>
           
       </div>
-  
+      <%= link_to "Report", report_link_path(grant)  %>
    </div>
   <% end %>
   </div>
@@ -116,9 +117,10 @@
       <div class = "inline" id = <%=job.name%> > 
       <div class = "animated zoomIn"> 
       <%= job.upvotes %> 
-      <%= link_to "Report", report_link_path(job)  %>
+     
       </div>
       </div>
+       <%= link_to "Report", report_link_path(job)  %>
   </div>
   <% end %>
   </div>
@@ -143,9 +145,10 @@
       <div class = "inline" id = <%=inspir.name%> > 
       <div class = "animated zoomIn"> 
       <%= inspir.upvotes %> 
+      
+      </div>
+      </div>
       <%= link_to "Report", report_link_path(inspir)  %>
-      </div>
-      </div>
   </div>
   <% end %>
   </div>
@@ -169,9 +172,10 @@
       <div class = "inline" id = <%=oth.name%> > 
       <div class = "animated zoomIn"> 
       <%= oth.upvotes %> 
+      
+      </div>
+      </div>
       <%= link_to "Report", report_link_path(oth)  %>
-      </div>
-      </div>
   </div>
   <% end %>
   </div>

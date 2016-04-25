@@ -186,14 +186,12 @@ describe LinksController, :type => :controller do
     
     context 'approve link' do
       it 'should approve the link' do
-        # params[:commit] = "Approve"
         post :approve_or_decline, :link_id => 1, :commit => "Approve"
       end
     end
     
     context 'decline link' do
       it 'should decline the link' do
-        # params[:commit] = "Decline"
         post :approve_or_decline, :link_id => 1, :commit => "Decline" 
       end
     end
@@ -205,6 +203,29 @@ describe LinksController, :type => :controller do
       Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false)
       put :upvote, :id => 1
     end
+  end
+  
+  describe 'report' do
+    it 'should report'
+  end
+  
+  describe 'reportsend' do
+    before :each do
+      Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => true)
+    end
+    
+    context 'report reason: other' do
+      it 'should deliver report' do
+        put :reportsend, :link_id => 1, :reportreason => "Other", :otherreportreason => "Stuff"
+      end
+    end
+    
+    context 'report reason: not other' do
+      it 'should deliver report' do
+        put :reportsend, :link_id => 1, :reportreason => "reasons"
+      end
+    end
+    
   end
   
 end
