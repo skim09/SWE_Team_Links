@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="animate.min.css">
 </head>
 <body>
-<div id = wrapper>
+
   <!--<div class = "mini" style= "color: #FFFFFF" > Google </div>-->
 
    <div align = "right">
@@ -33,13 +33,14 @@
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Sort By <b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu">
                 <li> <button id = "sortByName" onclick= "sort_name()"> Name </button>
-                </li>
-                <li> <button id = "sortByVotes" onclick = "sort_upvotes()"> Upvotes </button>
+                </li> 
+                <li>
+                <button id = "sortByVotes" onclick = "sort_upvotes()"> Upvotes </button>
                 </li>
             </ul>
       </div>
     </div>
-   
+
   <div class = "leftalign">
     <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Internships</button>
   </div>
@@ -176,7 +177,7 @@
 
     
   
- </div> 
+
   <script>
     
     function toggleHidden(id) {

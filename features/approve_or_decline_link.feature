@@ -8,3 +8,4 @@ Scenario: pressing notification button
     When I am on the Links home page
     And I press "noti"
     Then I should be on the admin page
+    

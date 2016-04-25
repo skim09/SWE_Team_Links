@@ -8,6 +8,8 @@ describe LinksController, :type => :controller do
     @user_regular = users(:eric)
   end
    
+  
+  
   describe 'add new link as an admin' do
     
     before :each do
@@ -27,7 +29,6 @@ describe LinksController, :type => :controller do
         #expect(response).to redirect_to(links_path)
       end
     end
-    
     
     context 'invalid URL' do
       it 'should reject the url' do
@@ -64,7 +65,8 @@ describe LinksController, :type => :controller do
   end
   
   
-   describe 'add new link as a user' do
+  
+  describe 'add new link as a user' do
     
     before :each do
       session[:user_id] = 1
@@ -118,6 +120,7 @@ describe LinksController, :type => :controller do
       end
     end
   end
+  
   
   
   describe 'index' do
@@ -197,11 +200,44 @@ describe LinksController, :type => :controller do
     
   # end
   
-  describe 'upvote' do
-    it 'should add an upvote' do
-      Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false)
-      put :upvote, :id => 1
+  # describe 'upvote' do
+  #   it 'should add an upvote' do
+  #     Link.create!(:url => "http://www.google.com", :name => 'Google', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => false)
+  #     put :upvote, :id => 1
+  #   end
+  # end
+  
+end
+
+
+describe UsersController, :type => :controller do
+  
+  # describe 'create' do
+  #   it 'should create a new user' do 
+  #     @fake_user = double("User", :name => "Joseph Koshakow", :uid => 3, :email => 'jkoshakow@wesleyan.edu', :admin => false)
+  #     allow(User).to receive(:create!).and_return(@fake_user)
+  #     post :create, :name => "Joseph Koshakow", :uid => 3, :email => 'jkoshakow@wesleyan.edu', :admin => false
+  #   end
+  # end
+  
+  #fix this, can't access params doesn't visit all paths
+  describe 'new admin' do
+    it 'should create a new admin' do
+      put :new_admin
     end
   end
   
+  describe 'index' do
+    it 'should go to index' do
+      get :index
+    end
+  end
+  
+  describe 'destroy' do
+    it 'should destroy a user' do
+      User.create!(:name => "Joseph Koshakow", :uid => 3, :email => 'jkoshakow@wesleyan.edu', :admin => false)
+      get :destroy, :id => 1
+    end
+  end
+ 
 end
