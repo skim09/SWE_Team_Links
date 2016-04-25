@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
          user.uid=auth["uid"]
          user.email = auth[:info][:email]
          user.name = auth[:info][:name]
-         if user.email == "mjkingsley@wesleyn.edu" or user.email == "jkoshakow@wesleyan.edu" or user.email == "skim09@wesleyan.edu"
+         if user.email == "mjkingsley@wesleyn.edu" or user.email == "jkoshakow@wesleyan.edu" or user.email == "skim09@wesleyan.edu" or user.email == "yliu04@wesleyan.edu"
            user.admin = true
          else
            user.admin = false
