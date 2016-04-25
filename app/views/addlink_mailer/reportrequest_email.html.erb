@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      A user has reported the following link from the PCSE website:
+    </p>
+    <p>
+      <b>Name of Site</b>: <%= @link.name %> <br>
+      <b>URL</b>: <%= @link.url %> <br>
+      <b>Category</b>: <%= @link.category %> <br>
+      <b>Reason for report</b>: <%= @link.reportreason %>
+    </p>
+    <p>
+      To approve, deny, or edit this link request, please follow the following link: http://www.wesleyan.edu/patricelli/links.html
+      and log in with your administrative credentials.
+    </p>
+  </body>
+</html>

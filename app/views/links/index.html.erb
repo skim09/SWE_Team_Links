@@ -30,7 +30,8 @@
   
    <% @grants.each do |grant| %>
   <div class = "leftalign" id = "grant" style="display: none">  
-  <a href= <%= grant.url %> > <%= grant.name %> </a>
+      <a href= <%= grant.url %> > <%= grant.name %> </a>
+      <%= link_to "Report", report_link_path(grant)  %>
   </div>
   <% end %>
   
@@ -43,6 +44,7 @@
   <% @jobs.each do |job| %>
    <div class = "leftalign" id = "job" style="display: none">  
     <a href= <%= job.url %> > <%= job.name %> </a>
+    <%= link_to "Report", report_link_path(job)  %>
   </div>
    <% end %>
   
@@ -55,6 +57,7 @@
   <% @inspiration.each do |inspir| %>
    <div class = "leftalign" id = "inspiration" style="display: none">  
     <a href= <%= inspir.url %> > <%= inspir.name %> </a>
+    <%= link_to "Report", report_link_path(inspir)  %>
   </div>
    <% end %>
   

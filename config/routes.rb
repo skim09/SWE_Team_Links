@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -54,9 +55,23 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  
+  
+  resources :links do
+    collection do
+      put 'reportsend'
+    end
+  end
   resources :links
+  put '/report' => 'links#reportsend', as: 'report'
+  
+  get '/links/:id/report', to: 'links#report', as: 'report_link'
+  
+  
   root :to => redirect('/links')
   #get '/links/category/' => '/links#index'
   #get "/show_by_category" => 'links#show_by_category', as: 'show_by_category'
+  
+  
   
 end

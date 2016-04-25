@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
     
     def link_params
-        params.fetch(:link).permit(:name, :url, :upvotes, :category, :comments)
+        params.fetch(:link).permit(:name, :url, :upvotes, :category, :comments, :reportreason, :otherreportreason, :link)
     end
     
     def show
@@ -50,12 +50,36 @@ class LinksController < ApplicationController
         @link = Link.find params[:id]
     end
     
+    def report
+        @link = Link.find params[:id] 
+    end
+    
+    def sendreport
+        @link = link
+        AddlinkMailer.reportrequest_email(@link).deliver_now
+    end
+    
     def update
+        
         redirect_to links_path
     end
 
     def destroy
         redirect_to links_path
     end
+    
+    def reportsend
+        @link = Link.find params[:link_id]
+        #@link.update_attributes!(link_params)
+        @link.update(reportreason: params[:reportreason])
+        if @link.reportreason == "Other"
+            @link.update(otherreportreason: params[:otherreportreason])
+            AddlinkMailer.otherreportrequest_email(@link).deliver_now
+        else
+            AddlinkMailer.reportrequest_email(@link).deliver_now
+        end
+        redirect_to links_path
+    end
+    
 
 end

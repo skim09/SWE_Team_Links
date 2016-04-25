@@ -6763,3 +6763,16 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+.row-checkbox { margin-top: 0;
+                     margin-bottom: 0;}
+
+.row-top-limit { margin-top: 0;}
+                     
+.vertical-center {
+  height:100%;
+  width:100%;
+
+  text-align: center;  /* align the inline(-block) elements horizontally */
+  font: 0/0 a;         /* remove the gap between inline(-block) elements */
+}
