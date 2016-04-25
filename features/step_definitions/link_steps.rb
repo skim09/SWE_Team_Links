@@ -6,6 +6,8 @@ Given /the following links exist/ do |links_table|
 end
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
-    titles = page.all("table#links tbody tr td[1]").map {|t| t.text}
-    titles.index(e1).should < titles.index(e2)
+  #  ensure that that e1 occurs before e2.
+  #  page.body is the entire content of the page as a string.
+  tot_bod = page.body
+  tot_bod.index(e1).should > tot_bod.index(e2)
 end

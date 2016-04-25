@@ -8,6 +8,10 @@ Background: links in database
   
   And I am on the Links home page
 
-Scenario: sorting links
+Scenario: sorting links by name
   When I press "Name"
+  Then I should see "Acumen" before "Google"
+
+Scenario: sorting links by upvotes
+  When I press "Upvotes"
   Then I should see "Acumen" before "Google"
