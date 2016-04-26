@@ -161,13 +161,19 @@
         null,
         1,
         1,
+        1,
+        null,
+        1,
         null,
         null,
         1,
         2,
         2,
+        2,
+        1,
         1,
         null,
+        1,
         1,
         null,
         2,
@@ -260,6 +266,18 @@
         1,
         1,
         null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
         null
       ],
       "/home/ubuntu/workspace/TeamLinks/app/mailers/application_mailer.rb": [
@@ -281,6 +299,6 @@
         0
       ]
     },
-    "timestamp": 1461553566
+    "timestamp": 1461633812
   }
 }
