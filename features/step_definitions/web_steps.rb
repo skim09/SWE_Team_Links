@@ -116,6 +116,7 @@ end
 
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
+  Capybara.ignore_hidden_elements = false
   if page.respond_to? :should
     page.should have_content(text)
   else

@@ -17,7 +17,7 @@ Background: links in database
 
 Scenario: pressing report link button
   When I am on the Links home page
-  And I follow "Report"
+  And I follow "Google"
   Then I should be on the Report page
 
 Scenario: submitting a report link form (happy path)

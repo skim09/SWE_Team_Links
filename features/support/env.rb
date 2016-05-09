@@ -36,6 +36,15 @@ rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
 
+OmniAuth.config.test_mode = true
+
+OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+  :provider => 'google_oauth2',
+  :uid => '123545',
+  :info => { :name => "Test LastName"},
+  :credentials => {:token => "mytoken", :expires_at => 1321747205, }
+})
+
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
 # See the DatabaseCleaner documentation for details. Example:
 #

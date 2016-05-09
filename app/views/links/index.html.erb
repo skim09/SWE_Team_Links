@@ -14,7 +14,7 @@
       <% if current_user %>
         <% if current_user.admin%>
             <div id="bubble"><%= @number_of_unapproved %></div>
-            <%=link_to image_tag("/assets/noti.png", width:30, height:30, id: "noti"), approval_path %>
+            <%=link_to image_tag("/assets/noti.png", width:30, height:30, alt: "noti"), approval_path %>
             
         <% end %>
         <strong><%= current_user.name %></strong>
@@ -46,7 +46,7 @@
     <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Internships</button>
   </div>
   
-  <div id = "Internships"> 
+  <div id = "Internships">
    <% @internships.each do |intern| %>
    <div class = <%= intern.name.gsub(" " , "_") %><%= intern.upvotes %>  id = "internship" style="display: none"> 
       <!--Vote Button-->

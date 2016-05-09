@@ -9,7 +9,7 @@ Background: links in database
   Given the following links exist:
   
   | name                | category      | url |
-  | Google              | Internships   | https://www.google.com |
+  | Google              | Inspiration   | https://www.google.com |
   | Acumen              | Inspiration   | https://www.acumen.org |
 
 
