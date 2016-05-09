@@ -78,4 +78,5 @@ Rails.application.routes.draw do
   get '/admin_page' => 'links#admin_page', as: 'admin_page'
   get '/approval' => 'links#approve_link', as: 'approval'
   post 'approve_or_decline_link' => 'links#approve_or_decline', as: 'approve_or_decline_link'
+  get '/page' => 'links#page', as: 'page'
 end

@@ -1,0 +1,45 @@
+<% @other[session[:other_page_num]].each do |oth| %>
+   <div class = <%= oth.name.gsub(" ", "_") %><%= oth.upvotes %> id = "other" style="display: block"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= oth.name + "votes" %>> 
+      <div class = "inline" id = <%= oth.name + "thumbup" %>>
+      <% if current_user %>
+      <% if oth.upvoters.split(';').include?("#{current_user.id}") %> 
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(oth,user_id: current_user.id), remote: true, method: :put %>
+      <% else %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(oth,user_id: current_user.id), remote: true, method: :put %>
+      <% end %>
+      <% end %>
+      </div>
+      <!--URL NAME URL-->
+      <a href= <%= oth.url %> > <%= oth.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=oth.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= oth.upvotes %> 
+      
+      </div>
+      </div>
+      <% if session[:admin] %>
+        <div class = "inline" id = "report"> 
+          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(oth), remote: true, method: :put %>
+        </div>
+     <%end %>
+  </div>
+  <% end %>
+  <div id="otherLink" class = "zzzz" style="display: block">
+        <% if @other.length>1  %>
+        view more:
+        <% end %>
+        <% if session[:other_page_num]>0%>
+        <%= link_to '< prev', page_path(other_incre: -1), remote: true %>
+        <% end %>
+        <% if session[:other_page_num]>0 && session[:other_page_num]<@other.length-1%>
+        |
+        <% end %>
+        <% if session[:other_page_num]<@other.length-1%>
+        <%= link_to 'next >', page_path(other_incre: 1), remote: true %>
+        <% end %>
+      </div>

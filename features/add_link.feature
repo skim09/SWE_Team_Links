@@ -7,14 +7,14 @@ Feature: add links to home page
 Background:
   Given the following users exist:
   | name     | admin         |
-  | bmk1995  | true          |
+  | bmk1995  | false         |
   | hellohihi| false         |
   
   And the user "bmk1995" is logged in
   
 Scenario: pressing add links button
   When I am on the Links home page
-  And I follow "Add Link"
+  And I follow "Request"
   Then I should be on the Add Links page
 
 Scenario: submitting a submit link form (happy path)
@@ -27,9 +27,9 @@ Scenario: submitting a submit link form (happy path)
   
 Scenario: submitting a submit link form (sad path)
   When I am on the Add Links page
-  And I fill in "Name of Link" with "New Link"
-  And I select "Internships" from "Category"
-  And I press "Submit"
+  And I fill in "link_name" with "New Link"
+  And I select "Get Smart & Get Informed" from "link_category"
+  And I press "Request"
   Then I should see "url can't be blank"
   
   

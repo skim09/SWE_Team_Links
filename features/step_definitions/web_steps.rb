@@ -116,6 +116,7 @@ end
 
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
+  Capybara.ignore_hidden_elements = false
   if page.respond_to? :should
     page.should have_content(text)
   else
@@ -132,6 +133,7 @@ Then /^(?:|I )should not spot "([^"]*)"$/ do |text|
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
+  Capybara.ignore_hidden_elements = false
   regexp = Regexp.new(regexp)
   
   if page.respond_to? :should

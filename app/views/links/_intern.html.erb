@@ -1,0 +1,49 @@
+<% @internships[session[:intern_page_num]].each do |intern| %>
+   <div class = <%= intern.name.gsub(" " , "_") %><%= intern.upvotes %>  id = "internship" style="display: block"> 
+      <!--Vote Button-->
+
+      <div class = "inline" id = <%= intern.name + "votes" %>> 
+      <div class = "inline" id = <%= intern.name + "thumbup" %>>
+      <% if current_user %>
+      <% if intern.upvoters.split(';').include?("#{current_user.id}") %> 
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(intern,user_id: current_user.id), remote: true, method: :put %>
+      <% else %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(intern,user_id: current_user.id), remote: true, method: :put %>
+      <% end %>
+      <% end %>
+      </div>
+      <!--URL NAME URL-->
+      <a href= <%= intern.url %> > <%= intern.name %> </a> 
+      </div>
+      
+     
+      <!--Vote Count-->
+      <div class = "inline" id = <%=intern.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= intern.upvotes %> 
+      </div>
+      </div>
+      
+      <% if session[:admin] %>
+        <div class = "inlinedelete" id = "report"> 
+        <%= link_to image_tag("deletex.png",:size => "10x10" ), remove_link_path(intern), remote: true, method: :put %>
+        </div>
+      <% end %>
+      
+  </div>
+  
+      <% end %>
+      <div id="internshipLink" class = "zzzz" style="display: block">
+        <% if @internships.length>1  %>
+        view more:
+        <% end %>
+        <% if session[:intern_page_num]>0%>
+        <%= link_to '< prev', page_path(intern_incre: -1), remote: true %>
+        <% end %>
+        <% if session[:intern_page_num]>0 && session[:intern_page_num]<@internships.length-1%>
+        |
+        <% end %>
+        <% if session[:intern_page_num]<@internships.length-1%>
+        <%= link_to 'next >', page_path(intern_incre: 1), remote: true %>
+        <% end %>
+      </div>

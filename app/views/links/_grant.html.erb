@@ -1,0 +1,48 @@
+<% @grants[session[:grant_page_num]].each do |grant| %>
+   <div class = <%= grant.name.gsub(" ", "_") %><%= grant.upvotes %> id = "grant" style="display: block"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= grant.name + "votes" %>> 
+      <div class = "inline" id = <%= grant.name + "thumbup" %>>
+      <% if current_user %>
+      <% if grant.upvoters.split(';').include?("#{current_user.id}") %> 
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(grant,user_id: current_user.id), remote: true, method: :put %>
+      <% else %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(grant,user_id: current_user.id), remote: true, method: :put %>
+      <% end %>
+      <% end %>
+      </div>
+      <!--URL NAME URL-->
+      <a href= <%= grant.url %> > <%= grant.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=grant.name%> > 
+    
+          <div id = <%= grant.upvotes %> class = "animated zoomIn"> 
+          <%= grant.upvotes %> 
+          
+          </div>
+          
+      </div>
+      <% if session[:admin] %>
+        <div class = "inline" id = "report"> 
+          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(grant), remote: true, method: :put %>
+        </div>
+      <% end %>    
+   </div>
+  <% end %>
+  
+  <div id="grantLink" class = "zzzz" style="display: block">
+        <% if @grants.length>1  %>
+        view more:
+        <% end %>
+        <% if session[:grant_page_num]>0%>
+        <%= link_to '< prev', page_path(grant_incre: -1), remote: true %>
+        <% end %>
+        <% if session[:grant_page_num]>0 && session[:grant_page_num]<@grants.length-1%>
+        |
+        <% end %>
+        <% if session[:grant_page_num]<@grants.length-1%>
+        <%= link_to 'next >', page_path(grant_incre: 1), remote: true %>
+        <% end %>
+      </div>

@@ -1,0 +1,17 @@
+
+<% case @change %>
+    <% when "insp" %>
+        $("#Inspiration").html("<%= escape_javascript(render partial: 'insp') %>");
+    <% when "intern" %>
+        $("#Internships").html("<%= escape_javascript(render partial: 'intern') %>");
+    <% when "grant" %>
+        $("#Grants").html("<%= escape_javascript(render partial: 'grant') %>");
+    <% when "job" %>
+        $("#Jobs").html("<%= escape_javascript(render partial: 'job') %>");
+    <% when "other" %>
+        $("#Other").html("<%= escape_javascript(render partial: 'other') %>");
+    <% when "fund" %>
+        $("#Funded").html("<%= escape_javascript(render partial: 'fund') %>");
+    <% when "hired" %>      
+        $("#Hired").html("<%= escape_javascript(render partial: 'hire') %>");
+<%end%>

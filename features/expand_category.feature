@@ -7,21 +7,19 @@ Feature: expand only categories that have been selected
 Background: links in database
   
   Given the following links exist:
+  | name                | category                        | url                    | upvotes | status |
+  | Boogle              | Get Acclimated & Get Inspired   | https://www.google.com | 5       | true   |
+  | Acumen              | Get Hired                       | https://www.acumen.org | 5       | true   |
   
-  | name                | category      | url |
-  | Google              | Internships   | https://www.google.com |
-  | Acumen              | Inspiration   | https://www.acumen.org |
-
-
   And I am on the Links home page
   
 Scenario: finding a link in an expanded category
-  When I press "Internships"
-  Then I should spot "Google"
+  When I press "Get Acclimated & Inspired"
+  Then I should see "Boogle"
   And I should be on the Links home page
  
 Scenario: not finding a link in an unexpanded category
-  When I press "Internships"
-  Then I should not spot "Acumen"
+  When I press "Get Acclimated & Inspired"
+  Then I should not see "Acumen"
   And I should be on the Links home page
   

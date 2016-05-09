@@ -1,0 +1,45 @@
+<% @funded[session[:fund_page_num]].each do |fund| %>
+   <div class = <%= fund.name.gsub(" ", "_") %><%= fund.upvotes %> id = "funded" style="display: block"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= fund.name + "votes" %>> 
+      <div class = "inline" id = <%= fund.name + "thumbup" %>>
+      <% if current_user %>
+      <% if fund.upvoters.split(';').include?("#{current_user.id}") %> 
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(fund,user_id: current_user.id), remote: true, method: :put %>
+      <% else %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(fund,user_id: current_user.id), remote: true, method: :put %>
+      <% end %>
+      <% end %>
+      </div>
+      <!--URL NAME URL-->
+      <a href= <%= fund.url %> > <%= fund.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=fund.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= fund.upvotes %> 
+      
+      </div>
+      </div>
+      <% if session[:admin] %>
+        <div class = "inline" id = "report"> 
+          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(fund), remote: true, method: :put %>
+        </div>
+     <%end %>
+  </div>
+  <% end unless @funded.empty? %>
+  <div id="fundedLink" class = "zzzz" style="display: block">
+        <% if @funded.length>1  %>
+        view more:
+        <% end %>
+        <% if session[:fund_page_num]>0%>
+        <%= link_to '< prev', page_path(fund_incre: -1), remote: true %>
+        <% end %>
+        <% if session[:fund_page_num]>0 && session[:fund_page_num]<@funded.length-1%>
+        |
+        <% end %>
+        <% if session[:fund_page_num]<@funded.length-1%>
+        <%= link_to 'next >', page_path(fund_incre: 1), remote: true %>
+        <% end %>
+      </div>

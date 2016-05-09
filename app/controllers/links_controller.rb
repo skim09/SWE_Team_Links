@@ -18,18 +18,12 @@ class LinksController < ApplicationController
     def index
         # LinksHelper.test
         #@links = Link
-        #session[:intern_page_num] = session[:intern_page_num].to_i+params[:intern_incre].to_i   
-        #session[:grant_page_num] = session[:grant_page_num].to_i+params[:grant_incre].to_i  
-        #session[:job_page_num] = session[:job_page_num].to_i+params[:job_incre].to_i  
-        #session[:other_page_num] = session[:other_page_num].to_i+params[:other_incre].to_i  
-        #session[:fund_page_num] = session[:fund_page_num].to_i+params[:fund_incre].to_i
-        #session[:insp_page_num] = session[:insp_page_num].to_i+params[:insp_incre].to_i
-        #session[:hired_page_num] = session[:hired_page_num].to_i+params[:hired_incre].to_i
         
-        session[:intern_display] = session[:intern_display] || "none"
+        
+        #session[:intern_display] = session[:intern_display] || "none"
         
         @inspirations = Link.where(category: "Get Acclimated & Get Inspired", status: true).each_slice(2).to_a
-        @internships = !params[:intern_index] || params[:intern_index]=="five" ? Link.where(category: "Get Smart & Get Informed", status: true).first(5) : Link.where(category: "Get Smart & Get Informed", status: true) 
+        @internships = Link.where(category: "Get Smart & Get Informed", status: true).each_slice(2).to_a
         @grants = Link.where(category: "Get Connected & Get Taught", status: true).each_slice(2).to_a
         @jobs = Link.where(category: 'Get Experience', status: true).each_slice(2).to_a
         @other = Link.where(category: "Get Organized", status: true).each_slice(2).to_a
@@ -163,5 +157,35 @@ class LinksController < ApplicationController
             format.js 
         end
         
+    end
+    
+    def page
+        @internships = Link.where(category: "Get Smart & Get Informed", status: true).each_slice(2).to_a
+        @inspirations = Link.where(category: "Get Acclimated & Get Inspired", status: true).each_slice(2).to_a
+        @grants = Link.where(category: "Get Connected & Get Taught", status: true).each_slice(2).to_a
+        @jobs = Link.where(category: 'Get Experience', status: true).each_slice(2).to_a
+        @other = Link.where(category: "Get Organized", status: true).each_slice(2).to_a
+        @funded = Link.where(category: "Get Funded", status: true).each_slice(2).to_a
+        @hired = Link.where(category: "Get Hired", status: true).each_slice(2).to_a
+        
+        session[:intern_page_num] = session[:intern_page_num].to_i+params[:intern_incre].to_i   
+        session[:grant_page_num] = session[:grant_page_num].to_i+params[:grant_incre].to_i  
+        session[:job_page_num] = session[:job_page_num].to_i+params[:job_incre].to_i  
+        session[:other_page_num] = session[:other_page_num].to_i+params[:other_incre].to_i  
+        session[:fund_page_num] = session[:fund_page_num].to_i+params[:fund_incre].to_i
+        session[:insp_page_num] = session[:insp_page_num].to_i+params[:insp_incre].to_i
+        session[:hired_page_num] = session[:hired_page_num].to_i+params[:hired_incre].to_i
+        
+        change = ""
+        params.each do |key, value|
+            if key=~/.+incre/
+                change = key
+                break
+            end
+        end
+        @change = change.chomp("_incre")
+        respond_to do |format|
+            format.js 
+        end
     end
 end

@@ -28,14 +28,23 @@
       <% end %>
    </div>
    
+   <!-- PCSE right-->
    <div class="row">
    <div class="col-xs-7 col-xs-offset-2">
-   <h1><b><div align="right"><font face="Lato", color="#99012"><br><u>Patricelli Center for Social Entrepreneurship</u></font></div></b></h1>
+   <h1><b><div align="right"><font face="Lato", color="#99012"><br>Patricelli Center for Social Entrepreneurship</font></div></b></h1>
    </div>
    <div class="col-xs-2">
   <h1><b><div align="left"><font face="Roboto Mono", color="#000000", size="30">PC<br>SE</font></div></b></h1>
    </div>
    </div>
+   <!--<div class="row">
+   <div class="col-xs-1 col-xs-offset-2">
+    <h1><b><div align="right"><font face="Roboto Mono", color="#000000", size="30">PC<br>SE</font></div></b></h1>
+   </div>
+   <div class="col-xs-9">
+   <h1><b><div align="left"><font face="Lato", color="#99012"><br>Patricelli Center for Social Entrepreneurship</font></div></b></h1>
+   </div>
+   </div>-->
    
    <div class="leftalign">
       <div class="dropdown">
@@ -55,7 +64,7 @@
   </div>
   
   <div id = "Internships"> 
-   <% @internships.each do |intern| %>
+   <% @internships[session[:intern_page_num].to_i].each do |intern| %>
    <div class = <%= intern.name.gsub(" " , "_") %><%= intern.upvotes %>  id = "internship" style="display: none"> 
       <!--Vote Button-->
 
@@ -89,10 +98,20 @@
       
   </div>
   
-      <% end %>
-      <div id="internshipLink" class = "zzz" style="display: none">
-        
-        <%= link_to 'show all >', links_path(intern_index: "all")%>
+      <% end unless @internships.empty? %>
+      <div id="internshipLink" class="zzzz" style="display: none">
+        <% if @internships.length>1  %>
+        view more:
+        <% end %>
+        <% if session[:intern_page_num].to_i > 0%>
+        <%= link_to '< prev', page_path(intern_incre: -1), remote: true %>
+        <% end %>
+        <% if session[:intern_page_num].to_i>0 && session[:intern_page_num].to_i<@internships.length-1%>
+        |
+        <% end %>
+        <% if session[:intern_page_num].to_i<@internships.length-1%>
+        <%= link_to 'next >', page_path(intern_incre: 1), remote: true %>
+        <% end %>
       </div>
   
   </div>
@@ -105,7 +124,7 @@
   
   
   <div id = "Grants"> 
-   <% @grants[session[:grant_page_num]].each do |grant| %>
+   <% @grants[session[:grant_page_num].to_i].each do |grant| %>
    <div class = <%= grant.name.gsub(" ", "_") %><%= grant.upvotes %> id = "grant" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= grant.name + "votes" %>> 
@@ -137,20 +156,20 @@
         </div>
       <% end %>    
    </div>
-  <% end %>
+  <% end unless @grants.empty? %>
   
-  <div id="grantLink" align="center" style="display: block">
+  <div id="grantLink" class="zzzz" style="display: none">
         <% if @grants.length>1  %>
         view more:
         <% end %>
-        <% if session[:grant_page_num]>0%>
-        <%= link_to '< prev', links_path(grant_incre: -1) %>
+        <% if session[:grant_page_num].to_i>0%>
+        <%= link_to '< prev', page_path(grant_incre: -1), remote: true %>
         <% end %>
-        <% if session[:grant_page_num]>0 && session[:grant_page_num]<@grants.length-1%>
+        <% if session[:grant_page_num].to_i>0 && session[:grant_page_num].to_i<@grants.length-1%>
         |
         <% end %>
-        <% if session[:grant_page_num]<@grants.length-1%>
-        <%= link_to 'next >', links_path(grant_incre: 1) %>
+        <% if session[:grant_page_num].to_i<@grants.length-1%>
+        <%= link_to 'next >', page_path(grant_incre: 1), remote: true %>
         <% end %>
       </div>
   </div>
@@ -162,7 +181,7 @@
   </div>
   
   <div id = "Jobs"> 
-   <% @jobs[session[:job_page_num]].each do |job| %>
+   <% @jobs[session[:job_page_num].to_i].each do |job| %>
    <div class = <%= job.name.gsub(" ", "_") %><%= job.upvotes %>  id = "job" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= job.name + "votes" %>> 
@@ -192,19 +211,19 @@
          </div>
        <% end %>
   </div>
-  <% end %>
-  <div id="jobLink" align="center" style="display: block">
+  <% end unless @jobs.empty? %>
+  <div id="jobLink" class="zzzz" style="display: none">
         <% if @jobs.length>1  %>
         view more:
         <% end %>
-        <% if session[:job_page_num]>0%>
-        <%= link_to '< prev', links_path(job_incre: -1) %>
+        <% if session[:job_page_num].to_i>0%>
+        <%= link_to '< prev', page_path(job_incre: -1), remote: true %>
         <% end %>
-        <% if session[:job_page_num]>0 && session[:job_page_num]<@jobs.length-1%>
+        <% if session[:job_page_num].to_i>0 && session[:job_page_num].to_i<@jobs.length-1%>
         |
         <% end %>
-        <% if session[:job_page_num]<@jobs.length-1%>
-        <%= link_to 'next >', links_path(job_incre: 1) %>
+        <% if session[:job_page_num].to_i<@jobs.length-1%>
+        <%= link_to 'next >', page_path(job_incre: 1), remote: true %>
         <% end %>
       </div>
   </div>
@@ -216,13 +235,13 @@
   </div>
   
  <div id = "Inspiration"> 
-   <% @inspirations[session[:insp_page_num]].each do |inspir| %>
+   <% @inspirations[session[:insp_page_num].to_i].each do |inspir| %>
    <div class = <%= inspir.name.gsub(" ", "_") %><%= inspir.upvotes %> id = "inspiration" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= inspir.name + "votes" %>> 
       <div class = "inline" id = <%= inspir.name + "thumbup" %>>
       <% if current_user %>
-      <% if inspir.upvoters.split(';').include?("#{current_user.id}") %> 
+      <% if inspir.upvoters.to_s.split(';').include?("#{current_user.id}") %> 
       <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(inspir,user_id: current_user.id), remote: true, method: :put %>
       <% else %>
       <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(inspir,user_id: current_user.id), remote: true, method: :put %>
@@ -246,19 +265,19 @@
         </div>
       <% end %>
   </div>
-  <% end %>
-  <div id="inspirationLink" align="center" style="display: none">
+  <% end unless @inspirations.empty? %>
+  <div id="inspirationLink" class="zzzz" style="display: none">
         <% if @inspirations.length>1  %>
         view more:
         <% end %>
-        <% if session[:insp_page_num]>0%>
-        <%= link_to '< prev', links_path(insp_incre: -1) %>
+        <% if session[:insp_page_num].to_i>0%>
+        <%= link_to '< prev', page_path(insp_incre: -1), remote: true %>
         <% end %>
-        <% if session[:insp_page_num]>0 && session[:insp_page_num]<@inspirations.length-1%>
+        <% if session[:insp_page_num].to_i>0 && session[:insp_page_num].to_i<@inspirations.length-1%>
         |
         <% end %>
-        <% if session[:insp_page_num]<@inspirations.length-1%>
-        <%= link_to 'next >', links_path(insp_incre: 1) %>
+        <% if session[:insp_page_num].to_i<@inspirations.length-1%>
+        <%= link_to 'next >', page_path(insp_incre: 1), remote: true %>
         <% end %>
       </div>
   </div>
@@ -269,7 +288,7 @@
   </div>
   
    <div id = "Other"> 
-   <% @other[session[:other_page_num]].each do |oth| %>
+   <% @other[session[:other_page_num].to_i].each do |oth| %>
    <div class = <%= oth.name.gsub(" ", "_") %><%= oth.upvotes %> id = "other" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= oth.name + "votes" %>> 
@@ -299,19 +318,19 @@
         </div>
      <%end %>
   </div>
-  <% end %>
-  <div id="otherLink" align="center" style="display: block">
+  <% end unless @other.empty? %>
+  <div id="otherLink" class="zzzz" style="display: none">
         <% if @other.length>1  %>
         view more:
         <% end %>
-        <% if session[:other_page_num]>0%>
-        <%= link_to '< prev', links_path(other_incre: -1) %>
+        <% if session[:other_page_num].to_i>0%>
+        <%= link_to '< prev', page_path(other_incre: -1), remote: true %>
         <% end %>
-        <% if session[:other_page_num]>0 && session[:other_page_num]<@other.length-1%>
+        <% if session[:other_page_num].to_i>0 && session[:other_page_num].to_i<@other.length-1%>
         |
         <% end %>
-        <% if session[:other_page_num]<@other.length-1%>
-        <%= link_to 'next >', links_path(other_incre: 1) %>
+        <% if session[:other_page_num].to_i<@other.length-1%>
+        <%= link_to 'next >', page_path(other_incre: 1), remote: true %>
         <% end %>
       </div>
   </div>
@@ -321,7 +340,7 @@
   </div>
   
    <div id = "Funded"> 
-   <% @funded[session[:fund_page_num]].each do |fund| %>
+   <% @funded[session[:fund_page_num].to_i].each do |fund| %>
    <div class = <%= fund.name.gsub(" ", "_") %><%= fund.upvotes %> id = "funded" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= fund.name + "votes" %>> 
@@ -351,19 +370,19 @@
         </div>
      <%end %>
   </div>
-  <% end %>
-  <div id="fundLink" align="center" style="display: block">
+  <% end unless @funded.empty? %>
+  <div id="fundedLink" class="zzzz" style="display: none">
         <% if @funded.length>1  %>
         view more:
         <% end %>
-        <% if session[:fund_page_num]>0%>
-        <%= link_to '< prev', links_path(fund_incre: -1) %>
+        <% if session[:fund_page_num].to_i>0%>
+        <%= link_to '< prev', page_path(fund_incre: -1), remote: true %>
         <% end %>
-        <% if session[:fund_page_num]>0 && session[:fund_page_num]<@funded.length-1%>
+        <% if session[:fund_page_num].to_i>0 && session[:fund_page_num].to_i<@funded.length-1%>
         |
         <% end %>
-        <% if session[:fund_page_num]<@funded.length-1%>
-        <%= link_to 'next >', links_path(fund_incre: 1) %>
+        <% if session[:fund_page_num].to_i<@funded.length-1%>
+        <%= link_to 'next >', page_path(fund_incre: 1), remote: true %>
         <% end %>
       </div>
   </div>
@@ -373,7 +392,7 @@
   </div>
   
    <div id = "Hired"> 
-   <% @hired[session[:hired_page_num]].each do |hir| %>
+   <% @hired[session[:hired_page_num].to_i].each do |hir| %>
    <div class = <%= hir.name.gsub(" ", "_") %><%= hir.upvotes %> id = "hired" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= hir.name + "votes" %>> 
@@ -403,19 +422,19 @@
         </div>
      <%end %>
   </div>
-  <% end %>
-  <div id="hireLink" align="center" style="display: none">
+  <% end unless @hired.empty? %>
+  <div id="hiredLink" class="zzzz" style="display: none">
         <% if @hired.length>1  %>
         view more:
         <% end %>
-        <% if session[:hired_page_num]>0%>
-        <%= link_to '< prev', links_path(hired_incre: -1) %>
+        <% if session[:hired_page_num].to_i>0%>
+        <%= link_to '< prev', page_path(hired_incre: -1), remote: true %>
         <% end %>
-        <% if session[:hired_page_num]>0 && session[:hired_page_num]<@hired.length-1%>
+        <% if session[:hired_page_num].to_i>0 && session[:hired_page_num].to_i<@hired.length-1%>
         |
         <% end %>
-        <% if session[:hired_page_num]<@hired.length-1%>
-        <%= link_to 'next >', links_path(hired_incre: 1) %>
+        <% if session[:hired_page_num].to_i<@hired.length-1%>
+        <%= link_to 'next >', page_path(hired_incre: 1), remote: true %>
         <% end %>
       </div>
   </div>
@@ -431,6 +450,10 @@
       <%= session[:new_message] %>
       <%= session[:new_message] = nil%>
   </div>
+  <div align = "center">
+        <%= session[:error] %>
+        <%= session[:error] = nil%>
+  </div>
 
   <script>
   
@@ -440,7 +463,7 @@
       var newId = id[0] ? id[0].id+"Link" : id.id+"Link"
       if ($(id).css('display') == "none") {
           $(id).addClass('animated fadeIn');
-          $("#"+newId).addClass('animated fadeIn');
+          //$("#"+newId).addClass('animated fadeIn');
           $(id).css('display', 'block') ;
           $("#"+newId).css('display', 'block') ;
           
