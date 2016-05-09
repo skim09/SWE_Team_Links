@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rspec-rails', '~>3.4.2'
   gem 'capybara'
   gem 'sqlite3'
+  gem 'rack_session_access'
 end
 
 group :test do

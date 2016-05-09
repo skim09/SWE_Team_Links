@@ -20,7 +20,7 @@ module NavigationHelpers
     when /^the Add Links page$/
       '/links/new'
     when /^the admin page$/
-      '/links/approval'
+      '/approval'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

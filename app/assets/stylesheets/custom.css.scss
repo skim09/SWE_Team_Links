@@ -6,6 +6,16 @@
     font-family: AvenirNext-Medium;
 }
 
+
+a:hover{
+  font-size: 115%;
+}
+
+#sortBy, #sortby2 {
+    margin: 0 0 0 70px;
+    font-family: AvenirNext-Medium;
+  
+}
 .formalign {
     
     margin: auto;
@@ -16,9 +26,15 @@
     
 }
 
+#internshipLink {
+    margin: auto;
+    width: 50%;
+    padding: 5px;
+    font-family: AvenirNext-Medium;
+
+}
 .add {
  
-     
     text-align: center;
     padding: 5px;
     font-family: AvenirNext-Medium;
@@ -188,14 +204,25 @@ h2 {
     display: inline-block;
     margin: left;
     text-align: center;
+    
+}
+.inlinedelete {
+    display: inline-block;
+    margin: left;
+    text-align: center;
+    position: relative;
+      transform: translateY(-10%);
 }
 
 #internship, #grant, #job, #inspiration, #other, #funded, #hired {
   
     margin: auto;
-    text-align: left;
-    padding-left: 45%;
+    width: 50%;
+    padding: 1px;
+    font-family: AvenirNext-Medium;
 }
+
+
 
 #sortByName, #sortByVotes {
     
@@ -208,7 +235,7 @@ h2 {
 }
 
 .logo h1 {
-  text-shadow: 2px 2px #000000;
+
   top: 18px;
   left: 100px;
   margin: center;

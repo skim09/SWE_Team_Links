@@ -1,62 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
- 
+ <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <div class = "logo"> 
+    <div class = "row"> 
+
   <h1><b><center> <br>
-   <font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b>
-   
+   <font face="Roboto Mono", color="#000000", size="70">PC<br>SE</font></center></b>
    </h1>
    </div>
     
-    
   <h2><b><center> 
-   <font color="#99012">Add a Link</font></center></b>
-   </h2>
+  
+  <div class= "animated fadeInDown">
+   <font color="#99012">Request a Link</font></center></b>
+   </div>
+   </h2></br>
+   
+  <div class= "animated fadeInDown">
+   <p><i><center>An administrator will be notified of your link request after submission for review.</center></i></p>
+   </div>
  
-        
+        <div class = "animated fadeIn"> 
         <div class = "formalign"> 
         <%= form_for(@link) do |link| %>
           
-          <div class="left">
-         <%= link.label :name %>
-             
+          <div class="left"><div align="left">
+          <p>Name</p></div>
           </div>
           <div class = "right"> 
           <%= link.text_field :name %> <br>
-          </div>
+          </div><br><br>
           
-           <div class="left">
-          <%= link.label :url %>
+          <div class="left"><div align="left">
+          <p>URL</p></div>
           </div>
           
           <div class = "right"> 
           <%= link.text_field :url %> <br>
-          </div>
+          </div><br><br>
           
-          <div class= "left"> 
-          <%= link.label :category %>
+          <div class= "left"><div align="left">
+          <p>Category</p></div>
           </div>
           
           <div class = "right"> 
-          <%= link.select :category, ['Get Acclimated & Get Inspired','Get Smart & Get Informed','Get Connected & Get Taught','Get Experience','Get Organized', 'Get Funded', 'Get Hired'] %> <br><br>
-          </div>
+          <%= link.select :category, ['Get Acclimated & Get Inspired','Get Smart & Get Informed','Get Connected & Get Taught','Get Experience','Get Organized', 'Get Funded', 'Get Hired'] %></br></br>
+          </div><br><br>
           
-          <div class = "left"> 
-          <%= link.label :comments %> 
+          <div class = "left"><div align="left">
+          <p>Comments</p></div>
           </div>
           
           <div class = "right"> 
           <%= link.text_field :comments %>
-          </div>
+          </div><br><br><br>
          
          <div class = "inline" id = "linksAdd"> 
-          <%= link.submit %>
+          <%= button_tag(type: 'submit', class: "btn btn-large btn-search btn-primary") do %>
+            <i class="icon icon-search"></i> Request
+          <% end %>
           <%= link_to "Back", links_path %>
           </div>
       
+      </div>
       </div>
     
 
@@ -68,15 +77,14 @@
     
     <% if @link.errors.any? %> 
 
-     <div class = "leftalign" id = "errors">
+     <div class = "leftalign" id = "errors" align = "center">
       <div class = "animated flash"> 
     <%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved
     </div>
     </div>
     
-    <div class = "leftalign" >
+    <div class = "leftalign" align = "center" >
    <% @link.errors.each do |error, msg| %> 
-       
        
        <div class = "indent">
       <li> 
@@ -86,7 +94,6 @@
         </div>
         
    <% end %>
-    </div>
    <% end %>
    
 

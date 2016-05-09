@@ -1,14 +1,21 @@
 class UsersController < ApplicationController
-   def users_params
-        params.fetch(:user).permit(:email)
-   end
+    include UsersHelper
+	
+    # def users_params
+    #     params.fetch(:user).permit(:email)
+    # end
     
    
-   def create
+    def create
 		#get the user info
+		
 		auth = request.env["omniauth.auth"]
-		if auth == nil
-			auth = {:info => {:email => "jkoshakow@wesleyan.edu"} }
+		if auth == nil and 
+			if session[:temp] == true
+			  auth = {:info => {:email => "jkoshakow@wesleyan.edu"} }
+			else
+			  auth = {:info => {:email => "koshy44@gmail.com"} }	
+			end
 		end
 		#whitelist 
 		if  auth[:info][:email].to_s =~ /.+@wesleyan.edu/
@@ -25,6 +32,7 @@ class UsersController < ApplicationController
 	end
 	
 	def new_admin
+	  #UsersHelper.test
 	  @email = params[:email]
 	  logger.info params[:email]
       begin

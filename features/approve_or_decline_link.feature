@@ -6,13 +6,19 @@ Feature: approve or decline links
 
 Background: user in database
   
-  Given the following user exists:
+  Given the following users exist:
+  | name     | admin         |
+  | bmk1995  | true          |
+  | hellohihi| false         |
   
-  | name                | admin |
-  | Yiming Liu              | t|
+  And the user "bmk1995" is logged in
     
 Scenario: pressing notification button
-    When I am on the Links home pager
-    And I press "noti"
+    When I am on the Links home page
+    And I follow "noti"
     Then I should be on the admin page
+
+Scenario: 
+  When I am on the admin page
+  Then I should see "Link Approval"
     

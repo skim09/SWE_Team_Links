@@ -4,6 +4,8 @@
 -->
 <head>
   <link rel="stylesheet" href="animate.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -16,7 +18,7 @@
             <% if @number_of_unapproved!=0 %>
             <div id="bubble"><%= @number_of_unapproved %></div>
             <% end %>
-            <%=link_to image_tag("/assets/noti.png", width:30, height:30, id: "noti"), approval_path %>
+            <%=link_to image_tag("/assets/noti.png", width:30, height:30, alt: "noti"), approval_path %>
             
         <% end %>
         <strong><%= current_user.name %></strong>
@@ -26,11 +28,16 @@
       <% end %>
    </div>
    
-   <div class = "logo"> 
-  <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
+   <div class="row">
+   <div class="col-xs-7 col-xs-offset-2">
+   <h1><b><div align="right"><font face="Lato", color="#99012"><br><u>Patricelli Center for Social Entrepreneurship</u></font></div></b></h1>
+   </div>
+   <div class="col-xs-2">
+  <h1><b><div align="left"><font face="Roboto Mono", color="#000000", size="30">PC<br>SE</font></div></b></h1>
+   </div>
    </div>
    
-    <div class="leftalign">
+   <div class="leftalign">
       <div class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Sort By <b class="caret"></b></a>
             <ul class="dropdown-menu" id = "sorters" role="menu">
@@ -42,14 +49,14 @@
             </ul>
       </div>
     </div>
-
-  <div class = "leftalign">
-    <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Get Acclimated & Get Inspired</button>
+    
+  <div id = "sortBy2" class = "leftalign">
+    <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Get Smart & Get Informed</button>
   </div>
   
   <div id = "Internships"> 
-   <% @internships[session[:intern_page_num]].each do |intern| %>
-   <div class = <%= intern.name.gsub(" " , "_") %><%= intern.upvotes %>  id = "internship" style="display: block"> 
+   <% @internships.each do |intern| %>
+   <div class = <%= intern.name.gsub(" " , "_") %><%= intern.upvotes %>  id = "internship" style="display: none"> 
       <!--Vote Button-->
 
       <div class = "inline" id = <%= intern.name + "votes" %>> 
@@ -75,28 +82,17 @@
       </div>
       
       <% if session[:admin] %>
-        <div class = "inline" id = "report"> 
-        <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(intern), remote: true, method: :put %>
+        <div class = "inlinedelete" id = "report"> 
+        <%= link_to image_tag("deletex.png",:size => "10x10" ), remove_link_path(intern), remote: true, method: :put %>
         </div>
       <% end %>
       
   </div>
   
       <% end %>
-      <div id="internshipLink" align="center" style="display: block">
-        <% if @internships.length>1  %>
-        view more:
-        <% end %>
-        <% if session[:intern_page_num]>0%>
-        <%= link_to '< prev', links_path(intern_incre: -1) %>
-        <% end %>
-        <% if session[:intern_page_num]>0 && session[:intern_page_num]<@internships.length-1%>
-        |
-        <% end %>
-        <% if session[:intern_page_num]<@internships.length-1%>
+      <div id="internshipLink" class = "zzz" style="display: none">
         
-        <%= link_to 'next >', links_path(inturn_incre: 1) %>
-        <% end %>
+        <%= link_to 'show all >', links_path(intern_index: "all")%>
       </div>
   
   </div>
@@ -104,7 +100,7 @@
 
   
   <div class = "leftalign">
-    <button id = "grants" type="button" onclick="toggleHidden(grant)" class="btn btn-default">Get Smart & Get Informed</button>
+    <button id = "grants" type="button" onclick="toggleHidden(grant)" class="btn btn-default">Get Connected & Get Taught</button>
   </div>
   
   
@@ -162,7 +158,7 @@
   
   
   <div class = "leftalign">
-    <button id = "jobs" type="button" onclick="toggleHidden(job)" class="btn btn-default">Get Connected & Get Taught</button>
+    <button id = "jobs" type="button" onclick="toggleHidden(job)" class="btn btn-default">Get Experience</button>
   </div>
   
   <div id = "Jobs"> 
@@ -207,7 +203,7 @@
         <% if session[:job_page_num]>0 && session[:job_page_num]<@jobs.length-1%>
         |
         <% end %>
-        <% if session[:page_num]<@jobs.length-1%>
+        <% if session[:job_page_num]<@jobs.length-1%>
         <%= link_to 'next >', links_path(job_incre: 1) %>
         <% end %>
       </div>
@@ -216,7 +212,7 @@
   
   
    <div class = "leftalign">
-    <button id = "inspirations" type="button" onclick="toggleHidden(inspiration)" class="btn btn-default">Get Experience</button>
+    <button id = "inspirations" type="button" onclick="toggleHidden(inspiration)" class="btn btn-default">Get Acclimated & Inspired</button>
   </div>
   
  <div id = "Inspiration"> 
@@ -251,8 +247,8 @@
       <% end %>
   </div>
   <% end %>
-  <div id="inspirationLink" align="center" style="display: block">
-        <% if @inspirs.length>1  %>
+  <div id="inspirationLink" align="center" style="display: none">
+        <% if @inspirations.length>1  %>
         view more:
         <% end %>
         <% if session[:insp_page_num]>0%>
@@ -305,7 +301,9 @@
   </div>
   <% end %>
   <div id="otherLink" align="center" style="display: block">
+        <% if @other.length>1  %>
         view more:
+        <% end %>
         <% if session[:other_page_num]>0%>
         <%= link_to '< prev', links_path(other_incre: -1) %>
         <% end %>
@@ -319,10 +317,10 @@
   </div>
   
   <div class = "leftalign">
-    <button id = "others" type="button" onclick="toggleHidden(funded)" class="btn btn-default">Get Funded</button>
+    <button id = "fundedB" type="button" onclick="toggleHidden(funded)" class="btn btn-default">Get Funded</button>
   </div>
   
-   <div id = "funded"> 
+   <div id = "Funded"> 
    <% @funded[session[:fund_page_num]].each do |fund| %>
    <div class = <%= fund.name.gsub(" ", "_") %><%= fund.upvotes %> id = "funded" style="display: none"> 
       <!--Vote Button-->
@@ -354,20 +352,40 @@
      <%end %>
   </div>
   <% end %>
+  <div id="fundLink" align="center" style="display: block">
+        <% if @funded.length>1  %>
+        view more:
+        <% end %>
+        <% if session[:fund_page_num]>0%>
+        <%= link_to '< prev', links_path(fund_incre: -1) %>
+        <% end %>
+        <% if session[:fund_page_num]>0 && session[:fund_page_num]<@funded.length-1%>
+        |
+        <% end %>
+        <% if session[:fund_page_num]<@funded.length-1%>
+        <%= link_to 'next >', links_path(fund_incre: 1) %>
+        <% end %>
+      </div>
   </div>
 
   <div class = "leftalign">
-    <button id = "others" type="button" onclick="toggleHidden(hired)" class="btn btn-default">Get Hired</button>
+    <button id = "hiredB" type="button" onclick="toggleHidden(hired)" class="btn btn-default">Get Hired</button>
   </div>
   
-   <div id = "hired"> 
+   <div id = "Hired"> 
    <% @hired[session[:hired_page_num]].each do |hir| %>
    <div class = <%= hir.name.gsub(" ", "_") %><%= hir.upvotes %> id = "hired" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= hir.name + "votes" %>> 
+      <div class = "inline" id = <%= hir.name + "thumbup" %>>
       <% if current_user %>
-      <%= link_to image_tag("uparrow.png",:size => "20x20" ), upvote_link_path(hir), remote: true, method: :put %>
+      <% if hir.upvoters.split(';').include?("#{current_user.id}") %> 
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(hir,user_id: current_user.id), remote: true, method: :put %>
+      <% else %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(hir,user_id: current_user.id), remote: true, method: :put %>
       <% end %>
+      <% end %>
+      </div>
       <!--URL NAME URL-->
       <a href= <%= hir.url %> > <%= hir.name %> </a> 
       </div>
@@ -386,13 +404,27 @@
      <%end %>
   </div>
   <% end %>
+  <div id="hireLink" align="center" style="display: none">
+        <% if @hired.length>1  %>
+        view more:
+        <% end %>
+        <% if session[:hired_page_num]>0%>
+        <%= link_to '< prev', links_path(hired_incre: -1) %>
+        <% end %>
+        <% if session[:hired_page_num]>0 && session[:hired_page_num]<@hired.length-1%>
+        |
+        <% end %>
+        <% if session[:hired_page_num]<@hired.length-1%>
+        <%= link_to 'next >', links_path(hired_incre: 1) %>
+        <% end %>
+      </div>
   </div>
 
   <div class = "leftalign" id = "addlink">
-    <%= link_to "Add Link", new_link_path  %> 
+    <%= link_to "Request a Link", new_link_path  %> 
   </div>
   <div class = "leftalign" id = "reportlink">
-    <%= link_to "Report Link", report_path, {:style=>'color:#E42217;'} %>
+    <%= link_to "Report a Link", report_path, {:style=>'color:#E42217;'} %>
   </div>
   
   <div>
@@ -411,11 +443,12 @@
           $("#"+newId).addClass('animated fadeIn');
           $(id).css('display', 'block') ;
           $("#"+newId).css('display', 'block') ;
-           
+          
       }
       else {
           $(id).css('display', 'none') 
           $("#"+newId).css('display', 'none') 
+          
       }
      
     }
@@ -526,6 +559,16 @@
     }
     
     
+    $("#intern_link_more").click(function(){
+        $(this).replaceWith('<%= link_to '< show less', links_path(intern_index: "five"), id: "intern_link_less"%>')
+    })
+    $("#intern_link_less").click(function(){
+        $(this).replaceWith('<%= link_to 'show more >', links_path(intern_index: "all"), id: "intern_link_more"%>')
+
+    })
+    
+        
+  
   
     
   </script>
