@@ -1,0 +1,7 @@
+<% if current_user %>
+    <% if @link.upvoters.split(';').include?("#{current_user.id}") %> 
+        <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(@link,user_id: current_user.id), remote: true, method: :put %>
+    <% else %>
+        <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(@link,user_id: current_user.id), remote: true, method: :put %>
+    <% end %>
+<% end %>

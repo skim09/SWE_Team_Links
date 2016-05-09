@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424195416) do
+ActiveRecord::Schema.define(version: 20160507202823) do
 
   create_table "links", force: :cascade do |t|
     t.string   "name"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20160424195416) do
     t.string   "email"
     t.string   "reportreason"
     t.string   "otherreportreason"
+    t.string   "reportname"
+    t.string   "upvoters"
   end
 
   create_table "users", force: :cascade do |t|

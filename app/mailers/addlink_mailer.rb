@@ -6,13 +6,15 @@ class AddlinkMailer < ApplicationMailer
         mail(to: "skim09@wesleyan.edu", subject: 'New Link Request')
     end
     
-    def reportrequest_email(link)
-        @link = link
+    def reportrequest_email(reportname, reportreason)
+        @reportname = reportname
+        @reportreason = reportreason
         mail(to: "skim09@wesleyan.edu", subject: 'Link Reported')
     end
     
-    def otherreportrequest_email(link)
-        @link = link
+    def otherreportrequest_email(reportname, otherreportreason)
+        @reportname = reportname
+        @otherreportreason = otherreportreason
         mail(to: "skim09@wesleyan.edu", subject: 'Link Reported')
     end
     

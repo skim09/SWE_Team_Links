@@ -1,7 +1,6 @@
 
 .leftalign {
     margin: auto;
-    text-align: center;
     width: 50%;
     padding: 5px;
     font-family: AvenirNext-Medium;
@@ -191,7 +190,7 @@ h2 {
     text-align: center;
 }
 
-#internship, #grant, #job, #inspiration, #other {
+#internship, #grant, #job, #inspiration, #other, #funded, #hired {
   
     margin: auto;
     text-align: left;
@@ -208,27 +207,11 @@ h2 {
    
 }
 
-body {
-    background-image: url("why2.png");
-    background-attachment: fixed;
-    background-position: bottom; 
-    background-repeat: no-repeat;
-}
-
-.logo img {
-    
-  float: left;
-  width: 150px;
-  height: 100px;
-  background: #555;
-  margin: 0 0 0 25px;
-}
-
 .logo h1 {
   text-shadow: 2px 2px #000000;
   top: 18px;
-  left: 10px;
-  margin: 0 50px 0 0px;
+  left: 100px;
+  margin: center;
   font-family: AvenirNext-Medium;
 }
 
@@ -265,4 +248,13 @@ label {
     color: #FF0000!important;
 }
 
+.indent {
+ 
+    font-weight: 600;
+}
+
+#errors {
+    color: red;
+    font-weight: bold;
+}
 

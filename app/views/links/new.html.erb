@@ -5,7 +5,6 @@
 </head>
 <body>
     <div class = "logo"> 
-  <%= image_tag("imgres.jpg", alt: "logo") %> 
   <h1><b><center> <br>
    <font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b>
    
@@ -42,7 +41,7 @@
           </div>
           
           <div class = "right"> 
-          <%= link.select :category, ['Internships','Grants','Jobs','Inspiration','Other'] %> <br><br>
+          <%= link.select :category, ['Get Acclimated & Get Inspired','Get Smart & Get Informed','Get Connected & Get Taught','Get Experience','Get Organized', 'Get Funded', 'Get Hired'] %> <br><br>
           </div>
           
           <div class = "left"> 
@@ -69,13 +68,28 @@
     
     <% if @link.errors.any? %> 
 
-    <%= pluralize(@link.errors.count, "error") %> prohibited this from being saved
+     <div class = "leftalign" id = "errors">
+      <div class = "animated flash"> 
+    <%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved
+    </div>
+    </div>
+    
+    <div class = "leftalign" >
    <% @link.errors.each do |error, msg| %> 
-       <%= msg %>
+       
+       
+       <div class = "indent">
+      <li> 
+        <%= "#{error} #{msg}" %>
+      </li>
+      
+        </div>
+        
    <% end %>
+    </div>
    <% end %>
    
-   </div>
+
 
 </body>
 </html>

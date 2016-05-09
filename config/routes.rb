@@ -56,21 +56,17 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   resources :users
-  root :to => redirect('/users')
+  root :to => redirect('/links')
   resources :links do 
     member do
     put 'upvote'
+    put 'remove'
     end
   end
-  resources :links do
-    collection do
-      put 'reportsend'
-    end
-  end
-  resources :links
-  put '/report' => 'links#reportsend', as: 'report'
   
-  get '/links/:id/report', to: 'links#report', as: 'report_link'
+  resources :links
+  get '/report', to: 'links#report'
+  put '/report' => 'links#reportsend'
   
   #get '/links/category/' => '/links#index'
   #get "/show_by_category" => 'links#show_by_category', as: 'show_by_category'

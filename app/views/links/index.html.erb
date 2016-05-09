@@ -13,7 +13,9 @@
    <div align = "right">
       <% if current_user %>
         <% if current_user.admin%>
+            <% if @number_of_unapproved!=0 %>
             <div id="bubble"><%= @number_of_unapproved %></div>
+            <% end %>
             <%=link_to image_tag("/assets/noti.png", width:30, height:30, id: "noti"), approval_path %>
             
         <% end %>
@@ -25,7 +27,6 @@
    </div>
    
    <div class = "logo"> 
-  <%= image_tag("imgres.jpg", alt: "logo") %> 
   <h1><b><center><font color="#99012">Patricelli Center for Social Entrepreneurship</font></center></b></h1>
    </div>
    
@@ -43,45 +44,84 @@
     </div>
 
   <div class = "leftalign">
-    <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Internships</button>
+    <button id = "internships" type="button" onclick= "toggleHidden(internship)" class="btn btn-default">Get Acclimated & Get Inspired</button>
   </div>
   
   <div id = "Internships"> 
-   <% @internships.each do |intern| %>
-   <div class = <%= intern.name.gsub(" " , "_") %><%= intern.upvotes %>  id = "internship" style="display: none"> 
+   <% @internships[session[:intern_page_num]].each do |intern| %>
+   <div class = <%= intern.name.gsub(" " , "_") %><%= intern.upvotes %>  id = "internship" style="display: block"> 
       <!--Vote Button-->
+
       <div class = "inline" id = <%= intern.name + "votes" %>> 
-      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(intern), remote: true, method: :put %>
+      <div class = "inline" id = <%= intern.name + "thumbup" %>>
+      <% if current_user %>
+      <% if intern.upvoters.split(';').include?("#{current_user.id}") %> 
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(intern,user_id: current_user.id), remote: true, method: :put %>
+      <% else %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(intern,user_id: current_user.id), remote: true, method: :put %>
+      <% end %>
+      <% end %>
+      </div>
       <!--URL NAME URL-->
       <a href= <%= intern.url %> > <%= intern.name %> </a> 
       </div>
       
+     
       <!--Vote Count-->
       <div class = "inline" id = <%=intern.name%> > 
       <div class = "animated zoomIn"> 
       <%= intern.upvotes %> 
+      </div>
+      </div>
       
-      </div>
-      </div>
-      <div class = "inline" id = "report"> 
-      <%= link_to "Report", report_link_path(intern)  %>
-      </div>
+      <% if session[:admin] %>
+        <div class = "inline" id = "report"> 
+        <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(intern), remote: true, method: :put %>
+        </div>
+      <% end %>
+      
   </div>
-  <% end %>
+  
+      <% end %>
+      <div id="internshipLink" align="center" style="display: block">
+        <% if @internships.length>1  %>
+        view more:
+        <% end %>
+        <% if session[:intern_page_num]>0%>
+        <%= link_to '< prev', links_path(intern_incre: -1) %>
+        <% end %>
+        <% if session[:intern_page_num]>0 && session[:intern_page_num]<@internships.length-1%>
+        |
+        <% end %>
+        <% if session[:intern_page_num]<@internships.length-1%>
+        
+        <%= link_to 'next >', links_path(inturn_incre: 1) %>
+        <% end %>
+      </div>
+  
   </div>
+ 
 
   
   <div class = "leftalign">
-    <button id = "grants" type="button" onclick="toggleHidden(grant)" class="btn btn-default">Grants</button>
+    <button id = "grants" type="button" onclick="toggleHidden(grant)" class="btn btn-default">Get Smart & Get Informed</button>
   </div>
   
   
   <div id = "Grants"> 
-   <% @grants.each do |grant| %>
+   <% @grants[session[:grant_page_num]].each do |grant| %>
    <div class = <%= grant.name.gsub(" ", "_") %><%= grant.upvotes %> id = "grant" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= grant.name + "votes" %>> 
-      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(grant), remote: true, method: :put %>
+      <div class = "inline" id = <%= grant.name + "thumbup" %>>
+      <% if current_user %>
+      <% if grant.upvoters.split(';').include?("#{current_user.id}") %> 
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(grant,user_id: current_user.id), remote: true, method: :put %>
+      <% else %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(grant,user_id: current_user.id), remote: true, method: :put %>
+      <% end %>
+      <% end %>
+      </div>
       <!--URL NAME URL-->
       <a href= <%= grant.url %> > <%= grant.name %> </a> 
       </div>
@@ -95,25 +135,50 @@
           </div>
           
       </div>
-          <div class = "inline" id = "report"> 
-      <%= link_to "Report", report_link_path(grant)  %>
-      </div>
+      <% if session[:admin] %>
+        <div class = "inline" id = "report"> 
+          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(grant), remote: true, method: :put %>
+        </div>
+      <% end %>    
    </div>
   <% end %>
+  
+  <div id="grantLink" align="center" style="display: block">
+        <% if @grants.length>1  %>
+        view more:
+        <% end %>
+        <% if session[:grant_page_num]>0%>
+        <%= link_to '< prev', links_path(grant_incre: -1) %>
+        <% end %>
+        <% if session[:grant_page_num]>0 && session[:grant_page_num]<@grants.length-1%>
+        |
+        <% end %>
+        <% if session[:grant_page_num]<@grants.length-1%>
+        <%= link_to 'next >', links_path(grant_incre: 1) %>
+        <% end %>
+      </div>
   </div>
   
   
   
   <div class = "leftalign">
-    <button id = "jobs" type="button" onclick="toggleHidden(job)" class="btn btn-default">Jobs</button>
+    <button id = "jobs" type="button" onclick="toggleHidden(job)" class="btn btn-default">Get Connected & Get Taught</button>
   </div>
   
   <div id = "Jobs"> 
-   <% @jobs.each do |job| %>
-   <div class = <%= job.name.gsub(" ", "_") %> <%= job.upvotes %>  id = "job" style="display: none"> 
+   <% @jobs[session[:job_page_num]].each do |job| %>
+   <div class = <%= job.name.gsub(" ", "_") %><%= job.upvotes %>  id = "job" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= job.name + "votes" %>> 
-      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(job), remote: true, method: :put %>
+      <div class = "inline" id = <%= job.name + "thumbup" %>>
+      <% if current_user %>
+      <% if job.upvoters.split(';').include?("#{current_user.id}") %> 
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(job,user_id: current_user.id), remote: true, method: :put %>
+      <% else %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(job,user_id: current_user.id), remote: true, method: :put %>
+      <% end %>
+      <% end %>
+      </div>
       <!--URL NAME URL-->
       <a href= <%= job.url %> > <%= job.name %> </a> 
       </div>
@@ -125,25 +190,49 @@
      
       </div>
       </div>
-          <div class = "inline" id = "report"> 
-       <%= link_to "Report", report_link_path(job)  %>
-       </div>
+       <% if session[:admin] %>
+         <div class = "inline" id = "report"> 
+           <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(job), remote: true, method: :put %>
+         </div>
+       <% end %>
   </div>
   <% end %>
+  <div id="jobLink" align="center" style="display: block">
+        <% if @jobs.length>1  %>
+        view more:
+        <% end %>
+        <% if session[:job_page_num]>0%>
+        <%= link_to '< prev', links_path(job_incre: -1) %>
+        <% end %>
+        <% if session[:job_page_num]>0 && session[:job_page_num]<@jobs.length-1%>
+        |
+        <% end %>
+        <% if session[:page_num]<@jobs.length-1%>
+        <%= link_to 'next >', links_path(job_incre: 1) %>
+        <% end %>
+      </div>
   </div>
   
   
   
    <div class = "leftalign">
-    <button id = "inspirations" type="button" onclick="toggleHidden(inspiration)" class="btn btn-default">Inspiration</button>
+    <button id = "inspirations" type="button" onclick="toggleHidden(inspiration)" class="btn btn-default">Get Experience</button>
   </div>
   
  <div id = "Inspiration"> 
-   <% @inspiration.each do |inspir| %>
+   <% @inspirations[session[:insp_page_num]].each do |inspir| %>
    <div class = <%= inspir.name.gsub(" ", "_") %><%= inspir.upvotes %> id = "inspiration" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= inspir.name + "votes" %>> 
-      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(inspir), remote: true, method: :put %>
+      <div class = "inline" id = <%= inspir.name + "thumbup" %>>
+      <% if current_user %>
+      <% if inspir.upvoters.split(';').include?("#{current_user.id}") %> 
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(inspir,user_id: current_user.id), remote: true, method: :put %>
+      <% else %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(inspir,user_id: current_user.id), remote: true, method: :put %>
+      <% end %>
+      <% end %>
+      </div>
       <!--URL NAME URL-->
       <a href= <%= inspir.url %> > <%= inspir.name %> </a> 
       </div>
@@ -155,24 +244,48 @@
       
       </div>
       </div>
-          <div class = "inline" id = "report"> 
-      <%= link_to "Report", report_link_path(inspir)  %>
-      </div>
+      <% if session[:admin] %>    
+        <div class = "inline" id = "report"> 
+          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(inspir), remote: true, method: :put %>
+        </div>
+      <% end %>
   </div>
   <% end %>
+  <div id="inspirationLink" align="center" style="display: block">
+        <% if @inspirs.length>1  %>
+        view more:
+        <% end %>
+        <% if session[:insp_page_num]>0%>
+        <%= link_to '< prev', links_path(insp_incre: -1) %>
+        <% end %>
+        <% if session[:insp_page_num]>0 && session[:insp_page_num]<@inspirations.length-1%>
+        |
+        <% end %>
+        <% if session[:insp_page_num]<@inspirations.length-1%>
+        <%= link_to 'next >', links_path(insp_incre: 1) %>
+        <% end %>
+      </div>
   </div>
   
   
   <div class = "leftalign">
-    <button id = "others" type="button" onclick="toggleHidden(other)" class="btn btn-default">Other</button>
+    <button id = "others" type="button" onclick="toggleHidden(other)" class="btn btn-default">Get Organized</button>
   </div>
   
    <div id = "Other"> 
-   <% @other.each do |oth| %>
+   <% @other[session[:other_page_num]].each do |oth| %>
    <div class = <%= oth.name.gsub(" ", "_") %><%= oth.upvotes %> id = "other" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= oth.name + "votes" %>> 
-      <%= link_to image_tag("imgres.png",:size => "20x20" ), upvote_link_path(oth), remote: true, method: :put %>
+      <div class = "inline" id = <%= oth.name + "thumbup" %>>
+      <% if current_user %>
+      <% if oth.upvoters.split(';').include?("#{current_user.id}") %> 
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(oth,user_id: current_user.id), remote: true, method: :put %>
+      <% else %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(oth,user_id: current_user.id), remote: true, method: :put %>
+      <% end %>
+      <% end %>
+      </div>
       <!--URL NAME URL-->
       <a href= <%= oth.url %> > <%= oth.name %> </a> 
       </div>
@@ -184,28 +297,125 @@
       
       </div>
       </div>
-          <div class = "inline" id = "report"> 
-      <%= link_to "Report", report_link_path(oth)  %>
+      <% if session[:admin] %>
+        <div class = "inline" id = "report"> 
+          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(oth), remote: true, method: :put %>
+        </div>
+     <%end %>
+  </div>
+  <% end %>
+  <div id="otherLink" align="center" style="display: block">
+        view more:
+        <% if session[:other_page_num]>0%>
+        <%= link_to '< prev', links_path(other_incre: -1) %>
+        <% end %>
+        <% if session[:other_page_num]>0 && session[:other_page_num]<@other.length-1%>
+        |
+        <% end %>
+        <% if session[:other_page_num]<@other.length-1%>
+        <%= link_to 'next >', links_path(other_incre: 1) %>
+        <% end %>
       </div>
+  </div>
+  
+  <div class = "leftalign">
+    <button id = "others" type="button" onclick="toggleHidden(funded)" class="btn btn-default">Get Funded</button>
+  </div>
+  
+   <div id = "funded"> 
+   <% @funded[session[:fund_page_num]].each do |fund| %>
+   <div class = <%= fund.name.gsub(" ", "_") %><%= fund.upvotes %> id = "funded" style="display: none"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= fund.name + "votes" %>> 
+      <div class = "inline" id = <%= fund.name + "thumbup" %>>
+      <% if current_user %>
+      <% if fund.upvoters.split(';').include?("#{current_user.id}") %> 
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(fund,user_id: current_user.id), remote: true, method: :put %>
+      <% else %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(fund,user_id: current_user.id), remote: true, method: :put %>
+      <% end %>
+      <% end %>
+      </div>
+      <!--URL NAME URL-->
+      <a href= <%= fund.url %> > <%= fund.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=fund.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= fund.upvotes %> 
+      
+      </div>
+      </div>
+      <% if session[:admin] %>
+        <div class = "inline" id = "report"> 
+          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(fund), remote: true, method: :put %>
+        </div>
+     <%end %>
   </div>
   <% end %>
   </div>
+
+  <div class = "leftalign">
+    <button id = "others" type="button" onclick="toggleHidden(hired)" class="btn btn-default">Get Hired</button>
+  </div>
   
+   <div id = "hired"> 
+   <% @hired[session[:hired_page_num]].each do |hir| %>
+   <div class = <%= hir.name.gsub(" ", "_") %><%= hir.upvotes %> id = "hired" style="display: none"> 
+      <!--Vote Button-->
+      <div class = "inline" id = <%= hir.name + "votes" %>> 
+      <% if current_user %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20" ), upvote_link_path(hir), remote: true, method: :put %>
+      <% end %>
+      <!--URL NAME URL-->
+      <a href= <%= hir.url %> > <%= hir.name %> </a> 
+      </div>
+      
+      <!--Vote Count-->
+      <div class = "inline" id = <%=hir.name%> > 
+      <div class = "animated zoomIn"> 
+      <%= hir.upvotes %> 
+      
+      </div>
+      </div>
+      <% if session[:admin] %>
+        <div class = "inline" id = "report"> 
+          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(hir), remote: true, method: :put %>
+        </div>
+     <%end %>
+  </div>
+  <% end %>
+  </div>
+
   <div class = "leftalign" id = "addlink">
     <%= link_to "Add Link", new_link_path  %> 
   </div>
+  <div class = "leftalign" id = "reportlink">
+    <%= link_to "Report Link", report_path, {:style=>'color:#E42217;'} %>
+  </div>
+  
+  <div>
+      <%= session[:new_message] %>
+      <%= session[:new_message] = nil%>
+  </div>
 
   <script>
+  
+    
     
     function toggleHidden(id) {
-      
+      var newId = id[0] ? id[0].id+"Link" : id.id+"Link"
       if ($(id).css('display') == "none") {
           $(id).addClass('animated fadeIn');
+          $("#"+newId).addClass('animated fadeIn');
           $(id).css('display', 'block') ;
+          $("#"+newId).css('display', 'block') ;
            
       }
       else {
           $(id).css('display', 'none') 
+          $("#"+newId).css('display', 'none') 
       }
      
     }
@@ -216,6 +426,8 @@
         var inspiration = document.getElementById("Inspiration");
         var job = document.getElementById("Jobs");
         var other = document.getElementById("Other");
+        var hired = document.getElementById("Hired");
+        var funded = document.getElementById("Funded");
         
         [].map.call( intern.children, Object ).sort( function ( a, b ) {
         return a.className.localeCompare(b.className)
@@ -246,6 +458,18 @@
         }).forEach( function ( elem ) {
         other.appendChild( elem );
         });
+        
+        [].map.call( hired.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        hired.appendChild( elem );
+        });
+        
+        [].map.call( funded.children, Object ).sort( function ( a, b ) {
+        return a.className.localeCompare(b.className)
+        }).forEach( function ( elem ) {
+        funded.appendChild( elem );
+        });
     }
     
     function sort_upvotes() {
@@ -255,6 +479,8 @@
         var inspiration = document.getElementById("Inspiration");
         var job = document.getElementById("Jobs");
         var other = document.getElementById("Other");
+        var hired = document.getElementById("Hired");
+        var funded = document.getElementById("Funded");
           
         [].map.call(grant.children, Object ).sort( function ( a, b ) {
         return -a.className.match( /\d+/ ) - -b.className.match( /\d+/ );
@@ -285,7 +511,22 @@
         }).forEach( function ( elem ) {
         other.appendChild( elem );
         });
+        
+        [].map.call(hired.children, Object ).sort( function ( a, b ) {
+        return -a.className.match( /\d+/ ) - -b.className.match( /\d+/ );
+        }).forEach( function ( elem ) {
+        hired.appendChild( elem );
+        });
+        
+        [].map.call(funded.children, Object ).sort( function ( a, b ) {
+        return -a.className.match( /\d+/ ) - -b.className.match( /\d+/ );
+        }).forEach( function ( elem ) {
+        funded.appendChild( elem );
+        });
     }
+    
+    
+  
     
   </script>
   
