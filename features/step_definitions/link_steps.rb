@@ -33,7 +33,3 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   tot_bod = page.body
   tot_bod.index(e1).should > tot_bod.index(e2)
 end
-
-When /I upvote "(.*)"/ do |e1|
-  find("img[alt='upvote']").click
-end
