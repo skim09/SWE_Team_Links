@@ -92,7 +92,7 @@
       
      
       <!--Vote Count-->
-      <div class = "inline" id = <%=intern.name%> > 
+      <div class = "inline" id = <%=intern.name.gsub(" ", "")%> > 
       <div class = "animated zoomIn"> 
       <%= intern.upvotes %> 
       </div>
@@ -154,7 +154,7 @@
       </div>
       
       <!--Vote Count-->
-      <div class = "inline" id = <%=grant.name%> > 
+      <div class = "inline" id = <%=grant.name.gsub(" ", "")%> > 
     
           <div id = <%= grant.upvotes %> class = "animated zoomIn"> 
           <%= grant.upvotes %> 
@@ -215,7 +215,7 @@
       </div>
       
       <!--Vote Count-->
-      <div class = "inline" id = <%=job.name%> > 
+      <div class = "inline" id = <%=job.name.gsub(" ", "")%> > 
       <div class = "animated zoomIn"> 
       <%= job.upvotes %> 
      
@@ -273,7 +273,7 @@
       </div>
       
       <!--Vote Count-->
-      <div class = "inline" id = <%=inspir.name%> > 
+      <div class = "inline" id = <%=inspir.name.gsub(" ", "")%> > 
       <div class = "animated zoomIn"> 
       <%= inspir.upvotes %> 
       
@@ -330,7 +330,7 @@
       </div>
       
       <!--Vote Count-->
-      <div class = "inline" id = <%=oth.name%> > 
+      <div class = "inline" id = <%=oth.name.gsub(" ", "")%> > 
       <div class = "animated zoomIn"> 
       <%= oth.upvotes %> 
       
@@ -386,7 +386,7 @@
       </div>
       
       <!--Vote Count-->
-      <div class = "inline" id = <%=fund.name%> > 
+      <div class = "inline" id = <%=fund.name.gsub(" ", "")%> > 
       <div class = "animated zoomIn"> 
       <%= fund.upvotes %> 
       
@@ -442,7 +442,7 @@
       </div>
       
       <!--Vote Count-->
-      <div class = "inline" id = <%=hir.name%> > 
+      <div class = "inline" id = <%=hir.name.gsub(" ", "")%> > 
       <div class = "animated zoomIn"> 
       <%= hir.upvotes %> 
       
