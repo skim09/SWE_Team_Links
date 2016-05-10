@@ -35,6 +35,5 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
 end
 
 Then /I upvote "(.*)"/ do |e1|
-  Capybara.ignore_hidden_elements = false
-  page.find("img.upvote")
+  page.find("Boogle")
 end
