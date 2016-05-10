@@ -73,7 +73,7 @@
   
   <div id = "Internships"> 
    <% @internships[session[:intern_page_num].to_i].each do |intern| %>
-   <div class = <%= intern.name.gsub(" " , "_") %><%= intern.upvotes %>  id = "internship" style="display: none"> 
+   <div class = <%= intern.name.gsub(" " , "") %><%= intern.upvotes %>  id = "internship" style="display: none"> 
       <!--Vote Button-->
 
       <div class = "inline" id = <%= intern.name + "votes" %>> 
@@ -137,7 +137,7 @@
   
   <div id = "Grants"> 
    <% @grants[session[:grant_page_num].to_i].each do |grant| %>
-   <div class = <%= grant.name.gsub(" ", "_") %><%= grant.upvotes %> id = "grant" style="display: none"> 
+   <div class = <%= grant.name.gsub(" ", "") %><%= grant.upvotes %> id = "grant" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= grant.name + "votes" %>> 
       <div class = "inline" id = <%= grant.name + "thumbup" %>>
@@ -198,7 +198,7 @@
   
   <div id = "Jobs"> 
    <% @jobs[session[:job_page_num].to_i].each do |job| %>
-   <div class = <%= job.name.gsub(" ", "_") %><%= job.upvotes %>  id = "job" style="display: none"> 
+   <div class = <%= job.name.gsub(" ", "") %><%= job.upvotes %>  id = "job" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= job.name + "votes" %>> 
       <div class = "inline" id = <%= job.name + "thumbup" %>>
@@ -256,7 +256,7 @@
   
  <div id = "Inspiration"> 
    <% @inspirations[session[:insp_page_num].to_i].each do |inspir| %>
-   <div class = <%= inspir.name.gsub(" ", "_") %><%= inspir.upvotes %> id = "inspiration" style="display: none"> 
+   <div class = <%= inspir.name.gsub(" ", "") %><%= inspir.upvotes %> id = "inspiration" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= inspir.name + "votes" %>> 
       <div class = "inline" id = <%= inspir.name + "thumbup" %>>
@@ -313,7 +313,7 @@
   
    <div id = "Other"> 
    <% @other[session[:other_page_num].to_i].each do |oth| %>
-   <div class = <%= oth.name.gsub(" ", "_") %><%= oth.upvotes %> id = "other" style="display: none"> 
+   <div class = <%= oth.name.gsub(" ", "") %><%= oth.upvotes %> id = "other" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= oth.name + "votes" %>> 
       <div class = "inline" id = <%= oth.name + "thumbup" %>>
@@ -369,7 +369,7 @@
   
    <div id = "Funded"> 
    <% @funded[session[:fund_page_num].to_i].each do |fund| %>
-   <div class = <%= fund.name.gsub(" ", "_") %><%= fund.upvotes %> id = "funded" style="display: none"> 
+   <div class = <%= fund.name.gsub(" ", "") %><%= fund.upvotes %> id = "funded" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= fund.name + "votes" %>> 
       <div class = "inline" id = <%= fund.name + "thumbup" %>>
@@ -425,7 +425,7 @@
   
    <div id = "Hired"> 
    <% @hired[session[:hired_page_num].to_i].each do |hir| %>
-   <div class = <%= hir.name.gsub(" ", "_") %><%= hir.upvotes %> id = "hired" style="display: none"> 
+   <div class = <%= hir.name.gsub(" ", "") %><%= hir.upvotes %> id = "hired" style="display: none"> 
       <!--Vote Button-->
       <div class = "inline" id = <%= hir.name + "votes" %>> 
       <div class = "inline" id = <%= hir.name + "thumbup" %>>
