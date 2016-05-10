@@ -1,3 +1,3 @@
-$("#<%= @link.name %>").remove("");
-$("#<%= @link.name + "votes" %>").append("<div class = 'inline' id = <%= @link.name %>> <%= @link.upvotes %> </div>");
-$("#<%= @link.name + "thumbup" %>").html("<%= escape_javascript(render partial: 'thumb') %>");
+$("#<%= @link.name.gsub(" ", "") %>").remove("");
+$("#<%= @link.name.gsub(" ", "") + "votes" %>").append("<div class = 'inline' id = <%= @link.name.gsub(" ", "") %>> <%= @link.upvotes %> </div>");
+$("#<%= @link.name.gsub(" ", "") + "thumbup" %>").html("<%= escape_javascript(render partial: 'thumb') %>");
