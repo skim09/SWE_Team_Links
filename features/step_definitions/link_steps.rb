@@ -34,6 +34,6 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   tot_bod.index(e1).should > tot_bod.index(e2)
 end
 
-Then /I upvote "(.*)"/ do |e1|
-  page.find("Boogle")
+When /I upvote "(.*)"/ do |e1|
+  find("img[alt='upvote']").click
 end

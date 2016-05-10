@@ -56,6 +56,7 @@ end
 
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
+  Capybara.ignore_hidden_elements = false
   click_link(link)
 end
 

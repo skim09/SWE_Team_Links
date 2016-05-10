@@ -80,9 +80,9 @@
       <div class = "inline" id = <%= intern.name + "thumbup" %>>
       <% if current_user %>
       <% if intern.upvoters.split(';').include?("#{current_user.id}") %> 
-      <%= link_to image_tag("uparrowtrue.png",:size => "20x20", class: "upvote"), upvote_link_path(intern,user_id: current_user.id), remote: true, method: :put %>
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20", alt: "upvote"), upvote_link_path(intern,user_id: current_user.id), remote: true, method: :put %>
       <% else %>
-      <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(intern,user_id: current_user.id), remote: true, method: :put %>
+      <%= link_to image_tag("uparrow.png",:size => "20x20", alt: "upvote" , class: "upvote"), upvote_link_path(intern,user_id: current_user.id), remote: true, method: :put %>
       <% end %>
       <% end %>
       </div>
@@ -504,6 +504,11 @@
   <div id = "errors2" class = "animated flash" align = "center">
         <%= session[:error2] %>
         <%= session[:error2] = nil%>
+  </div>
+  
+  <div id = "report" class = "animated fadeInDown" align = "center">
+        <%= session[:reported] %>
+        <%= session[:reported] = nil%>
   </div>
   
  </div>

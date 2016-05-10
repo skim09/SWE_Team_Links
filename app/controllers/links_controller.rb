@@ -81,8 +81,8 @@ class LinksController < ApplicationController
     def report
         
         if !session[:authenticated]
-            session[:error2] = "Must be logged in to report links"
-            redirect_to root_path
+             session[:error2] = "Must be logged in to report links"
+             redirect_to root_path
         end
         
         reportname = params[:reportname]
@@ -117,7 +117,9 @@ class LinksController < ApplicationController
             AddlinkMailer.reportrequest_email(reportname, reportreason).deliver_now
             end
             
+            session[:reported] = "Your report has been forwarded to an admin."
             redirect_to links_path
+            
         end
         
         #redirect_to links_path
