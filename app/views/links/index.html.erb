@@ -200,8 +200,8 @@
    <% @jobs[session[:job_page_num].to_i].each do |job| %>
    <div class = <%= job.name.gsub(" ", "") %><%= job.upvotes %>  id = "job" style="display: none"> 
       <!--Vote Button-->
-      <div class = "inline" id = <%= job.name + "votes" %>> 
-      <div class = "inline" id = <%= job.name + "thumbup" %>>
+      <div class = "inline" id = <%= job.name.gsub(" ", "") + "votes" %>> 
+      <div class = "inline" id = <%= job.name.gsub(" ", "") + "thumbup" %>>
       <% if current_user %>
       <% if job.upvoters.split(';').include?("#{current_user.id}") %> 
       <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(job,user_id: current_user.id), remote: true, method: :put %>
