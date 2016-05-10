@@ -109,9 +109,9 @@
   </div>
   
       <% end unless @internships.empty? %>
-      
+      <div id="internshipLink" class="zzzz" style="display: none">
         <% if @internships.length>1  %>
-        <div id="internshipLink" class="zzzz" style="display: none">
+        <!--<div id="internshipLink" class="zzzz" style="display: none">-->
         view more:
         <% end %>
         <% if session[:intern_page_num].to_i > 0%>
@@ -122,9 +122,9 @@
         <% end %>
         <% if session[:intern_page_num].to_i<@internships.length-1%>
         <%= link_to 'next >', page_path(intern_incre: 1), remote: true %>
-         </div>
+         <!--</div>-->
         <% end %>
-     
+     </div>
   
   </div>
  
