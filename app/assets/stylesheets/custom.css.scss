@@ -8,7 +8,7 @@
 
 
 a:hover{
-  font-size: 115%;
+  color: #0066FF;
 }
 
 #sortBy, #sortby2 {
@@ -199,7 +199,23 @@ h2 {
 
 #admin{
     float: left;
+    font-family: AvenirNext-Medium;
+    padding: 5px;
+    
 }
+ 
+input[type="submit"] {
+  
+    border-radius:5px;
+    background:#900000  ;
+    color: white;
+}
+
+input[type="submit"]:hover {
+    background-color: #580000;
+    
+}
+
 .inline {
     display: inline-block;
     margin: left;
@@ -284,4 +300,10 @@ label {
     color: red;
     font-weight: bold;
 }
+
+#errors2 {
+    color: red;
+    font-weight: 500;
+}
+
 

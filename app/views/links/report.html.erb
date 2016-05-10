@@ -23,18 +23,21 @@
    </div>
 
   <h2><b><center> 
-  <div class= "animated fadeInDown">
+  <div class= "animated fadeIn">
    <font color="#99012">Report a Link</font></center></b>
    </h2></br>
    </div>
-  <div class= "animated fadeInDown">
-   <p><i><center>An administrator will be notified of your link report after submission for review.</center></i></p>
+  <div class= "animated fadeIn">
+   <p><i><center>An administrator will be notified of your link report for review.</center></i></p>
    </div>
    <div class="row">
             <div class="col-sm-12">
-                <div class = "animated fadeInDown">
+                <div class = "animated fadeIn">
                 <center><p><b>What link would you like to report?</b></p></center>
-                <%= text_field_tag :reportname %>
+                
+                <%= text_field_tag :reportname, session[:reportname] %>
+                <% session[:reportname] = nil %>
+                
                 </div>
             </div>
     </div>
@@ -65,10 +68,6 @@
             </div>
         <!--</div>-->
         
-        
-        
-        
-        
         <div class = "row">
             <div class="col-xs-2 col-xs-offset-5">
                 <div align="center">
@@ -81,6 +80,15 @@
             </div>
             
         </div>
+        
+     
+         <div class = "leftalign" id = "errors" align = "center">
+      <div class = "animated flash"> 
+          <%= session[:report_error] %>
+          <% session[:report_error] = nil %>
+    </div>
+    </div>
+    
         
         
 

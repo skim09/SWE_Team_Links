@@ -1,8 +1,6 @@
 class LinksController < ApplicationController
-    include LinksHelper
-
+    protect_from_forgery except: :page
     
-
     # before_filter :authenticate, only: [:new] 
     
     def link_params
@@ -22,13 +20,13 @@ class LinksController < ApplicationController
         
         #session[:intern_display] = session[:intern_display] || "none"
         
-        @inspirations = Link.where(category: "Get Acclimated & Get Inspired", status: true).each_slice(2).to_a
-        @internships = Link.where(category: "Get Smart & Get Informed", status: true).each_slice(2).to_a
-        @grants = Link.where(category: "Get Connected & Get Taught", status: true).each_slice(2).to_a
-        @jobs = Link.where(category: 'Get Experience', status: true).each_slice(2).to_a
-        @other = Link.where(category: "Get Organized", status: true).each_slice(2).to_a
-        @funded = Link.where(category: "Get Funded", status: true).each_slice(2).to_a
-        @hired = Link.where(category: "Get Hired", status: true).each_slice(2).to_a
+        @inspirations = Link.where(category: "Get Acclimated & Get Inspired", status: true).each_slice(5).to_a
+        @internships = Link.where(category: "Get Smart & Get Informed", status: true).each_slice(5).to_a
+        @grants = Link.where(category: "Get Connected & Get Taught", status: true).each_slice(5).to_a
+        @jobs = Link.where(category: 'Get Experience', status: true).each_slice(5).to_a
+        @other = Link.where(category: "Get Organized", status: true).each_slice(5).to_a
+        @funded = Link.where(category: "Get Funded", status: true).each_slice(5).to_a
+        @hired = Link.where(category: "Get Hired", status: true).each_slice(5).to_a
         session[:links] = @links
         @number_of_unapproved = Link.where(status: false).size
         
@@ -81,6 +79,17 @@ class LinksController < ApplicationController
     end
     
     def report
+        
+        if !session[:authenticated]
+            session[:error2] = "Must be logged in to report links"
+            redirect_to root_path
+        end
+        
+        reportname = params[:reportname]
+        reportreason = params[:reportreason]
+        otherreportreason = params[:otherreportreason]
+        
+        @link = Link.find_by name: reportname
     end
     
     def reportsend
@@ -88,22 +97,30 @@ class LinksController < ApplicationController
         #@link = Link.find params[:link_id]
         #@link.update_attributes!(link_params)
         #@link.update(reportreason: params[:reportreason])
+       
+       
         reportname = params[:reportname]
         reportreason = params[:reportreason]
         otherreportreason = params[:otherreportreason]
-        #if @link.reportreason == "Other"
-         #   @link.update(otherreportreason: params[:otherreportreason])
-          #  AddlinkMailer.otherreportrequest_email(@link).deliver_now
-        #else
-         #   @link.update_attributes!(link_params)
-          #  AddlinkMailer.reportrequest_email(@link).deliver_now
-        #end
-        if reportreason == "Other"
+  
+        @link = Link.find_by name: reportname
+        
+        if @link == nil 
+            session[:reportname] = reportname
+            session[:report_error] = "No link with that name exists"
+            render 'report'
+        elsif @link != nil
+           
+            if reportreason == "Other"
             AddlinkMailer.otherreportrequest_email(reportname, otherreportreason).deliver_now
-        else
+            else
             AddlinkMailer.reportrequest_email(reportname, reportreason).deliver_now
+            end
+            
+            redirect_to links_path
         end
-        redirect_to links_path
+        
+        #redirect_to links_path
     end
     
     
@@ -160,13 +177,13 @@ class LinksController < ApplicationController
     end
     
     def page
-        @internships = Link.where(category: "Get Smart & Get Informed", status: true).each_slice(2).to_a
-        @inspirations = Link.where(category: "Get Acclimated & Get Inspired", status: true).each_slice(2).to_a
-        @grants = Link.where(category: "Get Connected & Get Taught", status: true).each_slice(2).to_a
-        @jobs = Link.where(category: 'Get Experience', status: true).each_slice(2).to_a
-        @other = Link.where(category: "Get Organized", status: true).each_slice(2).to_a
-        @funded = Link.where(category: "Get Funded", status: true).each_slice(2).to_a
-        @hired = Link.where(category: "Get Hired", status: true).each_slice(2).to_a
+        @internships = Link.where(category: "Get Smart & Get Informed", status: true).each_slice(5).to_a
+        @inspirations = Link.where(category: "Get Acclimated & Get Inspired", status: true).each_slice(5).to_a
+        @grants = Link.where(category: "Get Connected & Get Taught", status: true).each_slice(5).to_a
+        @jobs = Link.where(category: 'Get Experience', status: true).each_slice(5).to_a
+        @other = Link.where(category: "Get Organized", status: true).each_slice(5).to_a
+        @funded = Link.where(category: "Get Funded", status: true).each_slice(5).to_a
+        @hired = Link.where(category: "Get Hired", status: true).each_slice(5).to_a
         
         session[:intern_page_num] = session[:intern_page_num].to_i+params[:intern_incre].to_i   
         session[:grant_page_num] = session[:grant_page_num].to_i+params[:grant_incre].to_i  

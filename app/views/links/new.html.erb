@@ -14,13 +14,13 @@
     
   <h2><b><center> 
   
-  <div class= "animated fadeInDown">
+  <div class= "animated fadeIn">
    <font color="#99012">Request a Link</font></center></b>
    </div>
    </h2></br>
    
-  <div class= "animated fadeInDown">
-   <p><i><center>An administrator will be notified of your link request after submission for review.</center></i></p>
+  <div class= "animated fadeIn">
+   <p><i><center>An administrator will be notified of your link request after submission for approval.</center></i></p>
    </div>
  
         <div class = "animated fadeIn"> 
@@ -58,12 +58,23 @@
           <%= link.text_field :comments %>
           </div><br><br><br>
          
-         <div class = "inline" id = "linksAdd"> 
+         
+         
+         <!--<div class = "inline" id = "linksAdd">--> 
+         <div class="row">
+         <div class="col-xs-5 col-xsoffset-4">
+         <div align="center">
           <%= button_tag(type: 'submit', class: "btn btn-large btn-search btn-primary") do %>
             <i class="icon icon-search"></i> Request
-          <% end %>
+          <% end %>&nbsp;&nbsp;&nbsp;
           <%= link_to "Back", links_path %>
           </div>
+          </div>
+          </div>
+      
+      
+      
+      
       
       </div>
       </div>

@@ -234,13 +234,13 @@ describe LinksController, :type => :controller do
     
     context 'report reason: other' do
       it 'should deliver report' do
-        put :reportsend, :link_id => 1, :reportreason => "Other", :otherreportreason => "Stuff"
+        put :reportsend, :link_id => 2, :reportreason => "Other", :otherreportreason => "Stuff"
       end
     end
     
     context 'report reason: not other' do
       it 'should deliver report' do
-        put :reportsend, :link_id => 1, :reportreason => "reasons"
+        put :reportsend, :link_id => 1, :reportname => 'Googlee', :reportreason => "reasons"
       end
     end
   end
@@ -249,6 +249,12 @@ describe LinksController, :type => :controller do
     it 'should remove a link' do
       Link.create!(:url => "http://www.googlee.com", :name => 'Googlee', :email => 'jkoshakow@wesleyan.edu', :category => 'Jobs', :status => true)
       put :remove, :id => 2, format: :js
+    end
+  end
+  
+  describe 'page' do
+    it 'should render a partial' do
+      get :page, :aincre => 1, format: :js  
     end
   end
   

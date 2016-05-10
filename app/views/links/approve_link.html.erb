@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
   <body>
+    <div class = "animated fadeIn"> 
     <div align = "right">
       <div id = "admin">
       <%= form_tag("/new_admin", method: "put") do %>
+      <div id = "admin"> 
         <%= label_tag(:email) %>
+        </div>
+        
         <%= text_field_tag(:email) %>
+       
         <%= submit_tag("Add Administrator", :data => {:confirm => "Are you sure you would like to add an administrator?" })%>
+        
+        
       <% end %>
       </div>
       <strong><%= current_user.name %></strong>
@@ -18,6 +25,8 @@
         <%= session[:error] = nil%>
     </div>
     
+    
+   
     <header>
       <h2>
         <font color="#99012">Link Approval</font>
@@ -31,5 +40,8 @@
     <div class = "leftalign" align = "center">
       <%= link_to "Back", links_path %>
     </div>
+    
+    </div>
+    
   </body>
 </html>

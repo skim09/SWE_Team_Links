@@ -6,20 +6,22 @@
   <link rel="stylesheet" href="animate.min.css">
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,700,600' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Poppins:400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-
+<div class = "animated fadeIn"> 
   <!--<div class = "mini" style= "color: #FFFFFF" > Google </div>-->
 
    <div align = "right">
       <% if current_user %>
         <% if current_user.admin%>
             <% if @number_of_unapproved!=0 %>
-            <div id="bubble"><%= @number_of_unapproved %></div>
+            <%=link_to image_tag("/assets/bell_notif_alert.png", width:25, height:25, alt: "noti"), approval_path %>
+            <% else %>
+            <%=link_to image_tag("/assets/bell_notif.png", width:25, height:25, alt: "noti"), approval_path %>
             <% end %>
-            <%=link_to image_tag("/assets/noti.png", width:30, height:30, alt: "noti"), approval_path %>
-            
         <% end %>
         <strong><%= current_user.name %></strong>
         <%= link_to "Sign out", signout_path %>
@@ -28,7 +30,7 @@
       <% end %>
    </div>
    
-   <!-- PCSE right-->
+   <!-- PCSE right
    <div class="row">
    <div class="col-xs-7 col-xs-offset-2">
    <h1><b><div align="right"><font face="Lato", color="#99012"><br>Patricelli Center for Social Entrepreneurship</font></div></b></h1>
@@ -36,16 +38,22 @@
    <div class="col-xs-2">
   <h1><b><div align="left"><font face="Roboto Mono", color="#000000", size="30">PC<br>SE</font></div></b></h1>
    </div>
-   </div>
-   <!--<div class="row">
+   </div>-->
+   <div class="row">
    <div class="col-xs-1 col-xs-offset-2">
     <h1><b><div align="right"><font face="Roboto Mono", color="#000000", size="30">PC<br>SE</font></div></b></h1>
    </div>
    <div class="col-xs-9">
-   <h1><b><div align="left"><font face="Lato", color="#99012"><br>Patricelli Center for Social Entrepreneurship</font></div></b></h1>
+   <h1><div align="left"><font face="Work Sans", color="#99012"><br>PATRICELLI CENTER FOR SOCIAL ENTREPRENEURSHIP</font></div></h1>
    </div>
-   </div>-->
-   
+   </div>
+  
+  
+  
+  <div class="row">
+<div class="col-xs-4 col-xs-offset-2">
+<div align="left">
+    
    <div class="leftalign">
       <div class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Sort By <b class="caret"></b></a>
@@ -72,7 +80,7 @@
       <div class = "inline" id = <%= intern.name + "thumbup" %>>
       <% if current_user %>
       <% if intern.upvoters.split(';').include?("#{current_user.id}") %> 
-      <%= link_to image_tag("uparrowtrue.png",:size => "20x20"), upvote_link_path(intern,user_id: current_user.id), remote: true, method: :put %>
+      <%= link_to image_tag("uparrowtrue.png",:size => "20x20", class: "upvote"), upvote_link_path(intern,user_id: current_user.id), remote: true, method: :put %>
       <% else %>
       <%= link_to image_tag("uparrow.png",:size => "20x20"), upvote_link_path(intern,user_id: current_user.id), remote: true, method: :put %>
       <% end %>
@@ -90,17 +98,20 @@
       </div>
       </div>
       
-      <% if session[:admin] %>
+        <% if current_user %>
+      <% if current_user.admin %>
         <div class = "inlinedelete" id = "report"> 
         <%= link_to image_tag("deletex.png",:size => "10x10" ), remove_link_path(intern), remote: true, method: :put %>
         </div>
+      <% end %>
       <% end %>
       
   </div>
   
       <% end unless @internships.empty? %>
-      <div id="internshipLink" class="zzzz" style="display: none">
+      
         <% if @internships.length>1  %>
+        <div id="internshipLink" class="zzzz" style="display: none">
         view more:
         <% end %>
         <% if session[:intern_page_num].to_i > 0%>
@@ -111,8 +122,9 @@
         <% end %>
         <% if session[:intern_page_num].to_i<@internships.length-1%>
         <%= link_to 'next >', page_path(intern_incre: 1), remote: true %>
+         </div>
         <% end %>
-      </div>
+     
   
   </div>
  
@@ -150,16 +162,19 @@
           </div>
           
       </div>
-      <% if session[:admin] %>
+      <% if current_user %>
+      <% if current_user.admin %>
         <div class = "inline" id = "report"> 
-          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(grant), remote: true, method: :put %>
+          <%= link_to image_tag("deletex.png",:size => "10x10" ), remove_link_path(grant), remote: true, method: :put %>
         </div>
+        <% end %>   
       <% end %>    
    </div>
   <% end unless @grants.empty? %>
   
-  <div id="grantLink" class="zzzz" style="display: none">
+  
         <% if @grants.length>1  %>
+        <div id="grantLink" class="zzzz" style="display: none">
         view more:
         <% end %>
         <% if session[:grant_page_num].to_i>0%>
@@ -170,8 +185,9 @@
         <% end %>
         <% if session[:grant_page_num].to_i<@grants.length-1%>
         <%= link_to 'next >', page_path(grant_incre: 1), remote: true %>
+         </div>
         <% end %>
-      </div>
+     
   </div>
   
   
@@ -205,15 +221,18 @@
      
       </div>
       </div>
-       <% if session[:admin] %>
+         <% if current_user %>
+      <% if current_user.admin %>
          <div class = "inline" id = "report"> 
-           <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(job), remote: true, method: :put %>
+           <%= link_to image_tag("deletex.png",:size => "10x10" ), remove_link_path(job), remote: true, method: :put %>
          </div>
+       <% end %>
        <% end %>
   </div>
   <% end unless @jobs.empty? %>
-  <div id="jobLink" class="zzzz" style="display: none">
+ 
         <% if @jobs.length>1  %>
+         <div id="jobLink" class="zzzz" style="display: none">
         view more:
         <% end %>
         <% if session[:job_page_num].to_i>0%>
@@ -224,8 +243,9 @@
         <% end %>
         <% if session[:job_page_num].to_i<@jobs.length-1%>
         <%= link_to 'next >', page_path(job_incre: 1), remote: true %>
+        </div>
         <% end %>
-      </div>
+      
   </div>
   
   
@@ -259,15 +279,18 @@
       
       </div>
       </div>
-      <% if session[:admin] %>    
+       <% if current_user %>
+      <% if current_user.admin %>
         <div class = "inline" id = "report"> 
-          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(inspir), remote: true, method: :put %>
+          <%= link_to image_tag("deletex.png",:size => "10x10" ), remove_link_path(inspir), remote: true, method: :put %>
         </div>
+      <% end %>
       <% end %>
   </div>
   <% end unless @inspirations.empty? %>
-  <div id="inspirationLink" class="zzzz" style="display: none">
+  
         <% if @inspirations.length>1  %>
+        <div id="inspirationLink" class="zzzz" style="display: none">
         view more:
         <% end %>
         <% if session[:insp_page_num].to_i>0%>
@@ -278,8 +301,9 @@
         <% end %>
         <% if session[:insp_page_num].to_i<@inspirations.length-1%>
         <%= link_to 'next >', page_path(insp_incre: 1), remote: true %>
+        </div>
         <% end %>
-      </div>
+      
   </div>
   
   
@@ -312,15 +336,18 @@
       
       </div>
       </div>
-      <% if session[:admin] %>
+        <% if current_user %>
+      <% if current_user.admin %>
         <div class = "inline" id = "report"> 
-          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(oth), remote: true, method: :put %>
+          <%= link_to image_tag("deletex.png",:size => "10x10" ), remove_link_path(oth), remote: true, method: :put %>
         </div>
+     <%end %>
      <%end %>
   </div>
   <% end unless @other.empty? %>
-  <div id="otherLink" class="zzzz" style="display: none">
+ 
         <% if @other.length>1  %>
+         <div id="otherLink" class="zzzz" style="display: none">
         view more:
         <% end %>
         <% if session[:other_page_num].to_i>0%>
@@ -331,8 +358,9 @@
         <% end %>
         <% if session[:other_page_num].to_i<@other.length-1%>
         <%= link_to 'next >', page_path(other_incre: 1), remote: true %>
+        </div>
         <% end %>
-      </div>
+      
   </div>
   
   <div class = "leftalign">
@@ -364,15 +392,18 @@
       
       </div>
       </div>
-      <% if session[:admin] %>
+       <% if current_user %>
+      <% if current_user.admin %>
         <div class = "inline" id = "report"> 
-          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(fund), remote: true, method: :put %>
+          <%= link_to image_tag("deletex.png",:size => "10x10" ), remove_link_path(fund), remote: true, method: :put %>
         </div>
      <%end %>
+     <% end %>
   </div>
   <% end unless @funded.empty? %>
-  <div id="fundedLink" class="zzzz" style="display: none">
+  
         <% if @funded.length>1  %>
+        <div id="fundedLink" class="zzzz" style="display: none">
         view more:
         <% end %>
         <% if session[:fund_page_num].to_i>0%>
@@ -383,8 +414,9 @@
         <% end %>
         <% if session[:fund_page_num].to_i<@funded.length-1%>
         <%= link_to 'next >', page_path(fund_incre: 1), remote: true %>
+         </div>
         <% end %>
-      </div>
+     
   </div>
 
   <div class = "leftalign">
@@ -416,15 +448,18 @@
       
       </div>
       </div>
-      <% if session[:admin] %>
+       <% if current_user %>
+      <% if current_user.admin %>
         <div class = "inline" id = "report"> 
-          <%= link_to image_tag("delete.png",:size => "25x25" ), remove_link_path(hir), remote: true, method: :put %>
+          <%= link_to image_tag("deletex.png",:size => "10x10" ), remove_link_path(hir), remote: true, method: :put %>
         </div>
      <%end %>
+     <% end %>
   </div>
   <% end unless @hired.empty? %>
-  <div id="hiredLink" class="zzzz" style="display: none">
+  
         <% if @hired.length>1  %>
+        <div id="hiredLink" class="zzzz" style="display: none">
         view more:
         <% end %>
         <% if session[:hired_page_num].to_i>0%>
@@ -435,26 +470,44 @@
         <% end %>
         <% if session[:hired_page_num].to_i<@hired.length-1%>
         <%= link_to 'next >', page_path(hired_incre: 1), remote: true %>
+         </div>
         <% end %>
-      </div>
+     
   </div>
-
-  <div class = "leftalign" id = "addlink">
+    <div class = "leftalign" id = "addlink">
     <%= link_to "Request a Link", new_link_path  %> 
   </div>
   <div class = "leftalign" id = "reportlink">
     <%= link_to "Report a Link", report_path, {:style=>'color:#E42217;'} %>
   </div>
-  
+</div>
+</div>
+<div class="col-xs-3 col-xs-offset-1"><div align="left">
+<p><font face="Work Sans", size="4">Wesleyan’s Patricelli Center for Social Entrepreneurship supports students and alumni interested in creating and sustaining programs, businesses, and organizations that advance the public good. We offer workshops and trainings, specialized counseling and networking services, grants, and incubator workspace on Wesleyan's campus. Our Social Entrepreneurship Resource Center is a library of links and resources for changemakers and social entrepreneurs at all stages. Inclusion does not indicate endorsement.
+</font>
+</p>
+</div>
+</div>
+</div>
+
+
+ <div class = "row">
   <div>
       <%= session[:new_message] %>
       <%= session[:new_message] = nil%>
   </div>
-  <div align = "center">
+  <div id = "errors2" class = "animated flash" align = "center">
         <%= session[:error] %>
         <%= session[:error] = nil%>
   </div>
-
+  
+  <div id = "errors2" class = "animated flash" align = "center">
+        <%= session[:error2] %>
+        <%= session[:error2] = nil%>
+  </div>
+  
+ </div>
+</div>
   <script>
   
     
@@ -580,15 +633,6 @@
         funded.appendChild( elem );
         });
     }
-    
-    
-    $("#intern_link_more").click(function(){
-        $(this).replaceWith('<%= link_to '< show less', links_path(intern_index: "five"), id: "intern_link_less"%>')
-    })
-    $("#intern_link_less").click(function(){
-        $(this).replaceWith('<%= link_to 'show more >', links_path(intern_index: "all"), id: "intern_link_more"%>')
-
-    })
     
         
   

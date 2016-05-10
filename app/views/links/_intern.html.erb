@@ -24,10 +24,12 @@
       </div>
       </div>
       
-      <% if session[:admin] %>
+      <% if current_user %>
+      <% if current_user.admin %>
         <div class = "inlinedelete" id = "report"> 
         <%= link_to image_tag("deletex.png",:size => "10x10" ), remove_link_path(intern), remote: true, method: :put %>
         </div>
+      <% end %>
       <% end %>
       
   </div>

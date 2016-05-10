@@ -51,7 +51,7 @@ When /^(?:|I )go to (.+)$/ do |page_name|
 end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|
-  click_button(button)
+  click_button(button , match: :first)
 end
 
 
@@ -144,6 +144,7 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
 end
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
+  Capybara.ignore_hidden_elements = true
   if page.respond_to? :should
     page.should have_no_content(text)
   else
@@ -152,6 +153,7 @@ Then /^(?:|I )should not see "([^"]*)"$/ do |text|
 end
 
 Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
+  Capybara.ignore_hidden_elements = true
   regexp = Regexp.new(regexp)
 
   if page.respond_to? :should
