@@ -1,5 +1,9 @@
 Feature: Sorting Links
 
+  As a user
+  So that I can more easily find useful links
+  I want to be able to sort links by name and upvotes
+  
 Background:
   
   Given the following links exist:

@@ -1,6 +1,9 @@
 Feature: Guest User
   
-  As a 
+  As a guest user
+  I should be able to navigate the website
+  but not be able to contribute to the website
+  
   
 Scenario: trying to request a link
   When I am on the Links home page
