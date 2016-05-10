@@ -172,9 +172,9 @@
    </div>
   <% end unless @grants.empty? %>
   
-  
+   <div id="grantLink" class="zzzz" style="display: none">
         <% if @grants.length>1  %>
-        <div id="grantLink" class="zzzz" style="display: none">
+       
         view more:
         <% end %>
         <% if session[:grant_page_num].to_i>0%>
@@ -185,9 +185,9 @@
         <% end %>
         <% if session[:grant_page_num].to_i<@grants.length-1%>
         <%= link_to 'next >', page_path(grant_incre: 1), remote: true %>
-         </div>
+       
         <% end %>
-     
+       </div>
   </div>
   
   
@@ -230,9 +230,9 @@
        <% end %>
   </div>
   <% end unless @jobs.empty? %>
- 
+ <div id="jobLink" class="zzzz" style="display: none">
         <% if @jobs.length>1  %>
-         <div id="jobLink" class="zzzz" style="display: none">
+         
         view more:
         <% end %>
         <% if session[:job_page_num].to_i>0%>
@@ -243,9 +243,9 @@
         <% end %>
         <% if session[:job_page_num].to_i<@jobs.length-1%>
         <%= link_to 'next >', page_path(job_incre: 1), remote: true %>
-        </div>
+   
         <% end %>
-      
+           </div>
   </div>
   
   
@@ -288,9 +288,9 @@
       <% end %>
   </div>
   <% end unless @inspirations.empty? %>
-  
+   <div id="inspirationLink" class="zzzz" style="display: none">
         <% if @inspirations.length>1  %>
-        <div id="inspirationLink" class="zzzz" style="display: none">
+       
         view more:
         <% end %>
         <% if session[:insp_page_num].to_i>0%>
@@ -301,9 +301,9 @@
         <% end %>
         <% if session[:insp_page_num].to_i<@inspirations.length-1%>
         <%= link_to 'next >', page_path(insp_incre: 1), remote: true %>
-        </div>
+        
         <% end %>
-      
+      </div>
   </div>
   
   
@@ -345,9 +345,9 @@
      <%end %>
   </div>
   <% end unless @other.empty? %>
- 
+   <div id="otherLink" class="zzzz" style="display: none">
         <% if @other.length>1  %>
-         <div id="otherLink" class="zzzz" style="display: none">
+       
         view more:
         <% end %>
         <% if session[:other_page_num].to_i>0%>
@@ -358,9 +358,9 @@
         <% end %>
         <% if session[:other_page_num].to_i<@other.length-1%>
         <%= link_to 'next >', page_path(other_incre: 1), remote: true %>
-        </div>
+        
         <% end %>
-      
+      </div>
   </div>
   
   <div class = "leftalign">
@@ -401,9 +401,9 @@
      <% end %>
   </div>
   <% end unless @funded.empty? %>
-  
+  <div id="fundedLink" class="zzzz" style="display: none">
         <% if @funded.length>1  %>
-        <div id="fundedLink" class="zzzz" style="display: none">
+        
         view more:
         <% end %>
         <% if session[:fund_page_num].to_i>0%>
@@ -414,9 +414,9 @@
         <% end %>
         <% if session[:fund_page_num].to_i<@funded.length-1%>
         <%= link_to 'next >', page_path(fund_incre: 1), remote: true %>
-         </div>
+       
         <% end %>
-     
+       </div>
   </div>
 
   <div class = "leftalign">
@@ -457,9 +457,9 @@
      <% end %>
   </div>
   <% end unless @hired.empty? %>
-  
+  <div id="hiredLink" class="zzzz" style="display: none">
         <% if @hired.length>1  %>
-        <div id="hiredLink" class="zzzz" style="display: none">
+        
         view more:
         <% end %>
         <% if session[:hired_page_num].to_i>0%>
@@ -470,9 +470,9 @@
         <% end %>
         <% if session[:hired_page_num].to_i<@hired.length-1%>
         <%= link_to 'next >', page_path(hired_incre: 1), remote: true %>
-         </div>
+         
         <% end %>
-     
+     </div>
   </div>
     <div class = "leftalign" id = "addlink">
     <%= link_to "Request a Link", new_link_path  %> 
