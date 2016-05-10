@@ -12,7 +12,7 @@ Background:
   | bmk1995  | true          |
   | hellohihi| false         |
   
-  And the user "bmk1995" is logged in
+  And the admin "bmk1995" is logged in
   And I am on the Links home page
   
 Scenario: sorting links by name

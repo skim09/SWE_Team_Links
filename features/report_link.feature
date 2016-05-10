@@ -12,7 +12,12 @@ Background: links in database
   | Boogle              | Get Acclimated & Get Inspired  | https://www.google.com | 5       | true   |
   | Acumen              | Get Acclimated & Get Inspired  | https://www.acumen.org | 6       | true   |
 
+  Given the following users exist:
+  | name     | admin         |
+  | bmk1995  | true          |
+  | hellohihi| false         |
 
+  And the non-admin "hellohihi" is logged in
   And I am on the Links home page  
 
 
